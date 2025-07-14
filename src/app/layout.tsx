@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,30 +17,39 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Next.js + HeroUI App",
-    template: "%s | Next.js + HeroUI App",
+    default: "Phuket Child Seat - Safe Travel Services",
+    template: "%s | Phuket Child Seat",
   },
   description:
-    "A modern web application built with Next.js, TypeScript, Tailwind CSS, and HeroUI",
-  keywords: ["Next.js", "React", "TypeScript", "Tailwind CSS", "HeroUI"],
-  authors: [{ name: "Your Name" }],
-  creator: "Your Name",
-  metadataBase: new URL("https://your-domain.com"),
+    "Professional travel services in Phuket with child seat safety. Airport transfers, day trips, tours with imported Britax child seats from Sweden. Safe and convenient travel for families.",
+  keywords: [
+    "Phuket",
+    "Child Seat",
+    "Airport Transfer",
+    "Day Trips",
+    "Family Travel",
+    "Safety",
+    "Thailand",
+    "Tours",
+  ],
+  authors: [{ name: "Kampanart Travel" }],
+  creator: "Kampanart Travel",
+  metadataBase: new URL("https://phuket-childseat.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://your-domain.com",
-    title: "Next.js + HeroUI App",
+    url: "https://phuket-childseat.com",
+    title: "Phuket Child Seat - Safe Travel Services",
     description:
-      "A modern web application built with Next.js, TypeScript, Tailwind CSS, and HeroUI",
-    siteName: "Next.js + HeroUI App",
+      "Professional travel services in Phuket with child seat safety. Airport transfers, day trips, tours with imported Britax child seats from Sweden.",
+    siteName: "Phuket Child Seat",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Next.js + HeroUI App",
+    title: "Phuket Child Seat - Safe Travel Services",
     description:
-      "A modern web application built with Next.js, TypeScript, Tailwind CSS, and HeroUI",
-    creator: "@yourusername",
+      "Professional travel services in Phuket with child seat safety. Airport transfers, day trips, tours with imported Britax child seats from Sweden.",
+    creator: "@phuketchildseat",
   },
   robots: {
     index: true,
@@ -62,7 +73,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <div className="min-h-screen flex flex-col">
+            <Navigation />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   );
