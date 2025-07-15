@@ -102,7 +102,7 @@ export default function DayTripsPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaShip className="text-3xl text-blue-800" />
@@ -117,7 +117,7 @@ export default function DayTripsPage() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaCamera className="text-3xl text-blue-800" />
@@ -132,7 +132,7 @@ export default function DayTripsPage() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaSwimmer className="text-3xl text-blue-800" />
@@ -474,7 +474,7 @@ export default function DayTripsPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="p-6 bg-white">
+            <Card className="p-6 !bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <LuDrama className="text-3xl text-blue-800" />
@@ -488,7 +488,7 @@ export default function DayTripsPage() {
               </CardBody>
             </Card>
 
-            <Card className="p-6 bg-white">
+            <Card className="p-6 !bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <GiElephant className="text-3xl text-blue-800" />
@@ -502,7 +502,7 @@ export default function DayTripsPage() {
               </CardBody>
             </Card>
 
-            <Card className="p-6 bg-white">
+            <Card className="p-6 !bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <LiaSwimmerSolid className="text-3xl text-blue-800" />

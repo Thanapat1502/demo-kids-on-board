@@ -78,7 +78,7 @@ export default function HouseForRentPage() {
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Property Overview */}
         <section className="mb-16">
-          <Card className="p-8 bg-white">
+          <Card className="p-8 !bg-white">
             <CardHeader className="pb-0">
               <div className="flex items-center gap-4">
                 <div className="text-4xl">🏡</div>
@@ -148,7 +148,7 @@ export default function HouseForRentPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaHome className="text-3xl text-blue-800" />
@@ -164,7 +164,7 @@ export default function HouseForRentPage() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaWifi className="text-3xl text-blue-800" />
@@ -180,7 +180,7 @@ export default function HouseForRentPage() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaParking className="text-3xl text-blue-800" />
@@ -200,7 +200,7 @@ export default function HouseForRentPage() {
 
         {/* Transportation */}
         <section className="mb-16">
-          <Card className="p-8 bg-white">
+          <Card className="p-8 !bg-white">
             <CardHeader className="pb-0">
               <div className="flex items-center gap-4">
                 <div className="text-4xl">🚗</div>

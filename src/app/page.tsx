@@ -176,7 +176,7 @@ export default function Home() {
             {seatOptions.map((item, index) => (
               <Card
                 key={index}
-                className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 !bg-white">
                 <CardBody className="p-0">
                   {/* Image Section with Overlay */}
                   <div
@@ -266,21 +266,41 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
               <CardBody className="text-center">
-                <div className="relative w-full h-64 mb-6 rounded-lg overflow-hidden">
+                <div
+                  className="relative w-full h-64 mb-6 rounded-lg overflow-hidden group/image"
+                  onClick={() =>
+                    openImageModal(
+                      "/image/home/car-option/luxury-minibus.png",
+                      "Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
+                    )
+                  }
+                  title="Click to view full size image">
                   <Image
                     src="/image/home/car-option/luxury-minibus.png"
                     alt="Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
                     fill
-                    className="object-cover cursor-pointer"
-                    onClick={() =>
-                      openImageModal(
-                        "/image/home/car-option/luxury-minibus.png",
-                        "Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
-                      )
-                    }
+                    className="object-cover cursor-pointer transition-transform duration-500 group-hover/image:scale-110"
                   />
+
+                  {/* Click to zoom indicator */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
+                      <svg
+                        className="w-8 h-8 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-blue-900">
                   Luxury Minibus
@@ -292,21 +312,41 @@ export default function Home() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
               <CardBody className="text-center">
-                <div className="relative w-full h-64 mb-6 rounded-lg overflow-hidden">
+                <div
+                  className="relative w-full h-64 mb-6 rounded-lg overflow-hidden group/image"
+                  onClick={() =>
+                    openImageModal(
+                      "/image/home/car-option/luxury-suv.png",
+                      "Luxury SUV - Premium vehicle with advanced safety features for families"
+                    )
+                  }
+                  title="Click to view full size image">
                   <Image
                     src="/image/home/car-option/luxury-suv.png"
                     alt="Luxury SUV - Premium vehicle with advanced safety features for families"
                     fill
-                    className="object-cover cursor-pointer"
-                    onClick={() =>
-                      openImageModal(
-                        "/image/home/car-option/luxury-suv.png",
-                        "Luxury SUV - Premium vehicle with advanced safety features for families"
-                      )
-                    }
+                    className="object-cover cursor-pointer transition-transform duration-500 group-hover/image:scale-110"
                   />
+
+                  {/* Click to zoom indicator */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
+                      <svg
+                        className="w-8 h-8 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-blue-900">
                   Luxury SUV
@@ -318,21 +358,41 @@ export default function Home() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
               <CardBody className="text-center">
-                <div className="relative w-full h-64 mb-6 rounded-lg overflow-hidden">
+                <div
+                  className="relative w-full h-64 mb-6 rounded-lg overflow-hidden group/image"
+                  onClick={() =>
+                    openImageModal(
+                      "/image/home/car-option/childrenonboard.png",
+                      "Children on Board Vehicle - Specially equipped for family travel with child seats"
+                    )
+                  }
+                  title="Click to view full size image">
                   <Image
                     src="/image/home/car-option/childrenonboard.png"
                     alt="Children on Board Vehicle - Specially equipped for family travel with child seats"
                     fill
-                    className="object-cover cursor-pointer"
-                    onClick={() =>
-                      openImageModal(
-                        "/image/home/car-option/childrenonboard.png",
-                        "Children on Board Vehicle - Specially equipped for family travel with child seats"
-                      )
-                    }
+                    className="object-cover cursor-pointer transition-transform duration-500 group-hover/image:scale-110"
                   />
+
+                  {/* Click to zoom indicator */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
+                      <svg
+                        className="w-8 h-8 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-blue-900">
                   Children on Board
@@ -348,7 +408,7 @@ export default function Home() {
       </section>
 
       {/* Safety Features - Why Choose Our Child Seat Service */}
-      <section className="py-16 bg-white">
+      <section className="py-16 !bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -360,7 +420,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaShieldAlt className="text-3xl text-blue-800" />
@@ -375,7 +435,7 @@ export default function Home() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaBaby className="text-3xl text-blue-800" />
@@ -390,7 +450,7 @@ export default function Home() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaCar className="text-3xl text-blue-800" />
@@ -564,7 +624,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="hover:shadow-lg transition-shadow bg-white">
+            <Card className="hover:shadow-lg transition-shadow !bg-white">
               <CardHeader className="pb-0 text-blue-900">
                 <h3 className="text-xl font-semibold">Airport Transfer</h3>
               </CardHeader>
@@ -585,7 +645,7 @@ export default function Home() {
               </CardBody>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow bg-white">
+            <Card className="hover:shadow-lg transition-shadow !bg-white">
               <CardHeader className="pb-0">
                 <h3 className="text-xl font-semibold text-blue-900">
                   Day Trips & Tours
@@ -608,7 +668,7 @@ export default function Home() {
               </CardBody>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow bg-white">
+            <Card className="hover:shadow-lg transition-shadow !bg-white">
               <CardHeader className="pb-0">
                 <h3 className="text-xl font-semibold text-blue-900">
                   Phuket City Tour
