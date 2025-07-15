@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { FaHome, FaWifi, FaParking } from "react-icons/fa";
 import { ContactFooter } from "@/components/ContactFooter";
 import ImageModal from "@/components/ImageModal";
+import PageHeaderAnimation from "@/components/PageHeaderAnimation";
 
 export default function HouseForRentPage() {
   const [currentHouseImage, setCurrentHouseImage] = useState(0);
@@ -36,7 +37,7 @@ export default function HouseForRentPage() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentHouseImage((prev) => (prev + 1) % houseImages.length);
-    }, 3500);
+    }, 3000);
     return () => clearInterval(interval);
   }, [houseImages.length]);
 
@@ -57,34 +58,45 @@ export default function HouseForRentPage() {
 
         <div className="relative z-10 flex items-center justify-center h-full pt-20">
           <div className="text-center text-white px-4 max-w-4xl">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Garden House
-              <span className="block text-yellow-400">for Rent</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-200">
-              Garden house style resort in prime Thalang location, Phuket
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <Chip color="warning" variant="solid" size="lg">
-                Daily Rental
-              </Chip>
-              <Chip color="warning" variant="solid" size="lg">
-                Weekly Rental
-              </Chip>
-              <Chip color="warning" variant="solid" size="lg">
-                Prime Location
-              </Chip>
-              <Chip color="warning" variant="solid" size="lg">
-                Family Friendly
-              </Chip>
-            </div>
-            <Button
-              as={Link}
-              href="/contact"
-              size="lg"
-              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-3 text-lg">
-              Check Availability
-            </Button>
+            <PageHeaderAnimation delay={300}>
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                Garden House
+                <span className="block text-yellow-400">for Rent</span>
+              </h1>
+            </PageHeaderAnimation>
+
+            <PageHeaderAnimation delay={600}>
+              <p className="text-xl md:text-2xl mb-8 text-gray-200">
+                Garden house style resort in prime Thalang location, Phuket
+              </p>
+            </PageHeaderAnimation>
+
+            <PageHeaderAnimation delay={900}>
+              <div className="flex flex-wrap justify-center gap-4 mb-8">
+                <Chip color="warning" variant="solid" size="lg">
+                  Daily Rental
+                </Chip>
+                <Chip color="warning" variant="solid" size="lg">
+                  Weekly Rental
+                </Chip>
+                <Chip color="warning" variant="solid" size="lg">
+                  Prime Location
+                </Chip>
+                <Chip color="warning" variant="solid" size="lg">
+                  Family Friendly
+                </Chip>
+              </div>
+            </PageHeaderAnimation>
+
+            <PageHeaderAnimation delay={1200}>
+              <Button
+                as={Link}
+                href="/contact"
+                size="lg"
+                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-3 text-lg">
+                Check Availability
+              </Button>
+            </PageHeaderAnimation>
           </div>
         </div>
       </section>
@@ -290,9 +302,14 @@ export default function HouseForRentPage() {
               </p>
             </div>
 
-            {/* Horizontal Scrolling House Images */}
-            <div className="relative">
-              <div className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide">
+            {/* Auto-sliding House Images */}
+            <div className="relative overflow-hidden">
+              <div
+                className="flex gap-6 transition-transform duration-1000 ease-in-out"
+                style={{
+                  transform: `translateX(-${currentHouseImage * (384 + 24)}px)`, // 384px = w-96, 24px = gap-6
+                  width: `${houseImages.length * (384 + 24)}px`,
+                }}>
                 {houseImages.map((image, index) => {
                   const imageTitle =
                     index === 0
@@ -312,11 +329,7 @@ export default function HouseForRentPage() {
                   return (
                     <div
                       key={image}
-                      className={`flex-shrink-0 w-96 h-80 relative rounded-2xl overflow-hidden shadow-lg transition-all duration-500 group/image cursor-pointer ${
-                        index === currentHouseImage
-                          ? "scale-105 shadow-2xl"
-                          : "scale-100"
-                      }`}
+                      className="flex-shrink-0 w-96 h-80 relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group/image cursor-pointer"
                       onClick={() =>
                         openImageModal(
                           image,
@@ -358,6 +371,20 @@ export default function HouseForRentPage() {
                     </div>
                   );
                 })}
+              </div>
+              {/* Dots indicator */}
+              <div className="flex justify-center mt-8 gap-2">
+                {houseImages.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`w-3 h-3 p-2 rounded-full transition-colors duration-300 ${
+                      index === currentHouseImage
+                        ? "bg-blue-600"
+                        : "bg-gray-300"
+                    }`}
+                    onClick={() => setCurrentHouseImage(index)}
+                  />
+                ))}
               </div>
             </div>
 

@@ -5,6 +5,7 @@ import { Providers } from "./providers";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import FloatingContactButton from "@/components/FloatingContactButton";
+// import LoadingComponent from "@/components/LoadingComponent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -173,6 +174,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
+          {/* <LoadingComponent /> */}
           <div className="min-h-screen flex flex-col">
             <Navigation />
             <main className="flex-1">{children}</main>

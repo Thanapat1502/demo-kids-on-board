@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { FaShieldAlt, FaBaby, FaCar } from "react-icons/fa";
 import { ContactFooter } from "@/components/ContactFooter";
 import ImageModal from "@/components/ImageModal";
+import PageHeaderAnimation from "@/components/PageHeaderAnimation";
 export default function Home() {
   const [currentDestination, setCurrentDestination] = useState(0);
   const [modalImage, setModalImage] = useState<{
@@ -127,32 +128,40 @@ export default function Home() {
 
         <div className="relative z-10 flex items-center justify-center h-full">
           <div className="text-center text-white px-4 max-w-4xl">
-            <h1 className="text-5xl md:text-7xl font-bold mt-24 mb-6 leading-tight">
-              Safe Travel with
-              <span className="block text-yellow-400">Child Seats</span>
-              in Phuket
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-200 px-4 py-2 bg-black/40 rounded-full shadow-sm backdrop-blur-sm">
-              Professional travel services with imported Britax child seats from
-              Sweden
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-              <Button
-                as={Link}
-                href="/contact"
-                size="lg"
-                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-3 text-lg">
-                Book Now
-              </Button>
-              <Button
-                as={Link}
-                href="/airport-transfer"
-                size="lg"
-                variant="bordered"
-                className="bg-black/40 backdrop-blur-sm border-white text-white hover:bg-white hover:text-black font-semibold px-8 py-3 text-lg">
-                Airport Transfer
-              </Button>
-            </div>
+            <PageHeaderAnimation delay={300}>
+              <h1 className="text-5xl md:text-7xl font-bold mt-24 mb-6 leading-tight">
+                Safe Travel with
+                <span className="block text-yellow-400">Child Seats</span>
+                in Phuket
+              </h1>
+            </PageHeaderAnimation>
+
+            <PageHeaderAnimation delay={600}>
+              <p className="text-xl md:text-2xl mb-8 text-gray-200 px-4 py-2 bg-black/40 rounded-full shadow-sm backdrop-blur-sm">
+                Professional travel services with imported Britax child seats
+                from Sweden
+              </p>
+            </PageHeaderAnimation>
+
+            <PageHeaderAnimation delay={900}>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+                <Button
+                  as={Link}
+                  href="/contact"
+                  size="lg"
+                  className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-3 text-lg">
+                  Book Now
+                </Button>
+                <Button
+                  as={Link}
+                  href="/airport-transfer"
+                  size="lg"
+                  variant="bordered"
+                  className="bg-black/40 backdrop-blur-sm border-white text-white hover:bg-white hover:text-black font-semibold px-8 py-3 text-lg">
+                  Airport Transfer
+                </Button>
+              </div>
+            </PageHeaderAnimation>
           </div>
         </div>
       </section>

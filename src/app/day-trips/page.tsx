@@ -9,6 +9,7 @@ import { LuDrama } from "react-icons/lu";
 import { ContactFooter } from "@/components/ContactFooter";
 import { GiElephant } from "react-icons/gi";
 import { LiaSwimmerSolid } from "react-icons/lia";
+import PageHeaderAnimation from "@/components/PageHeaderAnimation";
 
 export default function DayTripsPage() {
   const [currentExperience, setCurrentExperience] = useState(0);
@@ -56,33 +57,44 @@ export default function DayTripsPage() {
 
         <div className="relative z-10 flex items-center justify-center h-full pt-20">
           <div className="text-center text-white px-4 max-w-4xl">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Discover
-              <span className="block text-yellow-400">Amazing Islands</span>&
-              Adventures
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-200">
-              Family-friendly tours and excursions with safe transportation and
-              child seats
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <Chip color="warning" variant="solid" size="lg">
-                Phi Phi Island
-              </Chip>
-              <Chip color="warning" variant="solid" size="lg">
-                Phang Nga Bay
-              </Chip>
-              <Chip color="warning" variant="solid" size="lg">
-                Similan Islands
-              </Chip>
-            </div>
-            <Button
-              as={Link}
-              href="/contact"
-              size="lg"
-              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-3 text-lg">
-              Book Your Adventure
-            </Button>
+            <PageHeaderAnimation delay={300}>
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                Discover
+                <span className="block text-yellow-400">Amazing Islands</span>&
+                Adventures
+              </h1>
+            </PageHeaderAnimation>
+
+            <PageHeaderAnimation delay={600}>
+              <p className="text-xl md:text-2xl mb-8 text-gray-200">
+                Family-friendly tours and excursions with safe transportation
+                and child seats
+              </p>
+            </PageHeaderAnimation>
+
+            <PageHeaderAnimation delay={900}>
+              <div className="flex flex-wrap justify-center gap-4 mb-8">
+                <Chip color="warning" variant="solid" size="lg">
+                  Phi Phi Island
+                </Chip>
+                <Chip color="warning" variant="solid" size="lg">
+                  Phang Nga Bay
+                </Chip>
+                <Chip color="warning" variant="solid" size="lg">
+                  Similan Islands
+                </Chip>
+              </div>
+            </PageHeaderAnimation>
+
+            <PageHeaderAnimation delay={1200}>
+              <Button
+                as={Link}
+                href="/contact"
+                size="lg"
+                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-3 text-lg">
+                Book Your Adventure
+              </Button>
+            </PageHeaderAnimation>
           </div>
         </div>
       </section>

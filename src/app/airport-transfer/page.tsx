@@ -6,6 +6,7 @@ import { useState } from "react";
 import { FaShieldAlt, FaClock, FaUsers } from "react-icons/fa";
 import { ContactFooter } from "@/components/ContactFooter";
 import ImageModal from "@/components/ImageModal";
+import PageHeaderAnimation from "@/components/PageHeaderAnimation";
 
 export default function AirportTransferPage() {
   const [modalImage, setModalImage] = useState<{
@@ -55,27 +56,35 @@ export default function AirportTransferPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16 pt-24">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Airport Transfer with Child Seats
-          </h1>
-          <p className="text-xl mb-8 text-blue-100">
-            Safe and comfortable airport transfers with imported Britax child
-            seats
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Chip color="warning" variant="solid" size="lg">
-              Phuket Airport
-            </Chip>
-            <Chip color="warning" variant="solid" size="lg">
-              Khao Lak
-            </Chip>
-            <Chip color="warning" variant="solid" size="lg">
-              Krabi Ao-Nang
-            </Chip>
-            <Chip color="warning" variant="solid" size="lg">
-              Koh Lanta
-            </Chip>
-          </div>
+          <PageHeaderAnimation delay={300}>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Airport Transfer with Child Seats
+            </h1>
+          </PageHeaderAnimation>
+
+          <PageHeaderAnimation delay={600}>
+            <p className="text-xl mb-8 text-blue-100">
+              Safe and comfortable airport transfers with imported Britax child
+              seats
+            </p>
+          </PageHeaderAnimation>
+
+          <PageHeaderAnimation delay={900}>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Chip color="warning" variant="solid" size="lg">
+                Phuket Airport
+              </Chip>
+              <Chip color="warning" variant="solid" size="lg">
+                Khao Lak
+              </Chip>
+              <Chip color="warning" variant="solid" size="lg">
+                Krabi Ao-Nang
+              </Chip>
+              <Chip color="warning" variant="solid" size="lg">
+                Koh Lanta
+              </Chip>
+            </div>
+          </PageHeaderAnimation>
         </div>
       </section>
 
