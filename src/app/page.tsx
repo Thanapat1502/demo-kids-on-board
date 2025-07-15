@@ -8,8 +8,21 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaShieldAlt, FaBaby, FaCar } from "react-icons/fa";
 import { ContactFooter } from "@/components/ContactFooter";
+import ImageModal from "@/components/ImageModal";
 export default function Home() {
   const [currentDestination, setCurrentDestination] = useState(0);
+  const [modalImage, setModalImage] = useState<{
+    src: string;
+    alt: string;
+  } | null>(null);
+
+  const openImageModal = (imageSrc: string, imageAlt: string) => {
+    setModalImage({ src: imageSrc, alt: imageAlt });
+  };
+
+  const closeImageModal = () => {
+    setModalImage(null);
+  };
 
   const destinations = [
     {
@@ -41,6 +54,51 @@ export default function Home() {
       image: "/image/home/destinations/7sunset-view-point.png",
     },
     { name: "View Point", image: "/image/home/destinations/8view-point.png" },
+  ];
+  const seatOptions = [
+    {
+      name: "Infant Seat",
+      image: "/image/home/childseat/childseat_option_1.png",
+      description: "Premium Britax rear-facing seat for newborns to 15 months",
+      type: "NEWBORN READY",
+      weight: "0-13kg",
+      age: "0-15m",
+      helpText1: "✓ Rear-facing safety",
+      helpText2: "✓ Newborn to 15 months",
+    },
+    {
+      name: "Convertible Seat",
+      image: "/image/home/childseat/childseat_option2.png",
+      description:
+        "Versatile seat that adapts as your toddler grows, with multiple positions",
+      type: "CONVERTIBLE",
+      weight: "9-18kg",
+      age: "9m-4y",
+      helpText1: "✓ Rear-facing safety",
+      helpText2: "✓ 9 months to 4 years",
+    },
+    {
+      name: "Baby Seat",
+      image: "/image/home/childseat/childseat_option3.png",
+      description:
+        "Perfect positioning for proper seat belt fit and comfort for growing kids",
+      type: "BOOSTER",
+      weight: "15-25kg",
+      age: "3-6y",
+      helpText1: "✓ Rear-facing safety",
+      helpText2: "✓ 3 to 6 years",
+    },
+    {
+      name: "High Back",
+      image: "/image/home/childseat/childseat_option4.png",
+      description:
+        "Advanced protection with high back design for older children's safety",
+      type: "HIGH BACK",
+      weight: "18-30kg",
+      age: "4-6y",
+      helpText1: "✓ Rear-facing safety",
+      helpText2: "✓ 4 to 6 years",
+    },
   ];
 
   useEffect(() => {
@@ -91,7 +149,7 @@ export default function Home() {
                 href="/airport-transfer"
                 size="lg"
                 variant="bordered"
-                className="border-white text-white hover:bg-white hover:text-black font-semibold px-8 py-3 text-lg">
+                className="bg-black/40 backdrop-blur-sm border-white text-white hover:bg-white hover:text-black font-semibold px-8 py-3 text-lg">
                 Airport Transfer
               </Button>
             </div>
@@ -115,81 +173,81 @@ export default function Home() {
           </header>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="p-6 hover:shadow-xl transition-shadow duration-300 bg-white">
-              <CardBody className="text-center">
-                <div className="relative w-full h-48 mb-6 rounded-lg overflow-hidden">
-                  <Image
-                    src="/image/home/childseat/childseat_option_1.png"
-                    alt="Infant Child Seat - Britax rear-facing seat for newborns to 15 months"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-blue-900">
-                  Infant Seat
-                </h3>
-                <p className="text-gray-600">
-                  For newborns to 15 months (0-13kg)
-                </p>
-              </CardBody>
-            </Card>
+            {seatOptions.map((item, index) => (
+              <Card
+                key={index}
+                className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <CardBody className="p-0">
+                  {/* Image Section with Overlay */}
+                  <div
+                    className="relative h-56 overflow-hidden cursor-pointer"
+                    onClick={() => openImageModal(item.image, item.name)}
+                    title="Click to view full size image">
+                    <Image
+                      src={item.image}
+                      alt={`${item.name} - Britax child seat for ${item.age} (${item.weight})`}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-            <Card className="p-6 hover:shadow-xl transition-shadow duration-300 bg-white">
-              <CardBody className="text-center">
-                <div className="relative w-full h-48 mb-6 rounded-lg overflow-hidden">
-                  <Image
-                    src="/image/home/childseat/childseat_option2.png"
-                    alt="Convertible Child Seat - Britax seat for toddlers 9 months to 4 years"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-blue-900">
-                  Convertible Seat
-                </h3>
-                <p className="text-gray-600">
-                  For toddlers 9 months to 4 years (9-18kg)
-                </p>
-              </CardBody>
-            </Card>
+                    {/* Click to zoom indicator */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
+                        <svg
+                          className="w-8 h-8 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
 
-            <Card className="p-6 hover:shadow-xl transition-shadow duration-300 bg-white">
-              <CardBody className="text-center">
-                <div className="relative w-full h-48 mb-6 rounded-lg overflow-hidden">
-                  <Image
-                    src="/image/home/childseat/childseat_option3.png"
-                    alt="Booster Child Seat - Britax seat for children 3 to 6 years"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-blue-900">
-                  Booster Seat
-                </h3>
-                <p className="text-gray-600">
-                  For children 3 to 6 years (15-25kg)
-                </p>
-              </CardBody>
-            </Card>
+                    <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+                      <div className="bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-lg">
+                        <p className="text-sm text-gray-700 font-medium">
+                          {item.helpText1}
+                        </p>
+                        <p className="text-sm text-gray-700 font-medium">
+                          {item.helpText2}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
 
-            <Card className="p-6 hover:shadow-xl transition-shadow duration-300 bg-white">
-              <CardBody className="text-center">
-                <div className="relative w-full h-48 mb-6 rounded-lg overflow-hidden">
-                  <Image
-                    src="/image/home/childseat/childseat_option4.png"
-                    alt="High Back Booster Seat - Britax seat for older children 4 to 6 years"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-blue-900">
-                  High Back Booster
-                </h3>
-                <p className="text-gray-600">
-                  For older children 4 to 6 years (15-36kg)
-                </p>
-              </CardBody>
-            </Card>
+                  {/* Content Section */}
+                  <div className="p-6">
+                    <div className="mb-3 flex flex-row justify-between">
+                      <h3 className="text-xl font-bold text-blue-900 group-hover:text-blue-700 transition-colors">
+                        {item.name}
+                      </h3>
+
+                      <div className="flex-shrink-0 h-fit bg-blue-700 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                        {item.weight}
+                      </div>
+                    </div>
+
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                      {item.description}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
+                        {item.type}
+                      </span>
+                      <span className="text-lg font-bold text-blue-900">
+                        {item.age}
+                      </span>
+                    </div>
+                  </div>
+                </CardBody>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -215,7 +273,13 @@ export default function Home() {
                     src="/image/home/car-option/luxury-minibus.png"
                     alt="Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
                     fill
-                    className="object-cover"
+                    className="object-cover cursor-pointer"
+                    onClick={() =>
+                      openImageModal(
+                        "/image/home/car-option/luxury-minibus.png",
+                        "Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
+                      )
+                    }
                   />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-blue-900">
@@ -235,7 +299,13 @@ export default function Home() {
                     src="/image/home/car-option/luxury-suv.png"
                     alt="Luxury SUV - Premium vehicle with advanced safety features for families"
                     fill
-                    className="object-cover"
+                    className="object-cover cursor-pointer"
+                    onClick={() =>
+                      openImageModal(
+                        "/image/home/car-option/luxury-suv.png",
+                        "Luxury SUV - Premium vehicle with advanced safety features for families"
+                      )
+                    }
                   />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-blue-900">
@@ -255,7 +325,13 @@ export default function Home() {
                     src="/image/home/car-option/childrenonboard.png"
                     alt="Children on Board Vehicle - Specially equipped for family travel with child seats"
                     fill
-                    className="object-cover"
+                    className="object-cover cursor-pointer"
+                    onClick={() =>
+                      openImageModal(
+                        "/image/home/car-option/childrenonboard.png",
+                        "Children on Board Vehicle - Specially equipped for family travel with child seats"
+                      )
+                    }
                   />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-blue-900">
@@ -562,6 +638,14 @@ export default function Home() {
         title="Ready to Book Your Safe Journey?"
         description="Contact us for bookings and inquiries. Payment due in cash on site or transfer via Wise."
         className="bg-blue-900"
+      />
+
+      {/* Image Modal */}
+      <ImageModal
+        isOpen={modalImage !== null}
+        onClose={closeImageModal}
+        imageSrc={modalImage?.src || ""}
+        imageAlt={modalImage?.alt || ""}
       />
 
       {/* Trust Indicators */}

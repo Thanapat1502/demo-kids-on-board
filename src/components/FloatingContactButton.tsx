@@ -70,7 +70,7 @@ export default function FloatingContactButton({
     <div className={`fixed bottom-6 right-6 z-50 ${className}`}>
       {/* Contact Options */}
       <div
-        className={`flex flex-col gap-3 mb-4 transition-all duration-300 ${
+        className={`flex flex-col justify-center items-center gap-3 mb-4 transition-all duration-300 ${
           isOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-4 pointer-events-none"

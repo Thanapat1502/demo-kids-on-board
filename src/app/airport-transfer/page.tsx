@@ -1,11 +1,25 @@
 "use client";
 
-import { Card, CardBody, CardHeader, Chip } from "@heroui/react";
+import { Card, CardBody, Chip } from "@heroui/react";
 import Image from "next/image";
+import { useState } from "react";
 import { FaShieldAlt, FaClock, FaUsers } from "react-icons/fa";
 import { ContactFooter } from "@/components/ContactFooter";
+import ImageModal from "@/components/ImageModal";
 
 export default function AirportTransferPage() {
+  const [modalImage, setModalImage] = useState<{
+    src: string;
+    alt: string;
+  } | null>(null);
+
+  const openImageModal = (imageSrc: string, imageAlt: string) => {
+    setModalImage({ src: imageSrc, alt: imageAlt });
+  };
+
+  const closeImageModal = () => {
+    setModalImage(null);
+  };
   const seatOptions = [
     {
       name: "Rear Facing Seat",
@@ -142,25 +156,63 @@ export default function AirportTransferPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {seatOptions.map((item, index) => (
               <Card
-                className="hover:shadow-lg transition-shadow bg-white"
-                key={index}>
-                <CardHeader className="flex-col pb-0">
-                  <div className="relative w-full h-48 mb-4">
+                key={index}
+                className="group relative overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 bg-white">
+                <CardBody className="p-0">
+                  {/* Image Section with Overlay */}
+                  <div
+                    className="relative h-56 overflow-hidden cursor-pointer"
+                    onClick={() => openImageModal(item.image, item.name)}
+                    title="Click to view full size image">
                     <Image
                       src={item.image}
-                      alt={item.name}
+                      alt={`${item.name} - ${item.p1} for ${item.p2}`}
                       fill
-                      className="object-cover rounded-lg"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    {/* Click to zoom indicator */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
+                        <svg
+                          className="w-8 h-8 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+
+                    <div className="absolute top-4 right-4">
+                      <div className="bg-blue-900 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                        {item.p2}
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-lg font-semibold text-blue-900">
-                    {item.name}
-                  </h3>
-                </CardHeader>
-                <CardBody>
-                  <p className="text-gray-600 mb-2">{item.p1}</p>
-                  <p className="text-sm text-gray-500">{item.p2}</p>
-                  <p className="text-sm text-blue-600 font-medium">{item.p3}</p>
+
+                  {/* Content Section */}
+                  <div className="p-6">
+                    <div className="mb-3">
+                      <h3 className="text-xl font-bold text-blue-900 group-hover:text-blue-700 transition-colors">
+                        {item.name}
+                      </h3>
+                    </div>
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                      {item.p1}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
+                        {item.p3}
+                      </span>
+                    </div>
+                  </div>
                 </CardBody>
               </Card>
             ))}
@@ -524,6 +576,14 @@ export default function AirportTransferPage() {
           description=" Contact us for pricing and availability. Price depends on hotel
             location."
           className="bg-blue-900 rounded-lg"
+        />
+
+        {/* Image Modal */}
+        <ImageModal
+          isOpen={modalImage !== null}
+          onClose={closeImageModal}
+          imageSrc={modalImage?.src || ""}
+          imageAlt={modalImage?.alt || ""}
         />
       </div>
     </div>
