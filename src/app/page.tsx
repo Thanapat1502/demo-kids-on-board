@@ -74,7 +74,7 @@ export default function Home() {
               <span className="block text-yellow-400">Child Seats</span>
               in Phuket
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-200 bg-blue-900 rounded-full px-3 py-2 border border-gray-300 shadow-sm">
+            <p className="text-xl md:text-2xl mb-8 text-gray-200 px-4 py-2 bg-black/40 rounded-full shadow-sm backdrop-blur-sm">
               Professional travel services with imported Britax child seats from
               Sweden
             </p>
@@ -212,26 +212,6 @@ export default function Home() {
               <CardBody className="text-center">
                 <div className="relative w-full h-64 mb-6 rounded-lg overflow-hidden">
                   <Image
-                    src="/image/home/car-option/childrenonboard.png"
-                    alt="Children on Board Vehicle - Specially equipped for family travel with child seats"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                  Children on Board
-                </h3>
-                <p className="text-gray-600 text-lg">
-                  Specially equipped vehicles with clear safety signage and
-                  child-friendly features for family travel
-                </p>
-              </CardBody>
-            </Card>
-
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
-              <CardBody className="text-center">
-                <div className="relative w-full h-64 mb-6 rounded-lg overflow-hidden">
-                  <Image
                     src="/image/home/car-option/luxury-minibus.png"
                     alt="Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
                     fill
@@ -264,6 +244,26 @@ export default function Home() {
                 <p className="text-gray-600 text-lg">
                   Premium SUV with advanced safety features and comfortable
                   seating for smaller families
+                </p>
+              </CardBody>
+            </Card>
+
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+              <CardBody className="text-center">
+                <div className="relative w-full h-64 mb-6 rounded-lg overflow-hidden">
+                  <Image
+                    src="/image/home/car-option/childrenonboard.png"
+                    alt="Children on Board Vehicle - Specially equipped for family travel with child seats"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-blue-900">
+                  Children on Board
+                </h3>
+                <p className="text-gray-600 text-lg">
+                  Specially equipped vehicles with clear safety signage and
+                  child-friendly features for family travel
                 </p>
               </CardBody>
             </Card>
