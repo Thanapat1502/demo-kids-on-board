@@ -80,7 +80,7 @@ export default function AirportTransferPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaShieldAlt className="text-3xl text-blue-800" />
@@ -95,7 +95,7 @@ export default function AirportTransferPage() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaUsers className="text-3xl text-blue-800" />
@@ -110,7 +110,7 @@ export default function AirportTransferPage() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaClock className="text-3xl text-blue-800" />
@@ -141,7 +141,9 @@ export default function AirportTransferPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {seatOptions.map((item, index) => (
-              <Card className="hover:shadow-lg transition-shadow" key={index}>
+              <Card
+                className="hover:shadow-lg transition-shadow bg-white"
+                key={index}>
                 <CardHeader className="flex-col pb-0">
                   <div className="relative w-full h-48 mb-4">
                     <Image
@@ -177,7 +179,7 @@ export default function AirportTransferPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="p-6 hover:shadow-lg transition-shadow">
+            <Card className="p-6 hover:shadow-lg transition-shadow bg-white">
               <CardBody>
                 <div className="relative w-full h-64 mb-6 rounded-lg overflow-hidden">
                   <Image
@@ -204,7 +206,7 @@ export default function AirportTransferPage() {
               </CardBody>
             </Card>
 
-            <Card className="p-6 hover:shadow-lg transition-shadow">
+            <Card className="p-6 hover:shadow-lg transition-shadow bg-white">
               <CardBody>
                 <div className="relative w-full h-64 mb-6 rounded-lg overflow-hidden">
                   <Image
@@ -244,7 +246,7 @@ export default function AirportTransferPage() {
             </p>
           </div>
 
-          <Card className="p-6">
+          <Card className="p-6 bg-white">
             <CardBody>
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
@@ -429,7 +431,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50 bg-yellow-50">
-                      <td className="py-3 px-4 font-semibold">
+                      <td className="py-3 px-4 text-black">
                         Khao Lak (Phang Nga)
                       </td>
                       <td className="py-3 px-4 text-center font-bold text-purple-600">
@@ -440,7 +442,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50 bg-yellow-50">
-                      <td className="py-3 px-4 font-semibold">
+                      <td className="py-3 px-4 text-black">
                         Koh Kho Khao (at Pier)
                       </td>
                       <td className="py-3 px-4 text-center font-bold text-purple-600">
@@ -451,7 +453,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50 bg-yellow-50">
-                      <td className="py-3 px-4 font-semibold">
+                      <td className="py-3 px-4 text-black">
                         Khao Sok National Park
                       </td>
                       <td className="py-3 px-4 text-center font-bold text-purple-600">
@@ -462,7 +464,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50 bg-yellow-50">
-                      <td className="py-3 px-4 font-semibold">
+                      <td className="py-3 px-4 text-black">
                         Ao Nang, Krabi Town
                       </td>
                       <td className="py-3 px-4 text-center font-bold text-purple-600">
@@ -473,7 +475,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50 bg-yellow-50">
-                      <td className="py-3 px-4 font-semibold">Koh Lanta</td>
+                      <td className="py-3 px-4 text-black">Koh Lanta</td>
                       <td className="py-3 px-4 text-center font-bold text-purple-600">
                         5,500 THB
                       </td>
@@ -521,7 +523,7 @@ export default function AirportTransferPage() {
           title=" Ready to Book Your Airport Transfer?"
           description=" Contact us for pricing and availability. Price depends on hotel
             location."
-          className="bg-blue-600 rounded-lg"
+          className="bg-blue-900 rounded-lg"
         />
       </div>
     </div>

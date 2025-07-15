@@ -1,5 +1,7 @@
 "use client";
 
+"use client";
+
 import { Button, Card, CardBody, CardHeader } from "@heroui/react";
 import Link from "next/link";
 import Image from "next/image";
@@ -49,13 +51,15 @@ export default function Home() {
   }, [destinations.length]);
 
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen">
       {/* Hero Banner Section */}
-      <section className="relative h-[55vh] overflow-hidden">
+      <section
+        className="relative h-[55vh] overflow-hidden"
+        aria-label="Hero banner for Phuket Child Seat services">
         <div className="absolute inset-0">
           <Image
             src="/image/home/banner.png"
-            alt="Phuket Child Seat Banner"
+            alt="Phuket Child Seat - Safe Family Travel Services with Imported Britax Child Seats from Sweden"
             fill
             className="object-cover"
             priority
@@ -70,11 +74,11 @@ export default function Home() {
               <span className="block text-yellow-400">Child Seats</span>
               in Phuket
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-200 bg-blue-900 shadow-lg rounded-full px-3 py-2 border border-gray-200">
+            <p className="text-xl md:text-2xl mb-8 text-gray-200 bg-blue-900 rounded-full px-3 py-2 border border-gray-300 shadow-sm">
               Professional travel services with imported Britax child seats from
               Sweden
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <Button
                 as={Link}
                 href="/contact"
@@ -95,7 +99,240 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Destinations Parallax Section */}
+      {/* Child Seats Section */}
+      <section className="py-20 bg-white" aria-labelledby="child-seats-heading">
+        <div className="max-w-7xl mx-auto px-4">
+          <header className="text-center mb-16">
+            <h2
+              id="child-seats-heading"
+              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Taxi with rear facing child seats available in phuket !
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Premium imported Britax child seats from Sweden for maximum safety
+              and comfort
+            </p>
+          </header>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Card className="p-6 hover:shadow-xl transition-shadow duration-300 bg-white">
+              <CardBody className="text-center">
+                <div className="relative w-full h-48 mb-6 rounded-lg overflow-hidden">
+                  <Image
+                    src="/image/home/childseat/childseat_option_1.png"
+                    alt="Infant Child Seat - Britax rear-facing seat for newborns to 15 months"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-blue-900">
+                  Infant Seat
+                </h3>
+                <p className="text-gray-600">
+                  For newborns to 15 months (0-13kg)
+                </p>
+              </CardBody>
+            </Card>
+
+            <Card className="p-6 hover:shadow-xl transition-shadow duration-300 bg-white">
+              <CardBody className="text-center">
+                <div className="relative w-full h-48 mb-6 rounded-lg overflow-hidden">
+                  <Image
+                    src="/image/home/childseat/childseat_option2.png"
+                    alt="Convertible Child Seat - Britax seat for toddlers 9 months to 4 years"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-blue-900">
+                  Convertible Seat
+                </h3>
+                <p className="text-gray-600">
+                  For toddlers 9 months to 4 years (9-18kg)
+                </p>
+              </CardBody>
+            </Card>
+
+            <Card className="p-6 hover:shadow-xl transition-shadow duration-300 bg-white">
+              <CardBody className="text-center">
+                <div className="relative w-full h-48 mb-6 rounded-lg overflow-hidden">
+                  <Image
+                    src="/image/home/childseat/childseat_option3.png"
+                    alt="Booster Child Seat - Britax seat for children 3 to 6 years"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-blue-900">
+                  Booster Seat
+                </h3>
+                <p className="text-gray-600">
+                  For children 3 to 6 years (15-25kg)
+                </p>
+              </CardBody>
+            </Card>
+
+            <Card className="p-6 hover:shadow-xl transition-shadow duration-300 bg-white">
+              <CardBody className="text-center">
+                <div className="relative w-full h-48 mb-6 rounded-lg overflow-hidden">
+                  <Image
+                    src="/image/home/childseat/childseat_option4.png"
+                    alt="High Back Booster Seat - Britax seat for older children 4 to 6 years"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-blue-900">
+                  High Back Booster
+                </h3>
+                <p className="text-gray-600">
+                  For older children 4 to 6 years (15-36kg)
+                </p>
+              </CardBody>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Car Options Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              We offer private transfer with safety child seats for kids
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Choose from our fleet of comfortable and safe vehicles equipped
+              with child seats
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+              <CardBody className="text-center">
+                <div className="relative w-full h-64 mb-6 rounded-lg overflow-hidden">
+                  <Image
+                    src="/image/home/car-option/childrenonboard.png"
+                    alt="Children on Board Vehicle - Specially equipped for family travel with child seats"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-blue-900">
+                  Children on Board
+                </h3>
+                <p className="text-gray-600 text-lg">
+                  Specially equipped vehicles with clear safety signage and
+                  child-friendly features for family travel
+                </p>
+              </CardBody>
+            </Card>
+
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+              <CardBody className="text-center">
+                <div className="relative w-full h-64 mb-6 rounded-lg overflow-hidden">
+                  <Image
+                    src="/image/home/car-option/luxury-minibus.png"
+                    alt="Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-blue-900">
+                  Luxury Minibus
+                </h3>
+                <p className="text-gray-600 text-lg">
+                  Spacious and comfortable minibus perfect for larger families
+                  and groups with multiple child seats
+                </p>
+              </CardBody>
+            </Card>
+
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+              <CardBody className="text-center">
+                <div className="relative w-full h-64 mb-6 rounded-lg overflow-hidden">
+                  <Image
+                    src="/image/home/car-option/luxury-suv.png"
+                    alt="Luxury SUV - Premium vehicle with advanced safety features for families"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-blue-900">
+                  Luxury SUV
+                </h3>
+                <p className="text-gray-600 text-lg">
+                  Premium SUV with advanced safety features and comfortable
+                  seating for smaller families
+                </p>
+              </CardBody>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Safety Features - Why Choose Our Child Seat Service */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Why Choose Our Child Seat Service?
+            </h2>
+            <p className="text-lg text-gray-600">
+              Safety and convenience for your family vacation in Phuket
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+              <CardBody className="text-center">
+                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
+                  <FaShieldAlt className="text-3xl text-blue-800" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-blue-900">
+                  Imported Britax Seats
+                </h3>
+                <p className="text-gray-600 text-lg">
+                  We use premium Britax child seats imported from Sweden for
+                  maximum safety and comfort
+                </p>
+              </CardBody>
+            </Card>
+
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+              <CardBody className="text-center">
+                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
+                  <FaBaby className="text-3xl text-blue-800" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-blue-900">
+                  All Ages Covered
+                </h3>
+                <p className="text-gray-600 text-lg">
+                  Child seats available for newborns to 6 years old, including
+                  rear-facing options
+                </p>
+              </CardBody>
+            </Card>
+
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
+              <CardBody className="text-center">
+                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
+                  <FaCar className="text-3xl text-blue-800" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-blue-900">
+                  Professional Service
+                </h3>
+                <p className="text-gray-600 text-lg">
+                  Experienced drivers with proper child seat installation and
+                  travel insurance included
+                </p>
+              </CardBody>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Top Destinations - Moved to 3rd section */}
       <section className="py-20 bg-gray-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
@@ -122,7 +359,7 @@ export default function Home() {
                   className="flex-shrink-0 w-80 h-96 relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                   <Image
                     src={destination.image}
-                    alt={destination.name}
+                    alt={`${destination.name} - Popular Phuket destination with child seat transport`}
                     fill
                     className="object-cover"
                   />
@@ -135,8 +372,9 @@ export default function Home() {
                       as={Link}
                       href="/day-trips"
                       size="sm"
-                      className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold">
-                      Explore
+                      className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
+                      aria-label="Book tours to this destination with child seat safety">
+                      Book Tour
                     </Button>
                   </div>
                 </div>
@@ -159,73 +397,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Safety Features */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Our Child Seat Service?
-            </h2>
-            <p className="text-lg text-gray-600">
-              Safety and convenience for your family vacation in Phuket
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300">
-              <CardBody className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-                  <FaShieldAlt className="text-3xl text-blue-800" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                  Imported Britax Seats
-                </h3>
-                <p className="text-gray-600 text-lg">
-                  We use premium Britax child seats imported from Sweden for
-                  maximum safety and comfort
-                </p>
-              </CardBody>
-            </Card>
-
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300">
-              <CardBody className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-                  <FaBaby className="text-3xl text-blue-800" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                  All Ages Covered
-                </h3>
-                <p className="text-gray-600 text-lg">
-                  Child seats available for newborns to 6 years old, including
-                  rear-facing options
-                </p>
-              </CardBody>
-            </Card>
-
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300">
-              <CardBody className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-                  <FaCar className="text-3xl text-blue-800" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                  Professional Service
-                </h3>
-                <p className="text-gray-600 text-lg">
-                  Experienced drivers with proper child seat installation and
-                  travel insurance included
-                </p>
-              </CardBody>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* Phuket Ferry Tickets Section */}
       <section className="py-20 bg-blue-900 text-white relative overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/image/home/phuket-ferry.png"
-            alt="Phuket Ferry"
+            alt="Phuket Ferry Services - Island hopping with child seat safety"
             fill
             className="object-cover opacity-30"
           />
@@ -311,7 +488,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="hover:shadow-lg transition-shadow">
+            <Card className="hover:shadow-lg transition-shadow bg-white">
               <CardHeader className="pb-0 text-blue-900">
                 <h3 className="text-xl font-semibold">Airport Transfer</h3>
               </CardHeader>
@@ -325,13 +502,14 @@ export default function Home() {
                   href="/airport-transfer"
                   color="primary"
                   variant="flat"
-                  size="sm">
-                  Learn More
+                  size="sm"
+                  aria-label="Learn more about airport transfer services with child seats">
+                  Airport Transfer Details
                 </Button>
               </CardBody>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow">
+            <Card className="hover:shadow-lg transition-shadow bg-white">
               <CardHeader className="pb-0">
                 <h3 className="text-xl font-semibold text-blue-900">
                   Day Trips & Tours
@@ -347,13 +525,14 @@ export default function Home() {
                   href="/day-trips"
                   color="primary"
                   variant="flat"
-                  size="sm">
-                  Explore Tours
+                  size="sm"
+                  aria-label="Explore day trips and tours with child seat safety">
+                  Explore Day Trips
                 </Button>
               </CardBody>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow">
+            <Card className="hover:shadow-lg transition-shadow bg-white">
               <CardHeader className="pb-0">
                 <h3 className="text-xl font-semibold text-blue-900">
                   Phuket City Tour
@@ -382,7 +561,7 @@ export default function Home() {
       <ContactFooter
         title="Ready to Book Your Safe Journey?"
         description="Contact us for bookings and inquiries. Payment due in cash on site or transfer via Wise."
-        className="bg-blue-600"
+        className="bg-blue-900"
       />
 
       {/* Trust Indicators */}
@@ -416,6 +595,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
