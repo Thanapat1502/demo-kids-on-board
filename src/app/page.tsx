@@ -51,7 +51,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Banner Section */}
-      <section className="relative h-[50vh] overflow-hidden">
+      <section className="relative h-[55vh] overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/image/home/banner.png"
@@ -65,7 +65,7 @@ export default function Home() {
 
         <div className="relative z-10 flex items-center justify-center h-full">
           <div className="text-center text-white px-4 max-w-4xl">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold mt-24 mb-6 leading-tight">
               Safe Travel with
               <span className="block text-yellow-400">Child Seats</span>
               in Phuket

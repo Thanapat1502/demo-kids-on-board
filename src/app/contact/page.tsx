@@ -45,7 +45,7 @@ Message: ${formData.message}`;
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 pt-24">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
           <p className="text-xl mb-8 text-blue-100">
@@ -70,7 +70,7 @@ Message: ${formData.message}`;
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaEnvelope className="text-3xl text-blue-800" />
@@ -90,7 +90,7 @@ Message: ${formData.message}`;
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaPhone className="text-3xl text-blue-800" />
@@ -110,7 +110,7 @@ Message: ${formData.message}`;
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-green-100 rounded-full">
                   <FaWhatsapp className="text-3xl text-green-800" />
@@ -131,7 +131,7 @@ Message: ${formData.message}`;
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300">
+            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 bg-white">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-green-100 rounded-full">
                   <FaLine className="text-3xl text-green-800" />
@@ -159,12 +159,15 @@ Message: ${formData.message}`;
                 quick response.`}
               </p>
 
-              <Card className="p-6">
+              <Card className="p-6 bg-gray-100">
                 <CardBody>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <Input
                         label="Full Name"
+                        classNames={{
+                          inputWrapper: "bg-white",
+                        }}
                         placeholder="Enter your name"
                         value={formData.name}
                         onValueChange={(value) =>
@@ -175,6 +178,9 @@ Message: ${formData.message}`;
                       <Input
                         label="Email"
                         type="email"
+                        classNames={{
+                          inputWrapper: "bg-white",
+                        }}
                         placeholder="Enter your email"
                         value={formData.email}
                         onValueChange={(value) =>
@@ -187,14 +193,21 @@ Message: ${formData.message}`;
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <Input
                         label="Phone Number"
+                        classNames={{
+                          inputWrapper: "bg-white",
+                        }}
                         placeholder="Enter your phone"
                         value={formData.phone}
                         onValueChange={(value) =>
                           handleInputChange("phone", value)
                         }
+                        className=""
                       />
                       <Input
                         label="Service Interested"
+                        classNames={{
+                          inputWrapper: "bg-white",
+                        }}
                         placeholder="Airport transfer, Day trips, etc."
                         value={formData.service}
                         onValueChange={(value) =>
@@ -206,6 +219,9 @@ Message: ${formData.message}`;
                     <Textarea
                       label="Message"
                       placeholder="Tell us about your requirements, dates, number of passengers, etc."
+                      classNames={{
+                        inputWrapper: "bg-white",
+                      }}
                       value={formData.message}
                       onValueChange={(value) =>
                         handleInputChange("message", value)
@@ -232,7 +248,7 @@ Message: ${formData.message}`;
               </h2>
 
               {/* Owner Image Section */}
-              <Card className="p-6 mb-6">
+              <Card className="p-6 mb-6 bg-white">
                 <CardBody>
                   <div className="flex flex-col items-center text-center">
                     <div className="relative w-32 h-32 rounded-full overflow-hidden mb-4">
@@ -264,7 +280,7 @@ Message: ${formData.message}`;
                 Business Information
               </h2>
 
-              <Card className="p-6 mb-6">
+              <Card className="p-6 mb-6 bg-white">
                 <CardHeader className="pb-0">
                   <h3 className="text-xl font-semibold text-blue-900">
                     Kampanart Travel
@@ -321,7 +337,7 @@ Message: ${formData.message}`;
                 </CardBody>
               </Card>
 
-              <Card className="p-6">
+              <Card className="p-6 bg-white">
                 <CardHeader className="pb-0">
                   <h3 className="text-xl font-semibold text-blue-900">
                     Our Services

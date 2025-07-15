@@ -54,7 +54,7 @@ export default function DayTripsPage() {
           <div className="absolute inset-0 bg-black/50" />
         </div>
 
-        <div className="relative z-10 flex items-center justify-center h-full">
+        <div className="relative z-10 flex items-center justify-center h-full pt-20">
           <div className="text-center text-white px-4 max-w-4xl">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               Discover

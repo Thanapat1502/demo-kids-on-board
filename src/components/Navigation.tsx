@@ -27,6 +27,16 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
+  // Pages that should have transparent navbar
+  const transparentNavPages = [
+    "/",
+    "/airport-transfer",
+    "/day-trips",
+    "/house-for-rent",
+    "/contact",
+  ];
+  const isTransparentPage = transparentNavPages.includes(pathname);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -41,7 +51,7 @@ export default function Navigation() {
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
       className={`transition-all duration-500 ease-in-out ${
-        pathname === "/"
+        isTransparentPage
           ? isScrolled
             ? "bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-lg fixed top-0 left-0 right-0 z-50"
             : "bg-white/10 backdrop-blur-sm border-b border-white/20 shadow-none fixed top-0 left-0 right-0 z-50"
@@ -75,7 +85,7 @@ export default function Navigation() {
             <div>
               <div
                 className={`font-bold text-xl transition-colors ${
-                  pathname === "/" && !isScrolled
+                  isTransparentPage && !isScrolled
                     ? "text-white"
                     : "text-gray-900"
                 }`}>
@@ -83,7 +93,7 @@ export default function Navigation() {
               </div>
               <div
                 className={`text-xs transition-colors ${
-                  pathname === "/" && !isScrolled
+                  isTransparentPage && !isScrolled
                     ? "text-white/80"
                     : "text-gray-500"
                 }`}>
@@ -101,10 +111,10 @@ export default function Navigation() {
               href={item.href}
               className={`font-semibold text-lg transition-colors relative ${
                 pathname === item.href
-                  ? pathname === "/" && !isScrolled
+                  ? isTransparentPage && !isScrolled
                     ? "text-white"
                     : "text-blue-600"
-                  : pathname === "/" && !isScrolled
+                  : isTransparentPage && !isScrolled
                   ? "text-white/90 hover:text-white"
                   : "text-gray-700 hover:text-blue-600"
               }`}>
@@ -112,7 +122,9 @@ export default function Navigation() {
               {pathname === item.href && (
                 <div
                   className={`absolute -bottom-1 left-0 right-0 h-0.5 rounded-full ${
-                    pathname === "/" && !isScrolled ? "bg-white" : "bg-blue-600"
+                    isTransparentPage && !isScrolled
+                      ? "bg-white"
+                      : "bg-blue-600"
                   }`}></div>
               )}
             </Link>
