@@ -1,12 +1,11 @@
 "use client";
 
-import type { Metadata } from "next";
 import { Button, Card, CardBody, CardHeader, Chip } from "@heroui/react";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaHome, FaWifi, FaParking } from "react-icons/fa";
-
+import { ContactFooter } from "@/components/ContactFooter";
 export default function HouseForRentPage() {
   const [currentHouseImage, setCurrentHouseImage] = useState(0);
 
@@ -96,7 +95,7 @@ export default function HouseForRentPage() {
             <CardBody>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-xl font-semibold mb-4">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-900">
                     Property Features
                   </h3>
                   <ul className="space-y-2 text-gray-600">
@@ -110,7 +109,9 @@ export default function HouseForRentPage() {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-4">Rental Options</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-blue-900">
+                    Rental Options
+                  </h3>
                   <div className="space-y-4">
                     <div className="p-4 bg-green-50 rounded-lg">
                       <h4 className="font-semibold text-green-800">
@@ -142,7 +143,7 @@ export default function HouseForRentPage() {
               Prime Thalang Location
             </h2>
             <p className="text-lg text-gray-600">
-              Strategically located for easy access to Phuket's best attractions
+              {`Strategically located for easy access to Phuket's best attractions`}
             </p>
           </div>
 
@@ -216,22 +217,30 @@ export default function HouseForRentPage() {
             <CardBody>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-xl font-semibold mb-4">Travel Times</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-blue-900">
+                    Travel Times
+                  </h3>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <span className="font-medium">Phuket Town</span>
+                      <span className="font-medium text-gray-900">
+                        Phuket Town
+                      </span>
                       <span className="text-blue-600 font-semibold">
                         20 minutes
                       </span>
                     </div>
                     <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <span className="font-medium">Phuket Airport</span>
+                      <span className="font-medium text-gray-900">
+                        Phuket Airport
+                      </span>
                       <span className="text-blue-600 font-semibold">
                         25 minutes
                       </span>
                     </div>
                     <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <span className="font-medium">Patong Beach</span>
+                      <span className="font-medium text-gray-900">
+                        Patong Beach
+                      </span>
                       <span className="text-blue-600 font-semibold">
                         30 minutes
                       </span>
@@ -239,7 +248,7 @@ export default function HouseForRentPage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-4">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-900">
                     Transportation Services
                   </h3>
                   <ul className="space-y-2 text-gray-600">
@@ -289,10 +298,10 @@ export default function HouseForRentPage() {
                       <h3 className="text-xl font-bold text-white mb-2">
                         {index === 0 && "Garden View"}
                         {index === 1 && "Living Area"}
-                        {index === 2 && "Bedroom"}
-                        {index === 3 && "Kitchen"}
+                        {index === 2 && "Nature"}
+                        {index === 3 && "Outdoor Space"}
                         {index === 4 && "Bathroom"}
-                        {index === 5 && "Outdoor Space"}
+                        {index === 5 && "Bedroom"}
                         {index === 6 && "Surroundings"}
                       </h3>
                     </div>
@@ -327,43 +336,11 @@ export default function HouseForRentPage() {
         </section>
 
         {/* Contact CTA */}
-        <section className="bg-teal-600 text-white rounded-lg p-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            Interested in Our Garden House?
-          </h2>
-          <p className="text-xl mb-6 text-teal-100">
-            Contact us for availability, pricing, and booking information
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <div>
-              <p className="font-semibold">📧 Email</p>
-              <p className="text-teal-100">kam.phuket@gmail.com</p>
-            </div>
-            <div>
-              <p className="font-semibold">📱 Mobile</p>
-              <p className="text-teal-100">+66 81 537 2657</p>
-            </div>
-            <div>
-              <p className="font-semibold">💬 WhatsApp</p>
-              <p className="text-teal-100">+66 81 537 2657</p>
-            </div>
-            <div>
-              <p className="font-semibold">📱 Line ID</p>
-              <p className="text-teal-100">kampanart-travel</p>
-            </div>
-          </div>
-
-          <Button
-            as={Link}
-            href="/contact"
-            size="lg"
-            color="warning"
-            variant="solid"
-            className="font-semibold">
-            Contact for Booking
-          </Button>
-        </section>
+        <ContactFooter
+          title="Interested in Our Garden House?"
+          description="Contact us for availability, pricing, and booking information."
+          className="bg-teal-600 rounded-lg mt-16"
+        />
       </div>
     </div>
   );

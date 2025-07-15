@@ -1,11 +1,14 @@
 "use client";
 
-import type { Metadata } from "next";
-import { Button, Card, CardBody, CardHeader, Chip } from "@heroui/react";
+import { Button, Card, CardBody, Chip } from "@heroui/react";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaShip, FaSwimmer, FaCamera } from "react-icons/fa";
+import { LuDrama } from "react-icons/lu";
+import { ContactFooter } from "@/components/ContactFooter";
+import { GiElephant } from "react-icons/gi";
+import { LiaSwimmerSolid } from "react-icons/lia";
 
 export default function DayTripsPage() {
   const [currentExperience, setCurrentExperience] = useState(0);
@@ -123,8 +126,8 @@ export default function DayTripsPage() {
                   Cultural Tours
                 </h3>
                 <p className="text-gray-600 text-lg">
-                  Explore Phuket's rich culture with visits to Big Buddha,
-                  temples, and historic Old Town.
+                  {`Explore Phuket's rich culture with visits to Big Buddha,
+                  temples, and historic Old Town.`}
                 </p>
               </CardBody>
             </Card>
@@ -297,9 +300,9 @@ export default function DayTripsPage() {
                 Park, featuring stunning limestone cliffs and pristine beaches.
               </p>
               <p className="text-gray-700 mb-6 leading-relaxed">
-                Maya Bay was featured in the Hollywood movie "The Beach" and
+                {`Maya Bay was featured in the Hollywood movie "The Beach" and
                 epitomizes the stunning beauty of these islands with pellucid
-                aquamarine water surrounded by towering limestone cliffs.
+                aquamarine water surrounded by towering limestone cliffs.`}
               </p>
               <div className="bg-green-50 p-6 rounded-xl">
                 <h4 className="font-bold mb-3 text-green-900">Key Tips:</h4>
@@ -473,8 +476,10 @@ export default function DayTripsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="p-6">
               <CardBody className="text-center">
-                <div className="text-3xl mb-3">🎭</div>
-                <h3 className="text-lg font-semibold mb-2">
+                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
+                  <LuDrama className="text-3xl text-blue-800" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-blue-900">
                   Shows & Entertainment
                 </h3>
                 <p className="text-gray-600 text-sm">
@@ -485,8 +490,10 @@ export default function DayTripsPage() {
 
             <Card className="p-6">
               <CardBody className="text-center">
-                <div className="text-3xl mb-3">🐘</div>
-                <h3 className="text-lg font-semibold mb-2">
+                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
+                  <GiElephant className="text-3xl text-blue-800" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-blue-900">
                   Animal Experiences
                 </h3>
                 <p className="text-gray-600 text-sm">
@@ -497,8 +504,12 @@ export default function DayTripsPage() {
 
             <Card className="p-6">
               <CardBody className="text-center">
-                <div className="text-3xl mb-3">💦</div>
-                <h3 className="text-lg font-semibold mb-2">Water Activities</h3>
+                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
+                  <LiaSwimmerSolid className="text-3xl text-blue-800" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-blue-900">
+                  Water Activities
+                </h3>
                 <p className="text-gray-600 text-sm">
                   Water parks, swimming, beach activities
                 </p>
@@ -542,8 +553,7 @@ export default function DayTripsPage() {
                         {experience.title}
                       </h3>
                       <p className="text-gray-200 text-sm">
-                        "Amazing experience with professional service and child
-                        safety as priority"
+                        {`"Amazing experience with professional service and childsafety as priority"`}
                       </p>
                     </div>
                   </div>
@@ -577,42 +587,12 @@ export default function DayTripsPage() {
         </section>
 
         {/* Contact CTA */}
-        <section className="bg-green-600 text-white rounded-lg p-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Explore Phuket?</h2>
-          <p className="text-xl mb-6 text-green-100">
-            Contact us for package day trips and tour bookings. All tours
-            include safe transportation with child seats.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <div>
-              <p className="font-semibold">📧 Email</p>
-              <p className="text-green-100">kam.phuket@gmail.com</p>
-            </div>
-            <div>
-              <p className="font-semibold">📱 Mobile</p>
-              <p className="text-green-100">+66 81 537 2657</p>
-            </div>
-            <div>
-              <p className="font-semibold">💬 WhatsApp</p>
-              <p className="text-green-100">+66 81 537 2657</p>
-            </div>
-            <div>
-              <p className="font-semibold">📱 Line ID</p>
-              <p className="text-green-100">kampanart-travel</p>
-            </div>
-          </div>
-
-          <Button
-            as={Link}
-            href="/contact"
-            size="lg"
-            color="warning"
-            variant="solid"
-            className="font-semibold">
-            Book Your Tour Now
-          </Button>
-        </section>
+        <ContactFooter
+          title="Ready to Explore Phuket?"
+          description="Contact us for package day trips and tour bookings. All tours
+            include safe transportation with child seats"
+          className="bg-green-600 rounded-lg mt-16"
+        />
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 "use client";
 
-import type { Metadata } from "next";
 import {
   Button,
   Card,
@@ -50,10 +49,10 @@ Message: ${formData.message}`;
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
           <p className="text-xl mb-8 text-blue-100">
-            Get in touch for bookings and inquiries - We're here to help!
+            {`Get in touch for bookings and inquiries - We're here to help!`}
           </p>
           <p className="text-lg text-blue-200">
-            Don't hesitate to contact us with questions or booking requests
+            {`Don't hesitate to contact us with questions or booking requests`}
           </p>
         </div>
       </section>
@@ -139,7 +138,7 @@ Message: ${formData.message}`;
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-blue-900">Line</h3>
                 <p className="text-gray-600 mb-4 text-lg">kampanart-travel</p>
-                <Button color="primary" variant="flat" size="sm">
+                <Button color="success" variant="flat" size="sm">
                   Line ID
                 </Button>
               </CardBody>
@@ -155,9 +154,9 @@ Message: ${formData.message}`;
                 Send Us a Message
               </h2>
               <p className="text-gray-600 mb-8">
-                Fill out the form below and we'll get back to you as soon as
+                {`Fill out the form below and we'll get back to you as soon as
                 possible. Your message will be sent directly to our WhatsApp for
-                quick response.
+                quick response.`}
               </p>
 
               <Card className="p-6">
@@ -251,11 +250,11 @@ Message: ${formData.message}`;
                       Owner & Operations Manager
                     </p>
                     <p className="text-gray-600 leading-relaxed">
-                      "Safety is our top priority. As a father myself, I
+                      {`"Safety is our top priority. As a father myself, I
                       understand the importance of child safety during travel.
                       That's why we use only the best imported Britax child
                       seats and maintain the highest safety standards for all
-                      our services."
+                      our services."`}
                     </p>
                   </div>
                 </CardBody>
@@ -267,14 +266,18 @@ Message: ${formData.message}`;
 
               <Card className="p-6 mb-6">
                 <CardHeader className="pb-0">
-                  <h3 className="text-xl font-semibold">Kampanart Travel</h3>
+                  <h3 className="text-xl font-semibold text-blue-900">
+                    Kampanart Travel
+                  </h3>
                 </CardHeader>
                 <CardBody>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
                       <div className="text-xl">🏆</div>
                       <div>
-                        <p className="font-semibold">TAT Licensed</p>
+                        <p className="font-semibold text-gray-900">
+                          TAT Licensed
+                        </p>
                         <p className="text-gray-600">License #32/01713</p>
                       </div>
                     </div>
@@ -282,7 +285,9 @@ Message: ${formData.message}`;
                     <div className="flex items-start gap-3">
                       <div className="text-xl">👨‍💼</div>
                       <div>
-                        <p className="font-semibold">Operations Manager</p>
+                        <p className="font-semibold text-gray-900">
+                          Operations Manager
+                        </p>
                         <p className="text-gray-600">
                           Mr. Kam (Taxi and Tours)
                         </p>
@@ -292,7 +297,9 @@ Message: ${formData.message}`;
                     <div className="flex items-start gap-3">
                       <div className="text-xl">🛡️</div>
                       <div>
-                        <p className="font-semibold">Travel Insurance</p>
+                        <p className="font-semibold text-gray-900">
+                          Travel Insurance
+                        </p>
                         <p className="text-gray-600">
                           Included with all services
                         </p>
@@ -302,7 +309,9 @@ Message: ${formData.message}`;
                     <div className="flex items-start gap-3">
                       <div className="text-xl">💳</div>
                       <div>
-                        <p className="font-semibold">Payment Methods</p>
+                        <p className="font-semibold text-gray-900">
+                          Payment Methods
+                        </p>
                         <p className="text-gray-600">
                           Cash on site or transfer via Wise
                         </p>
@@ -314,7 +323,9 @@ Message: ${formData.message}`;
 
               <Card className="p-6">
                 <CardHeader className="pb-0">
-                  <h3 className="text-xl font-semibold">Our Services</h3>
+                  <h3 className="text-xl font-semibold text-blue-900">
+                    Our Services
+                  </h3>
                 </CardHeader>
                 <CardBody>
                   <ul className="space-y-2 text-gray-600">

@@ -1,9 +1,9 @@
 "use client";
 
-import { Button, Card, CardBody, CardHeader, Chip } from "@heroui/react";
-import Link from "next/link";
+import { Card, CardBody, CardHeader, Chip } from "@heroui/react";
 import Image from "next/image";
 import { FaShieldAlt, FaClock, FaUsers } from "react-icons/fa";
+import { ContactFooter } from "@/components/ContactFooter";
 
 export default function AirportTransferPage() {
   const seatOptions = [
@@ -263,7 +263,7 @@ export default function AirportTransferPage() {
                   </thead>
                   <tbody>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Maikhao Beach</td>
+                      <td className="py-3 px-4 text-black">Maikhao Beach</td>
                       <td className="py-3 px-4 text-center font-semibold text-blue-600">
                         1,000 THB
                       </td>
@@ -272,7 +272,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Naithon Beach</td>
+                      <td className="py-3 px-4 text-black">Naithon Beach</td>
                       <td className="py-3 px-4 text-center font-semibold text-blue-600">
                         800 THB
                       </td>
@@ -281,7 +281,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Ao Por Pier</td>
+                      <td className="py-3 px-4 text-black">Ao Por Pier</td>
                       <td className="py-3 px-4 text-center font-semibold text-blue-600">
                         1,200 THB
                       </td>
@@ -290,7 +290,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Layan Beach</td>
+                      <td className="py-3 px-4 text-black">Layan Beach</td>
                       <td className="py-3 px-4 text-center font-semibold text-blue-600">
                         1,200 THB
                       </td>
@@ -299,7 +299,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Phuket Town</td>
+                      <td className="py-3 px-4 text-black">Phuket Town</td>
                       <td className="py-3 px-4 text-center font-semibold text-blue-600">
                         1,200 THB
                       </td>
@@ -308,7 +308,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Rassada Pier</td>
+                      <td className="py-3 px-4 text-black">Rassada Pier</td>
                       <td className="py-3 px-4 text-center font-semibold text-blue-600">
                         1,200 THB
                       </td>
@@ -317,7 +317,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Koh Sirey Bay</td>
+                      <td className="py-3 px-4 text-black">Koh Sirey Bay</td>
                       <td className="py-3 px-4 text-center font-semibold text-blue-600">
                         1,200 THB
                       </td>
@@ -326,7 +326,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Bang Tao Beach</td>
+                      <td className="py-3 px-4 text-black">Bang Tao Beach</td>
                       <td className="py-3 px-4 text-center font-semibold text-blue-600">
                         1,200 THB
                       </td>
@@ -335,7 +335,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Surin Beach</td>
+                      <td className="py-3 px-4 text-black">Surin Beach</td>
                       <td className="py-3 px-4 text-center font-semibold text-blue-600">
                         1,200 THB
                       </td>
@@ -344,7 +344,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Kamala Beach</td>
+                      <td className="py-3 px-4 text-black">Kamala Beach</td>
                       <td className="py-3 px-4 text-center font-semibold text-blue-600">
                         1,200 THB
                       </td>
@@ -353,7 +353,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Chalong Bay</td>
+                      <td className="py-3 px-4 text-black">Chalong Bay</td>
                       <td className="py-3 px-4 text-center font-semibold text-orange-600">
                         1,400 THB
                       </td>
@@ -362,7 +362,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Patong Beach</td>
+                      <td className="py-3 px-4 text-black">Patong Beach</td>
                       <td className="py-3 px-4 text-center font-semibold text-orange-600">
                         1,400 THB
                       </td>
@@ -371,7 +371,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Kata-Karon Beach</td>
+                      <td className="py-3 px-4 text-black">Kata-Karon Beach</td>
                       <td className="py-3 px-4 text-center font-semibold text-orange-600">
                         1,400 THB
                       </td>
@@ -380,7 +380,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Rawai Beach</td>
+                      <td className="py-3 px-4 text-black">Rawai Beach</td>
                       <td className="py-3 px-4 text-center font-semibold text-orange-600">
                         1,400 THB
                       </td>
@@ -389,7 +389,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Tritrang Beach</td>
+                      <td className="py-3 px-4 text-black">Tritrang Beach</td>
                       <td className="py-3 px-4 text-center font-semibold text-red-600">
                         1,500 THB
                       </td>
@@ -398,7 +398,7 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Nai Harn Beach</td>
+                      <td className="py-3 px-4 text-black">Nai Harn Beach</td>
                       <td className="py-3 px-4 text-center font-semibold text-red-600">
                         1,500 THB
                       </td>
@@ -407,7 +407,9 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">Ao Sane (Baan Krathing)</td>
+                      <td className="py-3 px-4 text-black">
+                        Ao Sane (Baan Krathing)
+                      </td>
                       <td className="py-3 px-4 text-center font-semibold text-red-600">
                         1,600 THB
                       </td>
@@ -416,7 +418,9 @@ export default function AirportTransferPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4">NaTai Beach (Phang Nga)</td>
+                      <td className="py-3 px-4 text-black">
+                        NaTai Beach (Phang Nga)
+                      </td>
                       <td className="py-3 px-4 text-center font-semibold text-red-600">
                         1,600 THB
                       </td>
@@ -513,44 +517,12 @@ export default function AirportTransferPage() {
         </section>
 
         {/* Contact CTA */}
-        <section className="bg-blue-600 text-white rounded-lg p-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            Ready to Book Your Airport Transfer?
-          </h2>
-          <p className="text-xl mb-6 text-blue-100">
-            Contact us for pricing and availability. Price depends on hotel
-            location.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <div>
-              <p className="font-semibold">📧 Email</p>
-              <p className="text-blue-100">kam.phuket@gmail.com</p>
-            </div>
-            <div>
-              <p className="font-semibold">📱 Mobile</p>
-              <p className="text-blue-100">+66 81 537 2657</p>
-            </div>
-            <div>
-              <p className="font-semibold">💬 WhatsApp</p>
-              <p className="text-blue-100">+66 81 537 2657</p>
-            </div>
-            <div>
-              <p className="font-semibold">📱 Line ID</p>
-              <p className="text-blue-100">kampanart-travel</p>
-            </div>
-          </div>
-
-          <Button
-            as={Link}
-            href="/contact"
-            size="lg"
-            color="warning"
-            variant="solid"
-            className="font-semibold">
-            Contact Us for Booking
-          </Button>
-        </section>
+        <ContactFooter
+          title=" Ready to Book Your Airport Transfer?"
+          description=" Contact us for pricing and availability. Price depends on hotel
+            location."
+          className="bg-blue-600 rounded-lg"
+        />
       </div>
     </div>
   );

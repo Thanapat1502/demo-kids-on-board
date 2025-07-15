@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaShieldAlt, FaBaby, FaCar } from "react-icons/fa";
-
+import { ContactFooter } from "@/components/ContactFooter";
 export default function Home() {
   const [currentDestination, setCurrentDestination] = useState(0);
 
@@ -70,7 +70,7 @@ export default function Home() {
               <span className="block text-yellow-400">Child Seats</span>
               in Phuket
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-200">
+            <p className="text-xl md:text-2xl mb-8 text-gray-200 bg-blue-900 shadow-lg rounded-full px-3 py-2 border border-gray-200">
               Professional travel services with imported Britax child seats from
               Sweden
             </p>
@@ -379,50 +379,11 @@ export default function Home() {
       </section>
 
       {/* Contact CTA */}
-      <section className="py-16 bg-blue-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Book Your Safe Journey?
-          </h2>
-          <p className="text-xl mb-8 text-blue-100">
-            Contact us for bookings and inquiries. Payment due in cash on site
-            or transfer via Wise.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div className="text-center">
-              <div className="text-2xl mb-2">📧</div>
-              <p className="font-semibold">Email</p>
-              <p className="text-blue-100">kam.phuket@gmail.com</p>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl mb-2">📱</div>
-              <p className="font-semibold">Mobile</p>
-              <p className="text-blue-100">+66 81 537 2657</p>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl mb-2">💬</div>
-              <p className="font-semibold">WhatsApp</p>
-              <p className="text-blue-100">+66 81 537 2657</p>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl mb-2">📱</div>
-              <p className="font-semibold">Line ID</p>
-              <p className="text-blue-100">kampanart-travel</p>
-            </div>
-          </div>
-
-          <Button
-            as={Link}
-            href="/contact"
-            size="lg"
-            color="warning"
-            variant="solid"
-            className="font-semibold">
-            Contact Us Now
-          </Button>
-        </div>
-      </section>
+      <ContactFooter
+        title="Ready to Book Your Safe Journey?"
+        description="Contact us for bookings and inquiries. Payment due in cash on site or transfer via Wise."
+        className="bg-blue-600"
+      />
 
       {/* Trust Indicators */}
       <section className="py-16 bg-white">

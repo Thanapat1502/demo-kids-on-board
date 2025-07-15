@@ -40,14 +40,12 @@ export default function Navigation() {
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
-      className={`transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm translate-y-0"
-          : "bg-transparent border-transparent shadow-none -translate-y-full"
-      } ${
+      className={`transition-all duration-500 ease-in-out ${
         pathname === "/"
-          ? "fixed"
-          : "bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm translate-y-0"
+          ? isScrolled
+            ? "bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-lg fixed top-0 left-0 right-0 z-50"
+            : "bg-white/10 backdrop-blur-sm border-b border-white/20 shadow-none fixed top-0 left-0 right-0 z-50"
+          : "bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm"
       }`}
       maxWidth="xl"
       height="80px">
@@ -75,10 +73,22 @@ export default function Navigation() {
               </svg>
             </div>
             <div>
-              <div className="font-bold text-xl text-gray-900">
+              <div
+                className={`font-bold text-xl transition-colors ${
+                  pathname === "/" && !isScrolled
+                    ? "text-white"
+                    : "text-gray-900"
+                }`}>
                 Phuket Child Seat
               </div>
-              <div className="text-xs text-gray-500">Safe Travel Services</div>
+              <div
+                className={`text-xs transition-colors ${
+                  pathname === "/" && !isScrolled
+                    ? "text-white/80"
+                    : "text-gray-500"
+                }`}>
+                Safe Travel Services
+              </div>
             </div>
           </Link>
         </NavbarBrand>
@@ -91,12 +101,19 @@ export default function Navigation() {
               href={item.href}
               className={`font-semibold text-lg transition-colors relative ${
                 pathname === item.href
-                  ? "text-blue-600"
+                  ? pathname === "/" && !isScrolled
+                    ? "text-white"
+                    : "text-blue-600"
+                  : pathname === "/" && !isScrolled
+                  ? "text-white/90 hover:text-white"
                   : "text-gray-700 hover:text-blue-600"
               }`}>
               {item.name}
               {pathname === item.href && (
-                <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600 rounded-full"></div>
+                <div
+                  className={`absolute -bottom-1 left-0 right-0 h-0.5 rounded-full ${
+                    pathname === "/" && !isScrolled ? "bg-white" : "bg-blue-600"
+                  }`}></div>
               )}
             </Link>
           </NavbarItem>
