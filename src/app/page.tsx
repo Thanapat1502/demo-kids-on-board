@@ -112,7 +112,7 @@ export default function Home() {
     <main className="min-h-screen">
       {/* Hero Banner Section */}
       <section
-        className="relative h-[55vh] overflow-hidden"
+        className="relative h-1/2 overflow-hidden"
         aria-label="Hero banner for Phuket Child Seat services">
         <div className="absolute inset-0">
           <Image
