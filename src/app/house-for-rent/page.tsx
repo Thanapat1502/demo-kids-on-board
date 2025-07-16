@@ -106,16 +106,13 @@ export default function HouseForRentPage() {
         <section className="mb-16">
           <Card className="p-8 !bg-white">
             <CardHeader className="pb-0">
-              <div className="flex items-center gap-4">
-                <div className="text-4xl">🏡</div>
-                <div>
-                  <h2 className="text-3xl font-bold text-gray-900">
-                    Garden House Style Resort
-                  </h2>
-                  <p className="text-gray-600">
-                    Perfect accommodation for families and groups
-                  </p>
-                </div>
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900">
+                  Garden House Style Resort
+                </h2>
+                <p className="text-gray-600">
+                  Perfect accommodation for families and groups
+                </p>
               </div>
             </CardHeader>
             <CardBody>
@@ -124,14 +121,23 @@ export default function HouseForRentPage() {
                   <h3 className="text-xl font-semibold mb-4 text-blue-900">
                     Property Features
                   </h3>
-                  <ul className="space-y-2 text-gray-600">
-                    <li>• Garden house style resort design</li>
-                    <li>• Spacious accommodation for families</li>
-                    <li>• Private garden and outdoor space</li>
-                    <li>• Modern amenities and comfort</li>
-                    <li>• Safe and secure environment</li>
-                    <li>• Perfect for extended stays</li>
-                    <li>• Family-friendly facilities</li>
+                  <ul className="space-y-3 text-gray-600">
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      <span>Garden house style resort design</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      <span>Spacious family accommodation</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      <span>Private garden and outdoor space</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      <span>Modern amenities included</span>
+                    </li>
                   </ul>
                 </div>
                 <div>
@@ -182,10 +188,19 @@ export default function HouseForRentPage() {
                 <h3 className="text-2xl font-bold mb-4 text-blue-900">
                   Beach Access
                 </h3>
-                <ul className="text-gray-600 space-y-2 text-lg">
-                  <li>• 5-10 minutes to Bangtao Beach</li>
-                  <li>• Close to Surin Beach</li>
-                  <li>• Near Layan Beach</li>
+                <ul className="text-gray-600 space-y-3 text-left">
+                  <li className="flex items-center gap-3">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span>5-10 minutes to Bangtao Beach</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span>Close to Surin Beach</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span>Near Layan Beach</span>
+                  </li>
                 </ul>
               </CardBody>
             </Card>
@@ -198,10 +213,19 @@ export default function HouseForRentPage() {
                 <h3 className="text-2xl font-bold mb-4 text-blue-900">
                   Laguna Area
                 </h3>
-                <ul className="text-gray-600 space-y-2 text-lg">
-                  <li>• 5-10 minutes to Laguna complex</li>
-                  <li>• Golf courses nearby</li>
-                  <li>• Resort amenities access</li>
+                <ul className="text-gray-600 space-y-3 text-left">
+                  <li className="flex items-center gap-3">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span>5-10 minutes to Laguna complex</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span>Golf courses nearby</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span>Resort amenities access</span>
+                  </li>
                 </ul>
               </CardBody>
             </Card>
@@ -214,10 +238,19 @@ export default function HouseForRentPage() {
                 <h3 className="text-2xl font-bold mb-4 text-blue-900">
                   Shopping & Dining
                 </h3>
-                <ul className="text-gray-600 space-y-2 text-lg">
-                  <li>• Makro supermarket nearby</li>
-                  <li>• Lotus shopping center</li>
-                  <li>• Robinson shopping center</li>
+                <ul className="text-gray-600 space-y-3 text-left">
+                  <li className="flex items-center gap-3">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span>Makro supermarket nearby</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span>Lotus shopping center</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span>Robinson shopping center</span>
+                  </li>
                 </ul>
               </CardBody>
             </Card>
@@ -228,16 +261,13 @@ export default function HouseForRentPage() {
         <section className="mb-16">
           <Card className="p-8 !bg-white">
             <CardHeader className="pb-0">
-              <div className="flex items-center gap-4">
-                <div className="text-4xl">🚗</div>
-                <div>
-                  <h2 className="text-3xl font-bold text-gray-900">
-                    Easy Transportation
-                  </h2>
-                  <p className="text-gray-600">
-                    Convenient access to all of Phuket
-                  </p>
-                </div>
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900">
+                  Easy Transportation
+                </h2>
+                <p className="text-gray-600">
+                  Convenient access to all of Phuket
+                </p>
               </div>
             </CardHeader>
             <CardBody>
@@ -277,12 +307,19 @@ export default function HouseForRentPage() {
                   <h3 className="text-xl font-semibold mb-4 text-blue-900">
                     Transportation Services
                   </h3>
-                  <ul className="space-y-2 text-gray-600">
-                    <li>• Airport transfer with child seats available</li>
-                    <li>• Daily transportation to beaches</li>
-                    <li>• Tour pickup and drop-off</li>
-                    <li>• Car rental with driver service</li>
-                    <li>• Taxi services on request</li>
+                  <ul className="space-y-3 text-gray-600">
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      <span>Airport transfer with child seats</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      <span>Daily beach transportation</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      <span>Tour pickup and drop-off</span>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -291,7 +328,7 @@ export default function HouseForRentPage() {
         </section>
 
         {/* House Gallery Parallax */}
-        <section className="py-20 bg-gray-900 text-white overflow-hidden">
+        <section className="py-20 bg-gray-900 text-white overflow-hidden rounded-3xl mx-4 my-8">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">

@@ -1,18 +1,28 @@
 "use client";
 
 import { Button, Card, CardBody, Chip } from "@heroui/react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaShip, FaSwimmer, FaCamera } from "react-icons/fa";
-import { LuDrama } from "react-icons/lu";
 import { ContactFooter } from "@/components/ContactFooter";
-import { GiElephant } from "react-icons/gi";
-import { LiaSwimmerSolid } from "react-icons/lia";
 import PageHeaderAnimation from "@/components/PageHeaderAnimation";
+import ImageModal from "@/components/ImageModal";
 
 export default function DayTripsPage() {
   const [currentExperience, setCurrentExperience] = useState(0);
+  const [modalImage, setModalImage] = useState<{
+    src: string;
+    alt: string;
+  } | null>(null);
+
+  const openImageModal = (imageSrc: string, imageAlt: string) => {
+    setModalImage({ src: imageSrc, alt: imageAlt });
+  };
+
+  const closeImageModal = () => {
+    setModalImage(null);
+  };
 
   const experiences = [
     {
@@ -218,13 +228,39 @@ export default function DayTripsPage() {
               </ul>
             </div>
             <div>
-              <div className="relative h-64 rounded-xl overflow-hidden mb-6">
+              <div
+                className="relative h-64 rounded-xl overflow-hidden mb-6 cursor-pointer group/image"
+                onClick={() =>
+                  openImageModal(
+                    "/image/day-trips/destinations/phang-nga-bay2.png",
+                    "Phang Nga Bay Tour - Stunning limestone karsts and emerald waters"
+                  )
+                }
+                title="Click to view full size image">
                 <Image
                   src="/image/day-trips/destinations/phang-nga-bay2.png"
                   alt="Phang Nga Bay Tour"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 group-hover/image:scale-110"
                 />
+
+                {/* Hover Overlay with Magnifying Glass */}
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
+                    <svg
+                      className="w-8 h-8 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                      />
+                    </svg>
+                  </div>
+                </div>
               </div>
               <h3 className="text-2xl font-bold mb-6 text-gray-900">
                 Sample Itinerary
@@ -295,13 +331,39 @@ export default function DayTripsPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <div className="relative h-64 rounded-xl overflow-hidden mb-6">
+              <div
+                className="relative h-64 rounded-xl overflow-hidden mb-6 cursor-pointer group/image"
+                onClick={() =>
+                  openImageModal(
+                    "/image/day-trips/destinations/phi-phi-island3.png",
+                    "Phi Phi Island Beach - Crystal clear waters and pristine beaches"
+                  )
+                }
+                title="Click to view full size image">
                 <Image
                   src="/image/day-trips/destinations/phi-phi-island3.png"
                   alt="Phi Phi Island Beach"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 group-hover/image:scale-110"
                 />
+
+                {/* Hover Overlay with Magnifying Glass */}
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
+                    <svg
+                      className="w-8 h-8 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                      />
+                    </svg>
+                  </div>
+                </div>
               </div>
               <h3 className="text-2xl font-bold mb-6 text-gray-900">
                 About Phi Phi Islands
@@ -429,13 +491,39 @@ export default function DayTripsPage() {
               </div>
             </div>
             <div>
-              <div className="relative h-64 rounded-xl overflow-hidden mb-6">
+              <div
+                className="relative h-64 rounded-xl overflow-hidden mb-6 cursor-pointer group/image"
+                onClick={() =>
+                  openImageModal(
+                    "/image/day-trips/destinations/similan-islands2.png",
+                    "Similan Islands Diving - World-class diving and pristine coral reefs"
+                  )
+                }
+                title="Click to view full size image">
                 <Image
                   src="/image/day-trips/destinations/similan-islands2.png"
                   alt="Similan Islands Diving"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 group-hover/image:scale-110"
                 />
+
+                {/* Hover Overlay with Magnifying Glass */}
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
+                    <svg
+                      className="w-8 h-8 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                      />
+                    </svg>
+                  </div>
+                </div>
               </div>
               <h3 className="text-2xl font-bold mb-6 text-gray-900">
                 Tour Highlights
@@ -485,53 +573,149 @@ export default function DayTripsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="p-6 !bg-white">
-              <CardBody className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-                  <LuDrama className="text-3xl text-blue-800" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Shows & Entertainment */}
+            <div
+              className="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer group/image"
+              onClick={() =>
+                openImageModal(
+                  "/image/home/destinations/3phuket-old-town.png",
+                  "Shows & Entertainment - Phuket Fantasy, Carnival Magic, Cabaret shows"
+                )
+              }
+              title="Click to view full size image">
+              <Image
+                src="/image/home/destinations/3phuket-old-town.png"
+                alt="Shows & Entertainment - Phuket Fantasy, Carnival Magic, Cabaret shows"
+                fill
+                className="object-cover transition-transform duration-500 group-hover/image:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+
+              {/* Hover Overlay with Magnifying Glass */}
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                    />
+                  </svg>
                 </div>
-                <h3 className="text-lg font-semibold mb-2 text-blue-900">
+              </div>
+
+              <div className="absolute bottom-6 left-6 right-6">
+                <h3 className="text-2xl font-bold mb-2 text-blue-900 bg-white/90 px-3 py-1 rounded-lg">
                   Shows & Entertainment
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-white text-sm mb-3 px-3">
                   Phuket Fantasy, Carnival Magic, Cabaret shows
                 </p>
-              </CardBody>
-            </Card>
+              </div>
+            </div>
 
-            <Card className="p-6 !bg-white">
-              <CardBody className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-                  <GiElephant className="text-3xl text-blue-800" />
+            {/* Animal Experiences */}
+            <div
+              className="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer group/image"
+              onClick={() =>
+                openImageModal(
+                  "/image/home/destinations/6mini-zoo -in-phuket.png",
+                  "Animal Experiences - Elephant sanctuary, Tiger park, Mini zoo"
+                )
+              }
+              title="Click to view full size image">
+              <Image
+                src="/image/home/destinations/6mini-zoo -in-phuket.png"
+                alt="Animal Experiences - Elephant sanctuary, Tiger park, Mini zoo"
+                fill
+                className="object-cover transition-transform duration-500 group-hover/image:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+
+              {/* Hover Overlay with Magnifying Glass */}
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                    />
+                  </svg>
                 </div>
-                <h3 className="text-lg font-semibold mb-2 text-blue-900">
+              </div>
+
+              <div className="absolute bottom-6 left-6 right-6">
+                <h3 className="text-2xl font-bold mb-2 text-blue-900 bg-white/90 px-3 py-1 rounded-lg">
                   Animal Experiences
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-white text-sm mb-3 px-3">
                   Elephant sanctuary, Tiger park, Mini zoo
                 </p>
-              </CardBody>
-            </Card>
+              </div>
+            </div>
 
-            <Card className="p-6 !bg-white">
-              <CardBody className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-                  <LiaSwimmerSolid className="text-3xl text-blue-800" />
+            {/* Water Activities */}
+            <div
+              className="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer group/image"
+              onClick={() =>
+                openImageModal(
+                  "/image/home/destinations/8view-point.png",
+                  "Water Activities - Water parks, swimming, beach activities"
+                )
+              }
+              title="Click to view full size image">
+              <Image
+                src="/image/home/destinations/8view-point.png"
+                alt="Water Activities - Water parks, swimming, beach activities"
+                fill
+                className="object-cover transition-transform duration-500 group-hover/image:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+
+              {/* Hover Overlay with Magnifying Glass */}
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                    />
+                  </svg>
                 </div>
-                <h3 className="text-lg font-semibold mb-2 text-blue-900">
+              </div>
+
+              <div className="absolute bottom-6 left-6 right-6">
+                <h3 className="text-2xl font-bold mb-2 text-blue-900 bg-white/90 px-3 py-1 rounded-lg">
                   Water Activities
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-white text-sm mb-3 px-3">
                   Water parks, swimming, beach activities
                 </p>
-              </CardBody>
-            </Card>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* Client Experience Parallax */}
-        <section className="py-20 bg-gray-900 text-white overflow-hidden">
+        <section className="py-20 bg-gray-900 text-white overflow-hidden rounded-3xl mx-4 my-8">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -603,7 +787,15 @@ export default function DayTripsPage() {
           title="Ready to Explore Phuket?"
           description="Contact us for package day trips and tour bookings. All tours
             include safe transportation with child seats"
-          className="bg-green-600 rounded-lg mt-16"
+          className="bg-blue-900 rounded-lg mt-16"
+        />
+
+        {/* Image Modal */}
+        <ImageModal
+          isOpen={modalImage !== null}
+          onClose={closeImageModal}
+          imageSrc={modalImage?.src || ""}
+          imageAlt={modalImage?.alt || ""}
         />
       </div>
     </div>

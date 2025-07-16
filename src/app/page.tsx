@@ -12,6 +12,7 @@ import ImageModal from "@/components/ImageModal";
 import PageHeaderAnimation from "@/components/PageHeaderAnimation";
 export default function Home() {
   const [currentDestination, setCurrentDestination] = useState(0);
+  const [isParallaxPaused, setIsParallaxPaused] = useState(false);
   const [modalImage, setModalImage] = useState<{
     src: string;
     alt: string;
@@ -83,7 +84,7 @@ export default function Home() {
       image: "/image/home/childseat/childseat_option3.png",
       description:
         "Perfect positioning for proper seat belt fit and comfort for growing kids",
-      type: "BOOSTER",
+      type: "BABY SEAT",
       weight: "15-25kg",
       age: "3-6y",
       helpText1: "✓ Rear-facing safety",
@@ -103,24 +104,23 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentDestination((prev) => (prev + 1) % destinations.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [destinations.length]);
+    if (!isParallaxPaused) {
+      const interval = setInterval(() => {
+        setCurrentDestination((prev) => (prev + 1) % destinations.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [destinations.length, isParallaxPaused]);
 
   return (
     <main className="min-h-screen">
-      {/* Hero Banner Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `radial-gradient(circle at 25px 25px, white 2px, transparent 0)`,
-              backgroundSize: "50px 50px",
-            }}></div>
+      {/* Hero Banner & Car Options Section - Seamless Background */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-blue-900">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-2xl"></div>
         </div>
 
         {/* Floating Elements */}
@@ -128,46 +128,198 @@ export default function Home() {
         <div className="absolute bottom-32 right-16 w-32 h-32 bg-blue-400/20 rounded-full blur-xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/3 right-20 w-16 h-16 bg-white/10 rounded-full blur-lg animate-bounce"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="text-white space-y-8">
-              <PageHeaderAnimation delay={300}>
-                <div className="inline-flex items-center gap-2 bg-yellow-400/20 backdrop-blur-sm rounded-full px-4 py-2 text-yellow-300 text-sm font-medium">
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-                  #1 Child Seat Service in Phuket
-                </div>
-              </PageHeaderAnimation>
+        {/* Hero Banner Content */}
+        <div className="relative z-10 min-h-screen flex items-center justify-center">
+          <div className="max-w-7xl mx-auto px-4 py-20">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left Content */}
+              <div className="text-white space-y-8">
+                <PageHeaderAnimation delay={300}>
+                  <div className="inline-flex items-center gap-2 bg-yellow-400/20 backdrop-blur-sm rounded-full px-4 py-2 text-yellow-300 text-sm font-medium">
+                    <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                    #1 Child Seat Service in Phuket
+                  </div>
+                </PageHeaderAnimation>
 
-              <PageHeaderAnimation delay={600}>
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                  Safe Travel with
-                  <span className="block bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                    Premium Child Seats
-                  </span>
-                  in Paradise
-                </h1>
-              </PageHeaderAnimation>
+                <PageHeaderAnimation delay={600}>
+                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                    Safe Travel with
+                    <span className="block bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                      Premium Child Seats
+                    </span>
+                    in Paradise
+                  </h1>
+                </PageHeaderAnimation>
 
-              <PageHeaderAnimation delay={900}>
-                <p className="text-xl md:text-2xl text-blue-100 leading-relaxed max-w-2xl">
-                  Experience worry-free family travel with our imported Britax
-                  child seats from Sweden. Professional service, maximum safety,
-                  unforgettable memories.
-                </p>
-              </PageHeaderAnimation>
+                <PageHeaderAnimation delay={900}>
+                  <p className="text-xl md:text-2xl text-blue-100 leading-relaxed max-w-2xl">
+                    Experience worry-free family travel with our imported Britax
+                    child seats from Sweden. Professional service, maximum
+                    safety, unforgettable memories.
+                  </p>
+                </PageHeaderAnimation>
 
-              <PageHeaderAnimation delay={1200}>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button
-                    as={Link}
-                    href="/contact"
-                    size="lg"
-                    className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-bold px-8 py-4 text-lg shadow-2xl transform hover:scale-105 transition-all duration-300">
-                    <span className="flex items-center gap-2">
-                      Book Your Journey
+                <PageHeaderAnimation delay={1200}>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button
+                      as={Link}
+                      href="/contact"
+                      size="lg"
+                      className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-bold px-8 py-4 text-lg shadow-2xl transform hover:scale-105 transition-all duration-300">
+                      <span className="flex items-center gap-2">
+                        Book Your Journey
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M13 7l5 5m0 0l-5 5m5-5H6"
+                          />
+                        </svg>
+                      </span>
+                    </Button>
+                    <Button
+                      as={Link}
+                      href="/airport-transfer"
+                      size="lg"
+                      variant="bordered"
+                      className="border-2 border-white/30 text-white hover:bg-white hover:text-blue-900 font-semibold px-8 py-4 text-lg backdrop-blur-sm transition-all duration-300">
+                      Airport Transfer
+                    </Button>
+                  </div>
+                </PageHeaderAnimation>
+
+                <PageHeaderAnimation delay={1500}>
+                  <div className="flex items-center gap-8 pt-8">
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-yellow-400">
+                        500+
+                      </div>
+                      <div className="text-sm text-blue-200">
+                        Happy Families
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-yellow-400">
+                        5★
+                      </div>
+                      <div className="text-sm text-blue-200">Safety Rating</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-yellow-400">
+                        100%
+                      </div>
+                      <div className="text-sm text-blue-200">Satisfaction</div>
+                    </div>
+                  </div>
+                </PageHeaderAnimation>
+              </div>
+
+              {/* Right Content - Feature Cards */}
+              <div className="relative">
+                <PageHeaderAnimation delay={800}>
+                  <div className="grid grid-cols-1 gap-6">
+                    {/* Main Feature Card */}
+                    <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl">
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center">
+                          <FaShieldAlt className="text-2xl text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-white">
+                            Premium Safety
+                          </h3>
+                          <p className="text-blue-200">Imported Britax Seats</p>
+                        </div>
+                      </div>
+                      <p className="text-blue-100 leading-relaxed">
+                        Swedish-engineered child seats meeting the highest
+                        international safety standards for your peace of mind.
+                      </p>
+                    </div>
+
+                    {/* Secondary Feature Cards */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+                        <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4">
+                          <FaCar className="text-xl text-blue-300" />
+                        </div>
+                        <h4 className="font-semibold text-white mb-2">
+                          Professional Drivers
+                        </h4>
+                        <p className="text-sm text-blue-200">
+                          Licensed & experienced
+                        </p>
+                      </div>
+                      <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
+                        <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
+                          <FaBaby className="text-xl text-green-300" />
+                        </div>
+                        <h4 className="font-semibold text-white mb-2">
+                          All Ages
+                        </h4>
+                        <p className="text-sm text-blue-200">
+                          0-6 years covered
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </PageHeaderAnimation>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Car Options Content - Same Background */}
+        <div className="relative z-10 py-24">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-20">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 text-white/80 font-medium mb-6">
+                <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                Premium Fleet Services
+              </div>
+              <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                Private Transfer with
+                <span className="block bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                  Safety Child Seats
+                </span>
+                for Kids
+              </h2>
+              <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
+                Choose from our premium fleet of comfortable and safe vehicles,
+                all equipped with professional-grade child seats for the
+                ultimate family travel experience.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Luxury Minibus */}
+              <div className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2">
+                <div
+                  className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group/image mb-6"
+                  onClick={() =>
+                    openImageModal(
+                      "/image/home/car-option/luxury-minibus.png",
+                      "Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
+                    )
+                  }
+                  title="Click to view full size image">
+                  <Image
+                    src="/image/home/car-option/luxury-minibus.png"
+                    alt="Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover/image:scale-110"
+                  />
+
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
                       <svg
-                        className="w-5 h-5"
+                        className="w-8 h-8 text-white"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24">
@@ -175,104 +327,255 @@ export default function Home() {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth={2}
-                          d="M13 7l5 5m0 0l-5 5m5-5H6"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
                         />
                       </svg>
-                    </span>
-                  </Button>
-                  <Button
-                    as={Link}
-                    href="/airport-transfer"
-                    size="lg"
-                    variant="bordered"
-                    className="border-2 border-white/30 text-white hover:bg-white hover:text-blue-900 font-semibold px-8 py-4 text-lg backdrop-blur-sm transition-all duration-300">
-                    Airport Transfer
-                  </Button>
-                </div>
-              </PageHeaderAnimation>
-
-              <PageHeaderAnimation delay={1500}>
-                <div className="flex items-center gap-8 pt-8">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-yellow-400">
-                      500+
                     </div>
-                    <div className="text-sm text-blue-200">Happy Families</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-yellow-400">5★</div>
-                    <div className="text-sm text-blue-200">Safety Rating</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-yellow-400">
-                      100%
-                    </div>
-                    <div className="text-sm text-blue-200">Satisfaction</div>
-                  </div>
-                </div>
-              </PageHeaderAnimation>
-            </div>
-
-            {/* Right Content - Feature Cards */}
-            <div className="relative">
-              <PageHeaderAnimation delay={800}>
-                <div className="grid grid-cols-1 gap-6">
-                  {/* Main Feature Card */}
-                  <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center">
-                        <FaShieldAlt className="text-2xl text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-white">
-                          Premium Safety
-                        </h3>
-                        <p className="text-blue-200">Imported Britax Seats</p>
-                      </div>
-                    </div>
-                    <p className="text-blue-100 leading-relaxed">
-                      Swedish-engineered child seats meeting the highest
-                      international safety standards for your peace of mind.
-                    </p>
                   </div>
 
-                  {/* Secondary Feature Cards */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
-                      <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4">
-                        <FaCar className="text-xl text-blue-300" />
-                      </div>
-                      <h4 className="font-semibold text-white mb-2">
-                        Professional Drivers
-                      </h4>
-                      <p className="text-sm text-blue-200">
-                        Licensed & experienced
-                      </p>
-                    </div>
-                    <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
-                      <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
-                        <FaBaby className="text-xl text-green-300" />
-                      </div>
-                      <h4 className="font-semibold text-white mb-2">
-                        All Ages
-                      </h4>
-                      <p className="text-sm text-blue-200">0-6 years covered</p>
+                  {/* Capacity Badge */}
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-slate-700 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                      8 Seats
                     </div>
                   </div>
                 </div>
-              </PageHeaderAnimation>
+
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-gray-200 transition-colors">
+                    Luxury Minibus
+                  </h3>
+                  <p className="text-blue-100 text-lg leading-relaxed mb-6">
+                    Spacious and comfortable minibus perfect for larger families
+                    and groups with multiple child seats
+                  </p>
+
+                  {/* Features */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="bg-white/10 rounded-xl p-3">
+                      <div className="text-gray-300 font-semibold text-sm">
+                        Capacity
+                      </div>
+                      <div className="text-white text-lg font-bold">
+                        6-8 People
+                      </div>
+                    </div>
+                    <div className="bg-white/10 rounded-xl p-3">
+                      <div className="text-gray-300 font-semibold text-sm">
+                        Child Seats
+                      </div>
+                      <div className="text-white text-lg font-bold">
+                        Up to 4
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Features List */}
+                  <div className="space-y-2 text-left">
+                    <div className="flex items-center gap-3 text-blue-100">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="text-sm">Air Conditioning</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-blue-100">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="text-sm">Professional Driver</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-blue-100">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="text-sm">Multiple Child Seats</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Luxury SUV */}
+              <div className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2">
+                <div
+                  className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group/image mb-6"
+                  onClick={() =>
+                    openImageModal(
+                      "/image/home/car-option/luxury-suv.png",
+                      "Luxury SUV - Premium vehicle with advanced safety features for families"
+                    )
+                  }
+                  title="Click to view full size image">
+                  <Image
+                    src="/image/home/car-option/luxury-suv.png"
+                    alt="Luxury SUV - Premium vehicle with advanced safety features for families"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover/image:scale-110"
+                  />
+
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
+                      <svg
+                        className="w-8 h-8 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Capacity Badge */}
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-slate-700 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                      5 Seats
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-gray-200 transition-colors">
+                    Luxury SUV
+                  </h3>
+                  <p className="text-blue-100 text-lg leading-relaxed mb-6">
+                    Premium SUV with advanced safety features and comfortable
+                    seating for smaller families
+                  </p>
+
+                  {/* Features */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="bg-white/10 rounded-xl p-3">
+                      <div className="text-gray-300 font-semibold text-sm">
+                        Capacity
+                      </div>
+                      <div className="text-white text-lg font-bold">
+                        4-5 People
+                      </div>
+                    </div>
+                    <div className="bg-white/10 rounded-xl p-3">
+                      <div className="text-gray-300 font-semibold text-sm">
+                        Child Seats
+                      </div>
+                      <div className="text-white text-lg font-bold">
+                        Up to 2
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Features List */}
+                  <div className="space-y-2 text-left">
+                    <div className="flex items-center gap-3 text-blue-100">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="text-sm">Premium Comfort</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-blue-100">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="text-sm">Advanced Safety</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-blue-100">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="text-sm">Luxury Interior</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Children on Board */}
+              <div className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2">
+                <div
+                  className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group/image mb-6"
+                  onClick={() =>
+                    openImageModal(
+                      "/image/home/car-option/childrenonboard.png",
+                      "Children on Board Vehicle - Specially equipped for family travel with child seats"
+                    )
+                  }
+                  title="Click to view full size image">
+                  <Image
+                    src="/image/home/car-option/childrenonboard.png"
+                    alt="Children on Board Vehicle - Specially equipped for family travel with child seats"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover/image:scale-110"
+                  />
+
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
+                      <svg
+                        className="w-8 h-8 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Safety Badge */}
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-slate-700 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                      Safety First
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-gray-200 transition-colors">
+                    Children on Board
+                  </h3>
+                  <p className="text-blue-100 text-lg leading-relaxed mb-6">
+                    Specially equipped vehicles with clear safety signage and
+                    child-friendly features for family travel
+                  </p>
+
+                  {/* Features */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="bg-white/10 rounded-xl p-3">
+                      <div className="text-gray-300 font-semibold text-sm">
+                        Safety
+                      </div>
+                      <div className="text-white text-lg font-bold">
+                        Premium
+                      </div>
+                    </div>
+                    <div className="bg-white/10 rounded-xl p-3">
+                      <div className="text-gray-300 font-semibold text-sm">
+                        Signage
+                      </div>
+                      <div className="text-white text-lg font-bold">
+                        Visible
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Features List */}
+                  <div className="space-y-2 text-left">
+                    <div className="flex items-center gap-3 text-blue-100">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="text-sm">Safety Signage</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-blue-100">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="text-sm">Child-Friendly Features</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-blue-100">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="text-sm">Family Focused</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Child Seats Section */}
-      <section className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute top-0 left-0 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div className="absolute top-0 right-0 w-72 h-72 bg-yellow-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-
+      <section className="py-24 bg-gray-50 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="text-center mb-20">
             <div className="inline-flex items-center gap-2 bg-blue-100 rounded-full px-6 py-3 text-blue-700 font-medium mb-6">
@@ -280,10 +583,7 @@ export default function Home() {
               Premium Child Safety Solutions
             </div>
             <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Taxi with{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Rear-Facing
-              </span>
+              Taxi with <span className="text-blue-900">Rear-Facing</span>
               <br />
               Child Seats Available in Phuket!
             </h2>
@@ -299,7 +599,7 @@ export default function Home() {
               return (
                 <div
                   key={index}
-                  className="group relative bg-white/20 backdrop-blur-lg rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/30 overflow-hidden">
+                  className="group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100 overflow-hidden text-black">
                   {/* Image Section */}
                   <div className="p-6 pb-4">
                     <div
@@ -343,39 +643,39 @@ export default function Home() {
                   {/* Content Section */}
                   <div className="px-6 pb-6">
                     <div className="mb-4">
-                      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-gray-200 transition-colors">
+                      <h3 className="text-xl font-bold text-blue-900 mb-2 group-hover:text-blue-800 transition-colors">
                         {item.name}
                       </h3>
-                      <p className="text-gray-200 text-sm leading-relaxed">
+                      <p className="text-gray-600 text-sm leading-relaxed">
                         {item.description}
                       </p>
                     </div>
 
                     {/* Features */}
                     <div className="space-y-2 mb-4">
-                      <div className="flex items-center gap-2 text-sm text-gray-300">
-                        <div className="w-1.5 h-1.5 bg-white/60 rounded-full"></div>
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <div className="w-1.5 h-1.5 bg-blue-800 rounded-full"></div>
                         Age Range: {item.age}
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-gray-300">
-                        <div className="w-1.5 h-1.5 bg-white/60 rounded-full"></div>
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <div className="w-1.5 h-1.5 bg-blue-800 rounded-full"></div>
                         Weight: {item.weight}
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-gray-300">
-                        <div className="w-1.5 h-1.5 bg-white/60 rounded-full"></div>
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <div className="w-1.5 h-1.5 bg-blue-800 rounded-full"></div>
                         Swedish Engineering
                       </div>
                     </div>
 
                     {/* Bottom Section */}
-                    <div className="flex items-center justify-between pt-4 border-t border-white/20">
-                      <div className="inline-flex items-center gap-2 bg-white/20 text-white px-3 py-1 rounded-full text-xs font-medium">
-                        <div className="w-2 h-2 bg-white/60 rounded-full"></div>
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                      <div className="inline-flex items-center gap-2 bg-slate-50 text-slate-700 px-3 py-1 rounded-full text-xs font-medium">
+                        <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                         {item.type}
                       </div>
                       <div className="text-right">
-                        <div className="text-xs text-gray-300">Britax</div>
-                        <div className="text-sm font-bold text-white">
+                        <div className="text-xs text-gray-500">Britax</div>
+                        <div className="text-sm font-bold text-blue-900">
                           Sweden
                         </div>
                       </div>
@@ -388,306 +688,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Car Options Section */}
-      <section className="py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-0 w-64 h-64 bg-yellow-500/10 rounded-full blur-2xl"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 text-white/80 font-medium mb-6">
-              <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-              Premium Fleet Services
-            </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Private Transfer with
-              <span className="block bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                Safety Child Seats
-              </span>
-              for Kids
-            </h2>
-            <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
-              Choose from our premium fleet of comfortable and safe vehicles,
-              all equipped with professional-grade child seats for the ultimate
-              family travel experience.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Luxury Minibus */}
-            <div className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2">
-              <div
-                className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group/image mb-6"
-                onClick={() =>
-                  openImageModal(
-                    "/image/home/car-option/luxury-minibus.png",
-                    "Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
-                  )
-                }
-                title="Click to view full size image">
-                <Image
-                  src="/image/home/car-option/luxury-minibus.png"
-                  alt="Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover/image:scale-110"
-                />
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
-                    <svg
-                      className="w-8 h-8 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Capacity Badge */}
-                <div className="absolute top-4 right-4">
-                  <div className="bg-slate-700 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                    8 Seats
-                  </div>
-                </div>
-              </div>
-
-              <div className="text-center">
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-gray-200 transition-colors">
-                  Luxury Minibus
-                </h3>
-                <p className="text-blue-100 text-lg leading-relaxed mb-6">
-                  Spacious and comfortable minibus perfect for larger families
-                  and groups with multiple child seats
-                </p>
-
-                {/* Features */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-white/10 rounded-xl p-3">
-                    <div className="text-gray-300 font-semibold text-sm">
-                      Capacity
-                    </div>
-                    <div className="text-white text-lg font-bold">
-                      6-8 People
-                    </div>
-                  </div>
-                  <div className="bg-white/10 rounded-xl p-3">
-                    <div className="text-gray-300 font-semibold text-sm">
-                      Child Seats
-                    </div>
-                    <div className="text-white text-lg font-bold">Up to 4</div>
-                  </div>
-                </div>
-
-                {/* Features List */}
-                <div className="space-y-2 text-left">
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Air Conditioning</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Professional Driver</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Multiple Child Seats</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Luxury SUV */}
-            <div className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2">
-              <div
-                className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group/image mb-6"
-                onClick={() =>
-                  openImageModal(
-                    "/image/home/car-option/luxury-suv.png",
-                    "Luxury SUV - Premium vehicle with advanced safety features for families"
-                  )
-                }
-                title="Click to view full size image">
-                <Image
-                  src="/image/home/car-option/luxury-suv.png"
-                  alt="Luxury SUV - Premium vehicle with advanced safety features for families"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover/image:scale-110"
-                />
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
-                    <svg
-                      className="w-8 h-8 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Capacity Badge */}
-                <div className="absolute top-4 right-4">
-                  <div className="bg-slate-700 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                    5 Seats
-                  </div>
-                </div>
-              </div>
-
-              <div className="text-center">
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-gray-200 transition-colors">
-                  Luxury SUV
-                </h3>
-                <p className="text-blue-100 text-lg leading-relaxed mb-6">
-                  Premium SUV with advanced safety features and comfortable
-                  seating for smaller families
-                </p>
-
-                {/* Features */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-white/10 rounded-xl p-3">
-                    <div className="text-gray-300 font-semibold text-sm">
-                      Capacity
-                    </div>
-                    <div className="text-white text-lg font-bold">
-                      4-5 People
-                    </div>
-                  </div>
-                  <div className="bg-white/10 rounded-xl p-3">
-                    <div className="text-gray-300 font-semibold text-sm">
-                      Child Seats
-                    </div>
-                    <div className="text-white text-lg font-bold">Up to 2</div>
-                  </div>
-                </div>
-
-                {/* Features List */}
-                <div className="space-y-2 text-left">
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Premium Comfort</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Advanced Safety</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Luxury Interior</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Children on Board */}
-            <div className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2">
-              <div
-                className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group/image mb-6"
-                onClick={() =>
-                  openImageModal(
-                    "/image/home/car-option/childrenonboard.png",
-                    "Children on Board Vehicle - Specially equipped for family travel with child seats"
-                  )
-                }
-                title="Click to view full size image">
-                <Image
-                  src="/image/home/car-option/childrenonboard.png"
-                  alt="Children on Board Vehicle - Specially equipped for family travel with child seats"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover/image:scale-110"
-                />
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
-                    <svg
-                      className="w-8 h-8 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Safety Badge */}
-                <div className="absolute top-4 right-4">
-                  <div className="bg-slate-700 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                    Safety First
-                  </div>
-                </div>
-              </div>
-
-              <div className="text-center">
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-gray-200 transition-colors">
-                  Children on Board
-                </h3>
-                <p className="text-blue-100 text-lg leading-relaxed mb-6">
-                  Specially equipped vehicles with clear safety signage and
-                  child-friendly features for family travel
-                </p>
-
-                {/* Features */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-white/10 rounded-xl p-3">
-                    <div className="text-gray-300 font-semibold text-sm">
-                      Safety
-                    </div>
-                    <div className="text-white text-lg font-bold">Premium</div>
-                  </div>
-                  <div className="bg-white/10 rounded-xl p-3">
-                    <div className="text-gray-300 font-semibold text-sm">
-                      Signage
-                    </div>
-                    <div className="text-white text-lg font-bold">Visible</div>
-                  </div>
-                </div>
-
-                {/* Features List */}
-                <div className="space-y-2 text-left">
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Safety Signage</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Child-Friendly Features</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Family Focused</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Safety Features - Why Choose Our Child Seat Service */}
-      <section className="py-16 !bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -761,7 +763,10 @@ export default function Home() {
           </div>
 
           {/* Auto-sliding Destinations */}
-          <div className="relative overflow-hidden">
+          <div
+            className="relative overflow-hidden"
+            onMouseEnter={() => setIsParallaxPaused(true)}
+            onMouseLeave={() => setIsParallaxPaused(false)}>
             <div
               className="flex gap-6 transition-transform duration-1000 ease-in-out"
               style={{
@@ -771,7 +776,13 @@ export default function Home() {
               {destinations.map((destination) => (
                 <div
                   key={destination.name}
-                  className="flex-shrink-0 w-80 h-96 relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                  className="flex-shrink-0 w-80 h-96 relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
+                  onClick={() =>
+                    openImageModal(
+                      destination.image,
+                      `${destination.name} - Popular Phuket destination with child seat transport`
+                    )
+                  }>
                   <Image
                     src={destination.image}
                     alt={`${destination.name} - Popular Phuket destination with child seat transport`}
@@ -779,18 +790,39 @@ export default function Home() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+
+                  {/* Hover overlay for zoom indication */}
+                  <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
+                      <svg
+                        className="w-8 h-8 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
                   <div className="absolute bottom-6 left-6 right-6">
                     <h3 className="text-2xl font-bold mb-2 text-blue-900 bg-white/90 px-3 py-1 rounded-lg">
                       {destination.name}
                     </h3>
-                    <Button
-                      as={Link}
-                      href="/day-trips"
-                      size="sm"
-                      className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
-                      aria-label="Book tours to this destination with child seat safety">
-                      Book Tour
-                    </Button>
+                    <div onClick={(e) => e.stopPropagation()}>
+                      <Button
+                        as={Link}
+                        href="/day-trips"
+                        size="sm"
+                        className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
+                        aria-label="Book tours to this destination with child seat safety">
+                        Book Tour
+                      </Button>
+                    </div>
                   </div>
                 </div>
               ))}

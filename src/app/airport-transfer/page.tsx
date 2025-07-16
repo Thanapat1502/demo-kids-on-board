@@ -59,20 +59,35 @@ export default function AirportTransferPage() {
       p3: "Comfort & safety",
     },
   ];
+  const destinations = [
+    { destination: "Maikhao Beach", price1: 1000, price2: 1200 },
+    { destination: "Naithon Beach", price1: 800, price2: 1000 },
+    { destination: "Ao Por Pier", price1: 1200, price2: 1400 },
+    { destination: "Layan Beach", price1: 1200, price2: 1400 },
+    { destination: "Phuket Town", price1: 1200, price2: 1400 },
+    { destination: "Rassada Pier", price1: 1200, price2: 1400 },
+    { destination: "Koh sirey bay", price1: 1200, price2: 1400 },
+    { destination: "Bang tao Beach", price1: 1200, price2: 1400 },
+    { destination: "Surin Beach", price1: 1200, price2: 1400 },
+    { destination: "Kamala Beach", price1: 1200, price2: 1400 },
+    { destination: "Chalong Bay", price1: 1400, price2: 1600 },
+    { destination: "Patong Beach", price1: 1400, price2: 1600 },
+    { destination: "Kata-Karon Beach", price1: 1400, price2: 1600 },
+    { destination: "Rawai Beach", price1: 1400, price2: 1600 },
+    { destination: "Tritrang Beach", price1: 1500, price2: 1600 },
+    { destination: "Nai Harn Beach", price1: 1500, price2: 1600 },
+    { destination: "Ao sane ( Baan krathing )", price1: 1600, price2: 1700 },
+    { destination: "NaTai Beach ( Phang Nga )", price1: 1600, price2: 1800 },
+    { destination: "Khao lak (phang nga )", price1: 2500, price2: 2700 },
+    { destination: "Koh kho khao ( at Pier )", price1: 3000, price2: 3500 },
+    { destination: "Khao Sok national park", price1: 3900, price2: 4200 },
+    { destination: "Ao nang , Krabi town", price1: 3500, price2: 3900 },
+    { destination: "Koh lanta", price1: 5500, price2: 5900 },
+  ];
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `radial-gradient(circle at 25px 25px, white 2px, transparent 0)`,
-              backgroundSize: "50px 50px",
-            }}></div>
-        </div>
-
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-blue-900">
         {/* Floating Elements */}
         <div className="absolute top-20 left-10 w-20 h-20 bg-yellow-400/20 rounded-full blur-xl animate-pulse"></div>
         <div className="absolute bottom-32 right-16 w-32 h-32 bg-blue-400/20 rounded-full blur-xl animate-pulse delay-1000"></div>
@@ -132,7 +147,7 @@ export default function AirportTransferPage() {
                   </Button>
                   <Button
                     as={Link}
-                    href="#destinations"
+                    href="/day-trips"
                     size="lg"
                     variant="bordered"
                     className="border-2 border-white/30 text-white hover:bg-white hover:text-blue-900 font-semibold px-8 py-4 text-lg backdrop-blur-sm transition-all duration-300">
@@ -277,13 +292,226 @@ export default function AirportTransferPage() {
           </div>
         </section>
 
-        {/* Child Seat Types */}
-        <section className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden mb-16">
+        {/* Vehicle Types */}
+        <section className="py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-900 relative overflow-hidden rounded-xl">
           {/* Background Elements */}
-          <div className="absolute top-0 left-0 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-          <div className="absolute top-0 right-0 w-72 h-72 bg-yellow-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+          {/* <div className="absolute inset-0">
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute top-1/2 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-2xl"></div>
+          </div> */}
 
+          {/* Floating Elements */}
+          {/* <div className="absolute top-20 left-10 w-20 h-20 bg-yellow-400/20 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute bottom-32 right-16 w-32 h-32 bg-blue-400/20 rounded-full blur-xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/3 right-20 w-16 h-16 bg-white/10 rounded-full blur-lg animate-bounce"></div> */}
+
+          <div className="max-w-7xl mx-auto px-4 relative z-10">
+            <div className="text-center mb-20">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 text-white/80 font-medium mb-6">
+                <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                Premium Fleet Services
+              </div>
+              <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                Our Vehicle Fleet
+              </h2>
+              <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
+                Choose from our premium fleet of comfortable and safe vehicles,
+                all equipped with professional-grade child seats for the
+                ultimate family travel experience.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Luxury Minibus */}
+              <div className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2">
+                <div
+                  className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group/image mb-6"
+                  onClick={() =>
+                    openImageModal(
+                      "/image/airport-tranfer/car-option/luxury-minibus.png",
+                      "Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
+                    )
+                  }
+                  title="Click to view full size image">
+                  <Image
+                    src="/image/home/car-option/luxury-minibus.png"
+                    alt="Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover/image:scale-110"
+                  />
+
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
+                      <svg
+                        className="w-8 h-8 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Capacity Badge */}
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-slate-700 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                      8 Seats
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-gray-200 transition-colors">
+                    Luxury Minibus
+                  </h3>
+                  <p className="text-blue-100 text-lg leading-relaxed mb-6">
+                    Spacious and comfortable minibus perfect for larger families
+                    and groups with multiple child seats
+                  </p>
+
+                  {/* Features */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="bg-white/10 rounded-xl p-3">
+                      <div className="text-gray-300 font-semibold text-sm">
+                        Capacity
+                      </div>
+                      <div className="text-white text-lg font-bold">
+                        6-8 People
+                      </div>
+                    </div>
+                    <div className="bg-white/10 rounded-xl p-3">
+                      <div className="text-gray-300 font-semibold text-sm">
+                        Child Seats
+                      </div>
+                      <div className="text-white text-lg font-bold">
+                        Up to 4
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Features List */}
+                  <div className="space-y-2 text-left">
+                    <div className="flex items-center gap-3 text-blue-100">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="text-sm">Air Conditioning</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-blue-100">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="text-sm">Professional Driver</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-blue-100">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="text-sm">Multiple Child Seats</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Luxury SUV */}
+              <div className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2">
+                <div
+                  className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group/image mb-6"
+                  onClick={() =>
+                    openImageModal(
+                      "/image/home/car-option/luxury-suv.png",
+                      "Luxury SUV - Premium vehicle with advanced safety features for families"
+                    )
+                  }
+                  title="Click to view full size image">
+                  <Image
+                    src="/image/home/car-option/luxury-suv.png"
+                    alt="Luxury SUV - Premium vehicle with advanced safety features for families"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover/image:scale-110"
+                  />
+
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
+                      <svg
+                        className="w-8 h-8 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Capacity Badge */}
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-slate-700 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                      5 Seats
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-gray-200 transition-colors">
+                    Luxury SUV
+                  </h3>
+                  <p className="text-blue-100 text-lg leading-relaxed mb-6">
+                    Premium SUV with advanced safety features and comfortable
+                    seating for smaller families
+                  </p>
+
+                  {/* Features */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="bg-white/10 rounded-xl p-3">
+                      <div className="text-gray-300 font-semibold text-sm">
+                        Capacity
+                      </div>
+                      <div className="text-white text-lg font-bold">
+                        4-5 People
+                      </div>
+                    </div>
+                    <div className="bg-white/10 rounded-xl p-3">
+                      <div className="text-gray-300 font-semibold text-sm">
+                        Child Seats
+                      </div>
+                      <div className="text-white text-lg font-bold">
+                        Up to 2
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Features List */}
+                  <div className="space-y-2 text-left">
+                    <div className="flex items-center gap-3 text-blue-100">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="text-sm">Premium Comfort</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-blue-100">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="text-sm">Advanced Safety</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-blue-100">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span className="text-sm">Luxury Interior</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Children on Board */}
+            </div>
+          </div>
+        </section>
+
+        {/* Child Seat Types */}
+        <section className="py-24 bg-gray-50 relative overflow-hidden mb-16">
           <div className="max-w-7xl mx-auto px-4 relative z-10">
             <div className="text-center mb-20">
               <div className="inline-flex items-center gap-2 bg-blue-100 rounded-full px-6 py-3 text-blue-700 font-medium mb-6">
@@ -291,10 +519,7 @@ export default function AirportTransferPage() {
                 Premium Child Safety Solutions
               </div>
               <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Child Seat{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Options
-                </span>
+                Child Seat <span className="text-blue-900">Options</span>
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
                 Professional child seats for all ages - imported from Sweden for
@@ -351,26 +576,26 @@ export default function AirportTransferPage() {
                     {/* Content Section */}
                     <div className="px-6 pb-6">
                       <div className="mb-4">
-                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-gray-200 transition-colors">
+                        <h3 className="text-xl font-bold text-blue-900 mb-2 group-hover:text-blue-800 transition-colors">
                           {item.name}
                         </h3>
-                        <p className="text-gray-200 text-sm leading-relaxed">
+                        <p className="text-gray-600 text-sm leading-relaxed">
                           {item.p1}
                         </p>
                       </div>
 
                       {/* Features */}
                       <div className="space-y-2 mb-4">
-                        <div className="flex items-center gap-2 text-sm text-gray-300">
-                          <div className="w-1.5 h-1.5 bg-white/60 rounded-full"></div>
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <div className="w-1.5 h-1.5 bg-blue-800 rounded-full"></div>
                           Age Range: {item.p2}
                         </div>
-                        <div className="flex items-center gap-2 text-sm text-gray-300">
-                          <div className="w-1.5 h-1.5 bg-white/60 rounded-full"></div>
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <div className="w-1.5 h-1.5 bg-blue-800 rounded-full"></div>
                           Safety: {item.p3}
                         </div>
-                        <div className="flex items-center gap-2 text-sm text-gray-300">
-                          <div className="w-1.5 h-1.5 bg-white/60 rounded-full"></div>
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <div className="w-1.5 h-1.5 bg-blue-800 rounded-full"></div>
                           Swedish Engineering
                         </div>
                       </div>
@@ -382,8 +607,8 @@ export default function AirportTransferPage() {
                           Premium
                         </div>
                         <div className="text-right">
-                          <div className="text-xs text-gray-300">Britax</div>
-                          <div className="text-sm font-bold text-white">
+                          <div className="text-xs text-gray-500">Britax</div>
+                          <div className="text-sm font-bold text-blue-900">
                             Sweden
                           </div>
                         </div>
@@ -396,126 +621,6 @@ export default function AirportTransferPage() {
           </div>
         </section>
 
-        {/* Vehicle Types */}
-        <section className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Our Vehicle Fleet
-            </h2>
-            <p className="text-lg text-gray-600">
-              Comfortable and spacious vehicles for families of all sizes
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="p-6 hover:shadow-lg transition-shadow !bg-white">
-              <CardBody>
-                <div
-                  className="relative w-full h-64 mb-6 rounded-lg overflow-hidden group/image"
-                  onClick={() =>
-                    openImageModal(
-                      "/image/airport-tranfer/car-option/car1.png",
-                      "Comfortable Minivan - Perfect for families and groups"
-                    )
-                  }
-                  title="Click to view full size image">
-                  <Image
-                    src="/image/airport-tranfer/car-option/car1.png"
-                    alt="Comfortable Minivan"
-                    fill
-                    className="object-cover cursor-pointer transition-transform duration-500 group-hover/image:scale-110"
-                  />
-
-                  {/* Click to zoom indicator */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
-                      <svg
-                        className="w-8 h-8 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <h3 className="text-xl font-semibold mb-2 text-blue-900">
-                    Comfortable Minivan
-                  </h3>
-                  <p className="text-gray-600">
-                    Perfect for families and groups
-                  </p>
-                </div>
-                <ul className="text-gray-600 space-y-1">
-                  <li>• Spacious interior for luggage</li>
-                  <li>• Air conditioning</li>
-                  <li>• Multiple child seat installation</li>
-                  <li>• Professional driver</li>
-                </ul>
-              </CardBody>
-            </Card>
-
-            <Card className="p-6 hover:shadow-lg transition-shadow !bg-white">
-              <CardBody>
-                <div
-                  className="relative w-full h-64 mb-6 rounded-lg overflow-hidden group/image"
-                  onClick={() =>
-                    openImageModal(
-                      "/image/airport-tranfer/car-option/car2.png",
-                      "Luxury SUV - Premium comfort for smaller families"
-                    )
-                  }
-                  title="Click to view full size image">
-                  <Image
-                    src="/image/airport-tranfer/car-option/car2.png"
-                    alt="Luxury SUV"
-                    fill
-                    className="object-cover cursor-pointer transition-transform duration-500 group-hover/image:scale-110"
-                  />
-
-                  {/* Click to zoom indicator */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
-                      <svg
-                        className="w-8 h-8 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <h3 className="text-xl font-semibold mb-2 text-blue-900">
-                    Luxury SUV
-                  </h3>
-                  <p className="text-gray-600">
-                    Premium comfort for smaller families
-                  </p>
-                </div>
-                <ul className="text-gray-600 space-y-1">
-                  <li>• Premium comfort and style</li>
-                  <li>• Advanced safety features</li>
-                  <li>• Child seat compatible</li>
-                  <li>• Experienced driver</li>
-                </ul>
-              </CardBody>
-            </Card>
-          </div>
-        </section>
-
         {/* Pricing Table */}
         <section className="mb-16">
           <div className="text-center mb-12">
@@ -525,6 +630,21 @@ export default function AirportTransferPage() {
             <p className="text-lg text-gray-600">
               Taxi with child seat - From or to Phuket Airport
             </p>
+          </div>
+
+          {/* Pre-booking Information - Moved to top */}
+          <div className="mb-8 p-6 bg-blue-50 rounded-lg max-w-4xl mx-auto">
+            <h3 className="text-lg font-semibold mb-4 text-blue-900">
+              Pre-booking Information
+            </h3>
+            <ul className="space-y-2 text-blue-800">
+              <li>• Rates are quoted per car / per way</li>
+              <li>• Includes everything such as fuel, VAT, airport fees</li>
+              <li>• For your (or your group) own use - no sharing</li>
+              <li>• Child seats are provided free of charge</li>
+              <li>• Professional English-speaking drivers</li>
+              <li>• 24/7 customer support</li>
+            </ul>
           </div>
 
           <Card className="p-6 !bg-white">
@@ -544,241 +664,26 @@ export default function AirportTransferPage() {
                       </th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Maikhao Beach</td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,000 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,200 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Naithon Beach</td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        800 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,000 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Ao Por Pier</td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,200 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,400 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Layan Beach</td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,200 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,400 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Phuket Town</td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,200 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,400 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Rassada Pier</td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,200 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,400 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Koh Sirey Bay</td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,200 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,400 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Bang Tao Beach</td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,200 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,400 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Surin Beach</td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,200 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,400 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Kamala Beach</td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,200 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-blue-600">
-                        1,400 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Chalong Bay</td>
-                      <td className="py-3 px-4 text-center font-semibold text-orange-600">
-                        1,400 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-orange-600">
-                        1,600 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Patong Beach</td>
-                      <td className="py-3 px-4 text-center font-semibold text-orange-600">
-                        1,400 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-orange-600">
-                        1,600 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Kata-Karon Beach</td>
-                      <td className="py-3 px-4 text-center font-semibold text-orange-600">
-                        1,400 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-orange-600">
-                        1,600 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Rawai Beach</td>
-                      <td className="py-3 px-4 text-center font-semibold text-orange-600">
-                        1,400 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-orange-600">
-                        1,600 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Tritrang Beach</td>
-                      <td className="py-3 px-4 text-center font-semibold text-red-600">
-                        1,500 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-red-600">
-                        1,600 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">Nai Harn Beach</td>
-                      <td className="py-3 px-4 text-center font-semibold text-red-600">
-                        1,500 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-red-600">
-                        1,600 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">
-                        Ao Sane (Baan Krathing)
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-red-600">
-                        1,600 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-red-600">
-                        1,700 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 text-black">
-                        NaTai Beach (Phang Nga)
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-red-600">
-                        1,600 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-semibold text-red-600">
-                        1,800 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50 bg-yellow-50">
-                      <td className="py-3 px-4 text-black">
-                        Khao Lak (Phang Nga)
-                      </td>
-                      <td className="py-3 px-4 text-center font-bold text-purple-600">
-                        2,500 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-bold text-purple-600">
-                        2,700 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50 bg-yellow-50">
-                      <td className="py-3 px-4 text-black">
-                        Koh Kho Khao (at Pier)
-                      </td>
-                      <td className="py-3 px-4 text-center font-bold text-purple-600">
-                        3,000 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-bold text-purple-600">
-                        3,500 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50 bg-yellow-50">
-                      <td className="py-3 px-4 text-black">
-                        Khao Sok National Park
-                      </td>
-                      <td className="py-3 px-4 text-center font-bold text-purple-600">
-                        3,900 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-bold text-purple-600">
-                        4,200 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50 bg-yellow-50">
-                      <td className="py-3 px-4 text-black">
-                        Ao Nang, Krabi Town
-                      </td>
-                      <td className="py-3 px-4 text-center font-bold text-purple-600">
-                        3,500 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-bold text-purple-600">
-                        3,900 THB
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50 bg-yellow-50">
-                      <td className="py-3 px-4 text-black">Koh Lanta</td>
-                      <td className="py-3 px-4 text-center font-bold text-purple-600">
-                        5,500 THB
-                      </td>
-                      <td className="py-3 px-4 text-center font-bold text-purple-600">
-                        5,900 THB
-                      </td>
-                    </tr>
+                  <tbody className="text-black">
+                    {destinations.map((item, index) => {
+                      return (
+                        <tr
+                          key={index}
+                          className="border-b border-gray-100 hover:bg-gray-50">
+                          <td className="py-3 px-4 text-black">
+                            {item.destination}
+                          </td>
+                          <td className="py-3 px-4 text-center font-semibold text-blue-600">
+                            {`${item.price1} THB`}
+                          </td>
+                          <td className="py-3 px-4 text-center font-semibold text-blue-600">
+                            {`${item.price2} THB`}
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
-              </div>
-
-              <div className="mt-8 p-6 bg-blue-50 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-blue-900">
-                  Pre-booking Information
-                </h3>
-                <ul className="space-y-2 text-blue-800">
-                  <li>• Rates are quoted per car / per way</li>
-                  <li>• Includes everything such as fuel, VAT, airport fees</li>
-                  <li>• For your (or your group) own use - no sharing</li>
-                  <li>• Only valid for pre-booked transfers</li>
-                  <li>• Child seats included at no extra charge</li>
-                </ul>
               </div>
 
               <div className="mt-6 p-6 bg-green-50 rounded-lg">

@@ -10,7 +10,15 @@ import {
 } from "@heroui/react";
 import { useState } from "react";
 import Image from "next/image";
-import { FaEnvelope, FaPhone, FaWhatsapp, FaLine } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaPhone,
+  FaWhatsapp,
+  FaLine,
+  FaTrophy,
+  FaUser,
+  FaShieldAlt,
+} from "react-icons/fa";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -45,7 +53,7 @@ Message: ${formData.message}`;
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 pt-24">
+      <section className="bg-gradient-to-br from-slate-900 via-blue-900 to-blue-900 text-white py-16 pt-24">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
           <p className="text-xl mb-8 text-blue-100">
@@ -289,7 +297,9 @@ Message: ${formData.message}`;
                 <CardBody>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
-                      <div className="text-xl">🏆</div>
+                      <div className="w-8 h-8 flex items-center justify-center bg-yellow-100 rounded-full">
+                        <FaTrophy className="text-yellow-600" />
+                      </div>
                       <div>
                         <p className="font-semibold text-gray-900">
                           TAT Licensed
@@ -299,7 +309,9 @@ Message: ${formData.message}`;
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="text-xl">👨‍💼</div>
+                      <div className="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
+                        <FaUser className="text-blue-600" />
+                      </div>
                       <div>
                         <p className="font-semibold text-gray-900">
                           Operations Manager
@@ -311,7 +323,9 @@ Message: ${formData.message}`;
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="text-xl">🛡️</div>
+                      <div className="w-8 h-8 flex items-center justify-center bg-green-100 rounded-full">
+                        <FaShieldAlt className="text-green-600" />
+                      </div>
                       <div>
                         <p className="font-semibold text-gray-900">
                           Travel Insurance
@@ -360,7 +374,7 @@ Message: ${formData.message}`;
         </section>
 
         {/* Quick Contact CTA */}
-        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-8 text-center">
+        <section className="bg-gradient-to-br from-slate-900 via-blue-900 to-blue-900 text-white rounded-lg p-8 text-center">
           <h2 className="text-3xl font-bold mb-4">
             Need Immediate Assistance?
           </h2>
