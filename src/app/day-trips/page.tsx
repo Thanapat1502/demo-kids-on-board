@@ -8,6 +8,7 @@ import { FaShip, FaSwimmer, FaCamera } from "react-icons/fa";
 import { ContactFooter } from "@/components/ContactFooter";
 import PageHeaderAnimation from "@/components/PageHeaderAnimation";
 import ImageModal from "@/components/ImageModal";
+import GalleryParallax from "@/components/GalleryParallax";
 
 export default function DayTripsPage() {
   const [currentExperience, setCurrentExperience] = useState(0);
@@ -228,40 +229,22 @@ export default function DayTripsPage() {
               </ul>
             </div>
             <div>
-              <div
-                className="relative h-64 rounded-xl overflow-hidden mb-6 cursor-pointer group/image"
-                onClick={() =>
-                  openImageModal(
-                    "/image/day-trips/destinations/phang-nga-bay2.png",
-                    "Phang Nga Bay Tour - Stunning limestone karsts and emerald waters"
-                  )
-                }
-                title="Click to view full size image">
-                <Image
-                  src="/image/day-trips/destinations/phang-nga-bay2.png"
-                  alt="Phang Nga Bay Tour"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover/image:scale-110"
-                />
-
-                {/* Hover Overlay with Magnifying Glass */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
-                    <svg
-                      className="w-8 h-8 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
+              {/**Destination Sample gallery1 */}
+              <GalleryParallax
+                images={[
+                  {
+                    src: "/image/day-trips/destinations/phang-nga-bay1.png",
+                    alt: "Phang Nga Bay - Limestone karsts and emerald waters",
+                  },
+                  {
+                    src: "/image/day-trips/destinations/phang-nga-bay2.png",
+                    alt: "Phang Nga Bay - Traditional longtail boats",
+                  },
+                ]}
+                title="Phang Nga Bay Gallery"
+                description="Explore the stunning limestone formations and crystal-clear waters"
+                className="mb-6"
+              />
               <h3 className="text-2xl font-bold mb-6 text-gray-900">
                 Sample Itinerary
               </h3>
@@ -331,40 +314,26 @@ export default function DayTripsPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <div
-                className="relative h-64 rounded-xl overflow-hidden mb-6 cursor-pointer group/image"
-                onClick={() =>
-                  openImageModal(
-                    "/image/day-trips/destinations/phi-phi-island3.png",
-                    "Phi Phi Island Beach - Crystal clear waters and pristine beaches"
-                  )
-                }
-                title="Click to view full size image">
-                <Image
-                  src="/image/day-trips/destinations/phi-phi-island3.png"
-                  alt="Phi Phi Island Beach"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover/image:scale-110"
-                />
-
-                {/* Hover Overlay with Magnifying Glass */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
-                    <svg
-                      className="w-8 h-8 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
+              {/**Destination Sample gallery2 */}
+              <GalleryParallax
+                images={[
+                  {
+                    src: "/image/day-trips/destinations/phi-phi-island1.png",
+                    alt: "Phi Phi Island - Maya Bay and limestone cliffs",
+                  },
+                  {
+                    src: "/image/day-trips/destinations/phi-phi-island2.png",
+                    alt: "Phi Phi Island - Tropical paradise beaches",
+                  },
+                  {
+                    src: "/image/day-trips/destinations/phi-phi-island3.png",
+                    alt: "Phi Phi Island - Crystal clear waters and pristine beaches",
+                  },
+                ]}
+                title="Phi Phi Island Gallery"
+                description="Discover the breathtaking beauty of Thailand's most famous islands"
+                className="mb-6"
+              />
               <h3 className="text-2xl font-bold mb-6 text-gray-900">
                 About Phi Phi Islands
               </h3>
@@ -491,40 +460,22 @@ export default function DayTripsPage() {
               </div>
             </div>
             <div>
-              <div
-                className="relative h-64 rounded-xl overflow-hidden mb-6 cursor-pointer group/image"
-                onClick={() =>
-                  openImageModal(
-                    "/image/day-trips/destinations/similan-islands2.png",
-                    "Similan Islands Diving - World-class diving and pristine coral reefs"
-                  )
-                }
-                title="Click to view full size image">
-                <Image
-                  src="/image/day-trips/destinations/similan-islands2.png"
-                  alt="Similan Islands Diving"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover/image:scale-110"
-                />
-
-                {/* Hover Overlay with Magnifying Glass */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
-                    <svg
-                      className="w-8 h-8 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
+              {/**Destination Sample gallery3 */}
+              <GalleryParallax
+                images={[
+                  {
+                    src: "/image/day-trips/destinations/similan-islands1.png",
+                    alt: "Similan Islands - Pristine white sand beaches",
+                  },
+                  {
+                    src: "/image/day-trips/destinations/similan-islands2.png",
+                    alt: "Similan Islands - World-class diving and pristine coral reefs",
+                  },
+                ]}
+                title="Similan Islands Gallery"
+                description="Experience world-class diving and pristine coral reefs"
+                className="mb-6"
+              />
               <h3 className="text-2xl font-bold mb-6 text-gray-900">
                 Tour Highlights
               </h3>
