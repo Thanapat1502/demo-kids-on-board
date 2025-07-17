@@ -57,7 +57,7 @@ export default function DayTripsPage() {
       <section className="relative h-screen overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/image/day-trips/destinations/phi-phi-island1.png"
+            src="/image/day-trips/destinations/phi-phi1.jpg"
             alt="Day Trips Hero"
             fill
             className="object-cover"
@@ -125,7 +125,7 @@ export default function DayTripsPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
+            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaShip className="text-3xl text-blue-800" />
@@ -140,7 +140,7 @@ export default function DayTripsPage() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
+            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaCamera className="text-3xl text-blue-800" />
@@ -155,7 +155,7 @@ export default function DayTripsPage() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
+            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaSwimmer className="text-3xl text-blue-800" />
@@ -176,7 +176,7 @@ export default function DayTripsPage() {
         <section className="mb-20">
           <div className="relative h-96 rounded-2xl overflow-hidden mb-8">
             <Image
-              src="/image/day-trips/destinations/phang-nga-bay1.png"
+              src="/image/day-trips/destinations/phang-nga5.jpg"
               alt="Phang Nga Bay"
               fill
               className="object-cover"
@@ -233,12 +233,24 @@ export default function DayTripsPage() {
               <GalleryParallax
                 images={[
                   {
-                    src: "/image/day-trips/destinations/phang-nga-bay1.png",
+                    src: "/image/day-trips/destinations/phang-nga4.jpg",
                     alt: "Phang Nga Bay - Limestone karsts and emerald waters",
                   },
                   {
-                    src: "/image/day-trips/destinations/phang-nga-bay2.png",
-                    alt: "Phang Nga Bay - Traditional longtail boats",
+                    src: "/image/day-trips/destinations/phang-nga1.jpg",
+                    alt: "Phang Nga Bay ",
+                  },
+                  {
+                    src: "/image/day-trips/destinations/phang-nga2.jpg",
+                    alt: "Phang Nga Bay ",
+                  },
+                  {
+                    src: "/image/day-trips/destinations/phang-nga5.jpg",
+                    alt: "Phang Nga Bay ",
+                  },
+                  {
+                    src: "/image/day-trips/destinations/phang-nga3.jpg",
+                    alt: "Phang Nga Bay ",
                   },
                 ]}
                 title="Phang Nga Bay Gallery"
@@ -296,7 +308,7 @@ export default function DayTripsPage() {
         <section className="mb-20">
           <div className="relative h-96 rounded-2xl overflow-hidden mb-8">
             <Image
-              src="/image/day-trips/destinations/phi-phi-island2.png"
+              src="/image/day-trips/destinations/phi-phi3.jpg"
               alt="Phi Phi Island"
               fill
               className="object-cover"
@@ -318,15 +330,19 @@ export default function DayTripsPage() {
               <GalleryParallax
                 images={[
                   {
-                    src: "/image/day-trips/destinations/phi-phi-island1.png",
+                    src: "/image/day-trips/destinations/phi-phi1.jpg",
                     alt: "Phi Phi Island - Maya Bay and limestone cliffs",
                   },
                   {
-                    src: "/image/day-trips/destinations/phi-phi-island2.png",
+                    src: "/image/day-trips/destinations/phi-phi2.jpg",
                     alt: "Phi Phi Island - Tropical paradise beaches",
                   },
                   {
-                    src: "/image/day-trips/destinations/phi-phi-island3.png",
+                    src: "/image/day-trips/destinations/phi-phi3.jpg",
+                    alt: "Phi Phi Island - Crystal clear waters and pristine beaches",
+                  },
+                  {
+                    src: "/image/day-trips/destinations/phi-phi4.jpg",
                     alt: "Phi Phi Island - Crystal clear waters and pristine beaches",
                   },
                 ]}
@@ -468,7 +484,15 @@ export default function DayTripsPage() {
                     alt: "Similan Islands - Pristine white sand beaches",
                   },
                   {
-                    src: "/image/day-trips/destinations/similan-islands2.png",
+                    src: "/image/day-trips/destinations/similan2.jpg",
+                    alt: "Similan Islands - World-class diving and pristine coral reefs",
+                  },
+                  {
+                    src: "/image/day-trips/destinations/similan3.jpg",
+                    alt: "Similan Islands - World-class diving and pristine coral reefs",
+                  },
+                  {
+                    src: "/image/day-trips/destinations/similan1.jpg",
                     alt: "Similan Islands - World-class diving and pristine coral reefs",
                   },
                 ]}
@@ -531,13 +555,13 @@ export default function DayTripsPage() {
               onClick={() =>
                 openImageModal(
                   "/image/home/destinations/3phuket-old-town.png",
-                  "Shows & Entertainment - Phuket Fantasy, Carnival Magic, Cabaret shows"
+                  "Shows & Entertainment - Phuket FantaSea, Carnival Magic, Cabaret shows"
                 )
               }
               title="Click to view full size image">
               <Image
                 src="/image/home/destinations/3phuket-old-town.png"
-                alt="Shows & Entertainment - Phuket Fantasy, Carnival Magic, Cabaret shows"
+                alt="Shows & Entertainment - Phuket FantaSea, Carnival Magic, Cabaret shows"
                 fill
                 className="object-cover transition-transform duration-500 group-hover/image:scale-110"
               />
@@ -566,7 +590,7 @@ export default function DayTripsPage() {
                   Shows & Entertainment
                 </h3>
                 <p className="text-white text-sm mb-3 px-3">
-                  Phuket Fantasy, Carnival Magic, Cabaret shows
+                  Phuket FantaSea, Carnival Magic, Cabaret shows
                 </p>
               </div>
             </div>
@@ -622,13 +646,13 @@ export default function DayTripsPage() {
               className="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer group/image"
               onClick={() =>
                 openImageModal(
-                  "/image/home/destinations/8view-point.png",
+                  "/image/day-trips/other/water1.jpg",
                   "Water Activities - Water parks, swimming, beach activities"
                 )
               }
               title="Click to view full size image">
               <Image
-                src="/image/home/destinations/8view-point.png"
+                src="/image/day-trips/other/water1.jpg"
                 alt="Water Activities - Water parks, swimming, beach activities"
                 fill
                 className="object-cover transition-transform duration-500 group-hover/image:scale-110"

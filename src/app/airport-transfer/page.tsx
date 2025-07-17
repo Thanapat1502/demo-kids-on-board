@@ -245,7 +245,7 @@ export default function AirportTransferPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
+            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaShieldAlt className="text-3xl text-blue-800" />
@@ -260,7 +260,7 @@ export default function AirportTransferPage() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
+            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaUsers className="text-3xl text-blue-800" />
@@ -275,7 +275,7 @@ export default function AirportTransferPage() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
+            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaClock className="text-3xl text-blue-800" />
@@ -532,7 +532,7 @@ export default function AirportTransferPage() {
                 return (
                   <div
                     key={index}
-                    className="group relative bg-white/20 backdrop-blur-lg rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-white/30 overflow-hidden">
+                    className="group relative bg-white/20 backdrop-blur-lg rounded-3xl shadow-sm hover:shadow-md transition-all duration-500 transform hover:-translate-y-3 border border-white/30 overflow-hidden">
                     {/* Image Section */}
                     <div className="p-6 pb-4">
                       <div
@@ -647,7 +647,7 @@ export default function AirportTransferPage() {
             </ul>
           </div>
 
-          <Card className="p-6 !bg-white">
+          <Card className="p-6 !bg-white shadow-sm">
             <CardBody>
               <div className="overflow-x-auto">
                 <table className="w-full text-left">

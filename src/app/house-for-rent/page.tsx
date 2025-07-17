@@ -180,7 +180,7 @@ export default function HouseForRentPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
+            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaHome className="text-3xl text-blue-800" />
@@ -205,7 +205,7 @@ export default function HouseForRentPage() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
+            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaWifi className="text-3xl text-blue-800" />
@@ -230,7 +230,7 @@ export default function HouseForRentPage() {
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
+            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaParking className="text-3xl text-blue-800" />
@@ -366,7 +366,7 @@ export default function HouseForRentPage() {
                   return (
                     <div
                       key={image}
-                      className="flex-shrink-0 w-96 h-80 relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group/image cursor-pointer"
+                      className="flex-shrink-0 w-96 h-80 relative rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-500 group/image cursor-pointer"
                       onClick={() =>
                         openImageModal(
                           image,

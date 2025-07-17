@@ -78,7 +78,7 @@ Message: ${formData.message}`;
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
+            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaEnvelope className="text-3xl text-blue-800" />
@@ -98,7 +98,7 @@ Message: ${formData.message}`;
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
+            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
                   <FaPhone className="text-3xl text-blue-800" />
@@ -118,7 +118,7 @@ Message: ${formData.message}`;
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
+            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-green-100 rounded-full">
                   <FaWhatsapp className="text-3xl text-green-800" />
@@ -139,7 +139,7 @@ Message: ${formData.message}`;
               </CardBody>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-shadow duration-300 !bg-white">
+            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
               <CardBody className="text-center">
                 <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-green-100 rounded-full">
                   <FaLine className="text-3xl text-green-800" />
