@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     siteName: "Phuket Child Seat",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/image/seo.png",
         width: 1200,
         height: 630,
         alt: "Phuket Child Seat - Safe Family Travel Services",
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     description:
       "Professional travel services in Phuket with imported Britax child seats from Sweden. Airport transfers, day trips, tours with maximum safety for families.",
     creator: "@phuketchildseat",
-    images: ["/twitter-image.jpg"],
+    images: ["/image/seo.png"],
   },
   robots: {
     index: true,
@@ -113,7 +113,7 @@ export default function RootLayout({
       "Professional travel services in Phuket with imported Britax child seats from Sweden. Airport transfers, day trips, tours, and house rentals with maximum safety for families.",
     url: "https://phuket-childseat.com",
     logo: "https://phuket-childseat.com/logo.png",
-    image: "https://phuket-childseat.com/og-image.jpg",
+    image: "https://phuket-childseat.com/image/seo.png",
     telephone: "+66815372657",
     email: "kam.phuket@gmail.com",
     address: {

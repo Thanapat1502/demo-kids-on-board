@@ -12,6 +12,7 @@ import FerryServiceSection from "@/components/FerryServiceSection";
 import { SectionSeparator } from "@/components/SectionSeparatetor";
 
 export default function Home() {
+  const [loadedBanners, setLoadedBanners] = useState<Set<number>>(new Set());
   const [currentBanner, setCurrentBanner] = useState(0);
   const [modalImage, setModalImage] = useState<{
     src: string;
@@ -24,6 +25,11 @@ export default function Home() {
 
   const closeImageModal = () => {
     setModalImage(null);
+  };
+
+  // Handle banner image loading
+  const handleBannerLoad = (index: number) => {
+    setLoadedBanners(prev => new Set([...prev, index]));
   };
 
   // Banner images for carousel
@@ -177,22 +183,41 @@ export default function Home() {
       <section className="hero-section fixed inset-0 bg-white overflow-hidden z-0">
         {/* Hero Banner Carousel - Always Full Height */}
         <div className="absolute inset-0 h-screen overflow-hidden">
-          {bannerImages.map((banner, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ${index === currentBanner ? 'opacity-100' : 'opacity-0'
-                }`}>
-              <div className="parallax-bg absolute inset-0">
-                <Image
-                  src={banner.src}
-                  alt={banner.alt}
-                  fill
-                  className="object-cover"
-                  priority={index === 0}
-                />
+          {bannerImages.map((banner, index) => {
+            const isLoaded = loadedBanners.has(index);
+            const isActive = index === currentBanner;
+
+            return (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-opacity duration-1000 ${isActive ? 'opacity-100' : 'opacity-0'}`}
+              >
+                {/* Loading placeholder */}
+                <div
+                  className={`absolute inset-0 bg-gray-300 transition-opacity duration-700 ${isLoaded ? 'opacity-0' : 'opacity-100'
+                    }`}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-300 via-gray-200 to-gray-300 animate-pulse"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+                </div>
+
+                {/* Hero image with smooth loading */}
+                <div className="parallax-bg absolute inset-0">
+                  <Image
+                    src={banner.src}
+                    alt={banner.alt}
+                    fill
+                    className={`object-cover transition-all duration-700 ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+                      }`}
+                    priority={index === 0}
+                    onLoad={() => handleBannerLoad(index)}
+                    sizes="100vw"
+                    quality={90}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
 
           {/* Dynamic Overlay for text readability */}
           <div className="hero-overlay absolute inset-0 bg-black/40 transition-all duration-300" />

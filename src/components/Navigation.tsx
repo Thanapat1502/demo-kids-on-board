@@ -60,13 +60,16 @@ export default function Navigation() {
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
+          className={`sm:hidden ${isTransparentPage && !isScrolled
+            ? "text-white"
+            : "text-gray-900"
+            }`}
         />
         <NavbarBrand>
           <Link href="/" className="flex items-center">
             <div>
               <div
-                className={`font-light text-2xl tracking-wide transition-colors duration-500 ${isTransparentPage && !isScrolled
+                className={`font-light text-xl md:text-2xl tracking-wide transition-colors duration-500 ${isTransparentPage && !isScrolled
                   ? "text-white"
                   : "text-gray-900"
                   }`}>
@@ -108,7 +111,7 @@ export default function Navigation() {
         <NavbarItem>
           <button
             onClick={() => window.location.href = '/contact'}
-            className={`group relative overflow-hidden backdrop-blur-md font-medium text-sm uppercase tracking-wider px-10 py-3 transition-all duration-300 border shadow-lg hover:shadow-xl transform hover:scale-105 ${isTransparentPage && !isScrolled
+            className={`group relative overflow-hidden backdrop-blur-md font-medium text-sm uppercase tracking-wider px-5 md:px-10 py-3 transition-all duration-300 border shadow-lg hover:shadow-xl transform hover:scale-105 ${isTransparentPage && !isScrolled
               ? "bg-white/20 border-white/50 text-white hover:bg-white/30 hover:border-white/70"
               : "bg-blue-600/90 border-blue-600 text-white hover:bg-blue-700/90 hover:border-blue-700"
               }`}>
