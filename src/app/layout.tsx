@@ -45,17 +45,17 @@ export const metadata: Metadata = {
     "rear facing child seats",
     "TAT licensed Phuket",
   ],
-  authors: [{ name: "Kampanart Travel", url: "https://phuket-childseat.com" }],
+  authors: [{ name: "Kampanart Travel", url: "https://kids-onboard.com" }],
   creator: "Kampanart Travel - Mr. Kam",
   publisher: "Kampanart Travel",
-  metadataBase: new URL("https://phuket-childseat.com"),
+  metadataBase: new URL("https://kids-onboard.com"),
   alternates: {
-    canonical: "https://phuket-childseat.com",
+    canonical: "https://kids-onboard.com",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://phuket-childseat.com",
+    url: "https://kids-onboard.com",
     title:
       "Phuket Child Seat - Safe Travel Services with Imported Britax Seats",
     description:
@@ -108,12 +108,12 @@ export default function RootLayout({
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
-    name: "Phuket Child Seat - Kampanart Travel",
+    name: "Phuket Childseat - Kampanart Travel",
     description:
       "Professional travel services in Phuket with imported Britax child seats from Sweden. Airport transfers, day trips, tours, and house rentals with maximum safety for families.",
-    url: "https://phuket-childseat.com",
-    logo: "https://phuket-childseat.com/logo.png",
-    image: "https://phuket-childseat.com/image/seo.png",
+    url: "https://kids-onboard.com",
+    logo: "https://kids-onboard.com/logo.png",
+    image: "https://kids-onboard.com/image/seo.png",
     telephone: "+66815372657",
     email: "kam.phuket@gmail.com",
     address: {
@@ -166,6 +166,24 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Preload critical resources */}
+        <link
+          rel="preload"
+          href="/image/main-banner/1.jpg"
+          as="image"
+          type="image/jpeg"
+        />
+        <link
+          rel="preload"
+          href="/image/seo.png"
+          as="image"
+          type="image/png"
+        />
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+
+        {/* Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

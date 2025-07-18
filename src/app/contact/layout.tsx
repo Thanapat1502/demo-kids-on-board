@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     title: "Contact Phuket Child Seat - Book Safe Family Travel Services",
     description:
       "Contact Kampanart Travel for safe family travel services in Phuket. Book airport transfers, day trips, tours with imported Britax child seats.",
-    url: "https://phuket-childseat.com/contact",
+    url: "https://kids-onboard.com/contact",
     images: [
       {
         url: "/image/contact/og-contact.jpg",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
       "Contact Kampanart Travel for safe family travel services in Phuket. Book airport transfers, day trips, tours with child seats.",
   },
   alternates: {
-    canonical: "https://phuket-childseat.com/contact",
+    canonical: "https://kids-onboard.com/contact",
   },
 };
 

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "Phuket Day Trips & Tours with Child Seats - Family Island Adventures",
     description:
       "Family-friendly day trips and tours from Phuket with child seat safety. Visit Phi Phi Island, Phang Nga Bay, Similan Islands with professional guides.",
-    url: "https://phuket-childseat.com/day-trips",
+    url: "https://kids-onboard.com/day-trips",
     images: [
       {
         url: "/image/day-trips/og-day-trips.jpg",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
       "Family-friendly day trips and tours from Phuket with child seat safety. Visit Phi Phi Island, Phang Nga Bay, Similan Islands.",
   },
   alternates: {
-    canonical: "https://phuket-childseat.com/day-trips",
+    canonical: "https://kids-onboard.com/day-trips",
   },
 };
 

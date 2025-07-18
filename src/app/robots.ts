@@ -40,7 +40,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/private/", "/admin/", "/api/"],
       },
     ],
-    sitemap: "https://phuket-childseat.com/sitemap.xml",
-    host: "https://phuket-childseat.com",
+    sitemap: "https://kids-onboard.com/sitemap.xml",
+    host: "https://kids-onboard.com",
   };
 }

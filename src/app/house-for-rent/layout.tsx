@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Phuket House for Rent - Garden Style Resort in Laguna Area",
     description:
       "Garden house style resort for rent in prime Thalang location, Phuket. Family-friendly accommodation near Laguna complex and beaches.",
-    url: "https://phuket-childseat.com/house-for-rent",
+    url: "https://kids-onboard.com/house-for-rent",
     images: [
       {
         url: "/image/house-for-rent/og-house-rental.jpg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
       "Garden house style resort for rent in prime Thalang location, Phuket. Family-friendly accommodation near Laguna complex.",
   },
   alternates: {
-    canonical: "https://phuket-childseat.com/house-for-rent",
+    canonical: "https://kids-onboard.com/house-for-rent",
   },
 };
 

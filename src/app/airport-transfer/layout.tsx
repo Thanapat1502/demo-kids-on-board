@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     title: "Airport Transfer Phuket with Child Seats - Safe Family Transport",
     description:
       "Professional airport transfer service in Phuket with imported Britax child seats. Safe transport to/from Phuket Airport to hotels in Phuket, Khao Lak, Krabi, and Koh Lanta.",
-    url: "https://phuket-childseat.com/airport-transfer",
+    url: "https://kids-onboard.com/airport-transfer",
     images: [
       {
         url: "/image/airport-tranfer/og-airport-transfer.jpg",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
       "Professional airport transfer service in Phuket with imported Britax child seats. Safe transport to/from Phuket Airport.",
   },
   alternates: {
-    canonical: "https://phuket-childseat.com/airport-transfer",
+    canonical: "https://kids-onboard.com/airport-transfer",
   },
 };
 
