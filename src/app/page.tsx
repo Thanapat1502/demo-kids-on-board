@@ -1,17 +1,18 @@
 "use client";
-
-import { Button, Card, CardBody, CardHeader } from "@heroui/react";
-import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FaShieldAlt, FaBaby, FaCar } from "react-icons/fa";
+
 import { ContactFooter } from "@/components/ContactFooter";
 import ImageModal from "@/components/ImageModal";
 import PageHeaderAnimation from "@/components/PageHeaderAnimation";
+import AboutUsSection from "@/components/AboutUsSection";
+import CityTourSection from "@/components/CityTourSection";
+import DestinationGallerySection from "@/components/DestinationGallerySection";
+import FerryServiceSection from "@/components/FerryServiceSection";
+import { SectionSeparator } from "@/components/SectionSeparatetor";
 
 export default function Home() {
-  const [currentDestination, setCurrentDestination] = useState(0);
-  const [isParallaxPaused, setIsParallaxPaused] = useState(false);
+  const [currentBanner, setCurrentBanner] = useState(0);
   const [modalImage, setModalImage] = useState<{
     src: string;
     alt: string;
@@ -25,37 +26,40 @@ export default function Home() {
     setModalImage(null);
   };
 
-  const destinations = [
+  // Banner images for carousel
+  const bannerImages = [
     {
-      name: "Big Buddha Phuket",
-      image: "/image/home/destinations/1big-buddha-phuket.png",
+      src: "/image/main-banner/banner6.jpg",
+      alt: "Professional drivers with child safety expertise"
     },
     {
-      name: "Chalong Temple",
-      image: "/image/home/destinations/2chalong-temple.png",
+      src: "/image/main-banner/banner5.jpg",
+      alt: "Premium child seat service - Safe family travel in Phuket"
     },
     {
-      name: "Phuket Old Town",
-      image: "/image/home/destinations/3phuket-old-town.png",
+      src: "/image/main-banner/banner7.jpg",
+      alt: "Luxury vehicles equipped with premium child seats"
     },
     {
-      name: "Promthep Cape",
-      image: "/image/home/destinations/4promthep-cape.png",
+      src: "/image/main-banner/banner1.jpg",
+      alt: "Premium child seat service - Safe family travel in Phuket"
     },
     {
-      name: "Visit Elephants",
-      image: "/image/home/destinations/5visit-elephants.png",
+      src: "/image/main-banner/banner2.jpg",
+      alt: "Professional drivers with child safety expertise"
     },
     {
-      name: "Mini Zoo In Phuket",
-      image: "/image/home/destinations/6mini-zoo -in-phuket.png",
+      src: "/image/main-banner/banner3.jpg",
+      alt: "Luxury vehicles equipped with premium child seats"
     },
     {
-      name: "Sunset View Point",
-      image: "/image/home/destinations/7sunset-view-point.png",
+      src: "/image/main-banner/banner4.jpg",
+      alt: "Family-friendly transportation services in Thailand"
     },
-    { name: "View Point", image: "/image/home/destinations/8view-point.png" },
+
   ];
+
+
   const seatOptions = [
     {
       name: "Infant Seat",
@@ -102,476 +106,382 @@ export default function Home() {
     },
   ];
 
+
+
+  // Banner carousel effect
   useEffect(() => {
-    if (!isParallaxPaused) {
-      const interval = setInterval(() => {
-        setCurrentDestination((prev) => (prev + 1) % destinations.length);
-      }, 3000);
-      return () => clearInterval(interval);
-    }
-  }, [destinations.length, isParallaxPaused]);
+    const interval = setInterval(() => {
+      setCurrentBanner((prev) => (prev + 1) % bannerImages.length);
+    }, 5000); // Change banner every 5 seconds
+    return () => clearInterval(interval);
+  }, [bannerImages.length]);
+
+  // Fixed Hero with Fleet Section Overlay Effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.pageYOffset;
+      const windowHeight = window.innerHeight;
+
+      // Hero background images parallax - move upward (opposite to scroll)
+      const heroElements = document.querySelectorAll('.parallax-bg');
+      heroElements.forEach((element) => {
+        const rate = scrolled * -0.3; // Negative for upward movement
+        (element as HTMLElement).style.transform = `translateY(${rate}px) scale(1.1)`;
+      });
+
+      // Hero content moves upward slower for depth effect
+      const heroContent = document.querySelector('.hero-content');
+      if (heroContent) {
+        const contentRate = scrolled * -0.2; // Negative for upward movement, slower than background
+        (heroContent as HTMLElement).style.transform = `translateY(${contentRate}px)`;
+      }
+
+      // Fleet section slides up to overlay hero when scrolling
+      const fleetSection = document.querySelector('.fleet-section');
+      if (fleetSection) {
+        // Fleet section starts below viewport and slides up to overlay
+        const fleetStart = windowHeight * 0.7; // Start appearing at 70% scroll
+        if (scrolled > fleetStart) {
+          const progress = (scrolled - fleetStart) / (windowHeight * 0.3);
+          const translateY = Math.max(-windowHeight * 0.3 * progress, -windowHeight * 0.3);
+          (fleetSection as HTMLElement).style.transform = `translateY(${translateY}px)`;
+        } else {
+          // Keep fleet section below viewport when at top
+          (fleetSection as HTMLElement).style.transform = 'translateY(0px)';
+        }
+      }
+
+      // Fade effect for hero overlay as fleet section approaches
+      const heroOverlay = document.querySelector('.hero-overlay');
+      if (heroOverlay) {
+        const fadeStart = windowHeight * 0.6;
+        const fadeEnd = windowHeight * 1.0;
+        let opacity = 0.4;
+
+        if (scrolled > fadeStart) {
+          const fadeProgress = Math.min((scrolled - fadeStart) / (fadeEnd - fadeStart), 1);
+          opacity = 0.4 + (fadeProgress * 0.3); // Gradually darken
+        }
+
+        (heroOverlay as HTMLElement).style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <main className="min-h-screen">
-      {/* Hero Banner Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-blue-900">
-        {/* Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-2xl"></div>
+      {/* Hero Banner Section - Always Full Height */}
+      <section className="hero-section fixed inset-0 bg-white overflow-hidden z-0">
+        {/* Hero Banner Carousel - Always Full Height */}
+        <div className="absolute inset-0 h-screen overflow-hidden">
+          {bannerImages.map((banner, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ${index === currentBanner ? 'opacity-100' : 'opacity-0'
+                }`}>
+              <div className="parallax-bg absolute inset-0">
+                <Image
+                  src={banner.src}
+                  alt={banner.alt}
+                  fill
+                  className="object-cover"
+                  priority={index === 0}
+                />
+              </div>
+            </div>
+          ))}
+
+          {/* Dynamic Overlay for text readability */}
+          <div className="hero-overlay absolute inset-0 bg-black/40 transition-all duration-300" />
+
+          {/* Hero Content Overlay - Minimal Design */}
+          <div className="hero-content absolute inset-0 flex items-center justify-center z-10">
+            <div className="max-w-5xl mx-auto px-4 text-center">
+
+              <PageHeaderAnimation delay={600}>
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-white mb-8 leading-tight tracking-wide">
+                  Phuket Family Transport
+                  <span className="block text-2xl md:text-3xl lg:text-4xl font-extralight mt-4 text-white/80">
+                    Premium Child Seat Service
+                  </span>
+                </h1>
+              </PageHeaderAnimation>
+
+              <PageHeaderAnimation delay={900}>
+                <p className="text-lg md:text-xl text-white/70 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+                  Safe, professional family transport with imported Britax child seats from Sweden
+                </p>
+              </PageHeaderAnimation>
+
+              <PageHeaderAnimation delay={1200}>
+                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                  {/* Primary Glossy Blur Button */}
+                  <button
+                    className="group relative overflow-hidden bg-white/10 backdrop-blur-md text-white hover:bg-white/20 font-medium px-12 py-4 transition-all duration-300 border border-white/30 hover:border-white/50 shadow-lg hover:shadow-xl"
+                    onClick={() => window.location.href = '/contact'}
+                  >
+                    {/* Glossy overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-black/10"></div>
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12"></div>
+                    {/* Glass reflection */}
+                    <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/15 to-transparent"></div>
+                    <span className="relative z-10 text-lg tracking-wider uppercase">Book Now</span>
+                  </button>
+
+                  {/* Secondary Minimal Button */}
+                  <button
+                    className="group relative text-white/90 hover:text-white font-light text-lg tracking-wide transition-all duration-300"
+                    onClick={() => window.location.href = '/airport-transfer'}
+                  >
+                    <span className="relative z-10">Airport Transfer</span>
+                    <div className="absolute bottom-0 left-0 w-0 h-px bg-white/60 group-hover:w-full transition-all duration-300"></div>
+                  </button>
+                </div>
+              </PageHeaderAnimation>
+            </div>
+          </div>
+
+          {/* Carousel Indicators */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+            {bannerImages.map((_, index) => (
+              <button
+                key={index}
+                className={`w-3 h-3 rounded-full transition-colors duration-300 ${index === currentBanner ? 'bg-white' : 'bg-white/50'
+                  }`}
+                onClick={() => setCurrentBanner(index)}
+              />
+            ))}
+          </div>
+
+          {/* Scroll indicator */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 -translate-y-16 z-20">
+            <div className="animate-bounce">
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </div>
+          </div>
         </div>
+      </section>
 
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-yellow-400/20 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-32 right-16 w-32 h-32 bg-blue-400/20 rounded-full blur-xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/3 right-20 w-16 h-16 bg-white/10 rounded-full blur-lg animate-bounce"></div>
+      {/* Spacer to account for fixed hero - Fleet section starts below viewport */}
+      <div className="h-screen"></div>
 
-        {/* Hero Banner Content */}
-        <div className="relative z-10 min-h-screen flex items-center justify-center">
-          <div className="max-w-7xl mx-auto px-4 py-20">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left Content */}
-              <div className="text-white space-y-8">
-                <PageHeaderAnimation delay={300}>
-                  <div className="inline-flex items-center gap-2 bg-yellow-400/20 backdrop-blur-sm rounded-full px-4 py-2 text-yellow-300 text-sm font-medium">
-                    <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-                    #1 Child Seat Service in Phuket
+      {/* About Us Section */}
+      <AboutUsSection />
+
+      {/* Elegant Separator */}
+      <SectionSeparator />
+
+      {/* City Tour Service Section */}
+      <CityTourSection openImageModal={openImageModal} />
+
+      <SectionSeparator />
+
+      {/* Our Fleet Section - Appears only when scrolling */}
+      <section className="bg-white relative z-20 pt-0 pb-8">
+        <div className="pt-0 pb-0 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-6 tracking-tight leading-tight text-center">
+                Our Fleet
+              </h2>
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                We offer you an exclusive experience in perfectly maintained, comfortable vehicles.
+                All of our automobiles are thoroughly equipped with the necessary security components and child seats.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Luxury Minibus */}
+              <div className="bg-white rounded-md shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100">
+                <div
+                  className="relative h-48 cursor-pointer group"
+                  onClick={() =>
+                    openImageModal(
+                      "/image/home/car-option/luxury-minibus.png",
+                      "Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
+                    )
+                  }
+                  title="Click to view full size image">
+                  <Image
+                    src="/image/home/car-option/luxury-minibus.png"
+                    alt="Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  {/* Capacity Badge */}
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      8 Seats
+                    </div>
                   </div>
-                </PageHeaderAnimation>
+                </div>
 
-                <PageHeaderAnimation delay={600}>
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                    Safe Travel with
-                    <span className="block bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                      Premium Child Seats
-                    </span>
-                    in Paradise
-                  </h1>
-                </PageHeaderAnimation>
-
-                <PageHeaderAnimation delay={900}>
-                  <p className="text-xl md:text-2xl text-blue-100 leading-relaxed max-w-2xl">
-                    Experience worry-free family travel with our imported Britax
-                    child seats from Sweden. Professional service, maximum
-                    safety, unforgettable memories.
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    Luxury Minibus
+                  </h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">
+                    Spacious and comfortable minibus perfect for larger families and groups with multiple child seats
                   </p>
-                </PageHeaderAnimation>
 
-                <PageHeaderAnimation delay={1200}>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button
-                      as={Link}
-                      href="/contact"
-                      size="lg"
-                      className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-bold px-8 py-4 text-lg shadow-2xl transform hover:scale-105 transition-all duration-300">
-                      <span className="flex items-center gap-2">
-                        Book Your Journey
-                        <svg
-                          className="w-5 h-5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24">
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M13 7l5 5m0 0l-5 5m5-5H6"
-                          />
-                        </svg>
-                      </span>
-                    </Button>
-                    <Button
-                      as={Link}
-                      href="/airport-transfer"
-                      size="lg"
-                      variant="bordered"
-                      className="border-2 border-white/30 text-white hover:bg-white hover:text-blue-900 font-semibold px-8 py-4 text-lg backdrop-blur-sm transition-all duration-300">
-                      Airport Transfer
-                    </Button>
-                  </div>
-                </PageHeaderAnimation>
-
-                <PageHeaderAnimation delay={1500}>
-                  <div className="flex items-center gap-8 pt-8">
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-yellow-400">
-                        500+
-                      </div>
-                      <div className="text-sm text-blue-200">
-                        Happy Families
-                      </div>
+                  {/* Features Grid */}
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className="text-center p-3 bg-gray-50 rounded-lg">
+                      <div className="text-sm text-gray-500">Capacity</div>
+                      <div className="font-semibold text-gray-900">6-8 People</div>
                     </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-yellow-400">
-                        5★
-                      </div>
-                      <div className="text-sm text-blue-200">Safety Rating</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-yellow-400">
-                        100%
-                      </div>
-                      <div className="text-sm text-blue-200">Satisfaction</div>
+                    <div className="text-center p-3 bg-gray-50 rounded-lg">
+                      <div className="text-sm text-gray-500">Child Seats</div>
+                      <div className="font-semibold text-gray-900">Up to 4</div>
                     </div>
                   </div>
-                </PageHeaderAnimation>
-              </div>
 
-              {/* Right Content - Banner Image */}
-              <div className="relative">
-                <PageHeaderAnimation delay={800}>
-                  <div className="relative">
-                    {/* Main Banner Image */}
-                    <div className="relative h-[500px] lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
-                      <Image
-                        src="/image/home/childseat-banner.png"
-                        alt="Premium Child Seat Service - Safe family travel in Phuket"
-                        fill
-                        className="object-cover"
-                        priority
-                      />
-
-                      {/* Image Overlay for Better Text Contrast */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-
-                      {/* Floating Feature Badges */}
-                      <div className="absolute top-6 left-6">
-                        <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
-                          <div className="flex items-center gap-2">
-                            <FaShieldAlt className="text-blue-600" />
-                            <span className="text-sm font-semibold text-gray-900">
-                              Premium Safety
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="absolute top-20 right-6">
-                        <div className="bg-yellow-400/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
-                          <div className="flex items-center gap-2">
-                            <FaBaby className="text-gray-900" />
-                            <span className="text-sm font-semibold text-gray-900">
-                              All Ages
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="absolute bottom-6 right-6">
-                        <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
-                          <div className="flex items-center gap-2">
-                            <FaCar className="text-blue-600" />
-                            <span className="text-sm font-semibold text-gray-900">
-                              Professional Service
-                            </span>
-                          </div>
-                        </div>
-                      </div>
+                  {/* Features List */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                      <span>Air Conditioning</span>
                     </div>
-                  </div>
-                </PageHeaderAnimation>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Car Options Section - Separate with Deeper Blue */}
-      <section className="py-24 bg-gradient-to-br from-slate-800 via-slate-900 to-blue-950 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-0 w-64 h-64 bg-blue-600/10 rounded-full blur-2xl"></div>
-        </div>
-
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-yellow-400/20 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-32 right-16 w-32 h-32 bg-blue-400/20 rounded-full blur-xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/3 right-20 w-16 h-16 bg-white/10 rounded-full blur-lg animate-bounce"></div>
-
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 text-white/80 font-medium mb-6">
-              <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-              Premium Fleet Services
-            </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Private Transfer with
-              <span className="block bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                Safety Child Seats
-              </span>
-              for Kids
-            </h2>
-            <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
-              Choose from our premium fleet of comfortable and safe vehicles,
-              all equipped with professional-grade child seats for the ultimate
-              family travel experience.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Luxury Minibus */}
-            <div className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2">
-              <div
-                className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group/image mb-6"
-                onClick={() =>
-                  openImageModal(
-                    "/image/home/car-option/luxury-minibus.png",
-                    "Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
-                  )
-                }
-                title="Click to view full size image">
-                <Image
-                  src="/image/home/car-option/luxury-minibus.png"
-                  alt="Luxury Minibus - Spacious vehicle for larger families with multiple child seats"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover/image:scale-110"
-                />
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
-                    <svg
-                      className="w-8 h-8 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Capacity Badge */}
-                <div className="absolute top-4 right-4">
-                  <div className="bg-slate-700 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                    8 Seats
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                      <span>Professional Driver</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                      <span>Multiple Child Seats</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="text-center">
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-gray-200 transition-colors">
-                  Luxury Minibus
-                </h3>
-                <p className="text-blue-100 text-lg leading-relaxed mb-6">
-                  Spacious and comfortable minibus perfect for larger families
-                  and groups with multiple child seats
-                </p>
-
-                {/* Features */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-white/10 rounded-xl p-3">
-                    <div className="text-gray-300 font-semibold text-sm">
-                      Capacity
+              {/* Luxury SUV */}
+              <div className="bg-white rounded-md shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100">
+                <div
+                  className="relative h-48 cursor-pointer group"
+                  onClick={() =>
+                    openImageModal(
+                      "/image/home/car-option/luxury-suv.png",
+                      "Luxury SUV - Premium vehicle with advanced safety features for families"
+                    )
+                  }
+                  title="Click to view full size image">
+                  <Image
+                    src="/image/home/car-option/luxury-suv.png"
+                    alt="Luxury SUV - Premium vehicle with advanced safety features for families"
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  {/* Capacity Badge */}
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      5 Seats
                     </div>
-                    <div className="text-white text-lg font-bold">
-                      6-8 People
-                    </div>
-                  </div>
-                  <div className="bg-white/10 rounded-xl p-3">
-                    <div className="text-gray-300 font-semibold text-sm">
-                      Child Seats
-                    </div>
-                    <div className="text-white text-lg font-bold">Up to 4</div>
                   </div>
                 </div>
 
-                {/* Features List */}
-                <div className="space-y-2 text-left">
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Air Conditioning</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Professional Driver</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Multiple Child Seats</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    Luxury SUV
+                  </h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">
+                    Premium SUV with advanced safety features and comfortable seating for smaller families
+                  </p>
 
-            {/* Luxury SUV */}
-            <div className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2">
-              <div
-                className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group/image mb-6"
-                onClick={() =>
-                  openImageModal(
-                    "/image/home/car-option/luxury-suv.png",
-                    "Luxury SUV - Premium vehicle with advanced safety features for families"
-                  )
-                }
-                title="Click to view full size image">
-                <Image
-                  src="/image/home/car-option/luxury-suv.png"
-                  alt="Luxury SUV - Premium vehicle with advanced safety features for families"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover/image:scale-110"
-                />
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
-                    <svg
-                      className="w-8 h-8 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                      />
-                    </svg>
+                  {/* Features Grid */}
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className="text-center p-3 bg-gray-50 rounded-lg">
+                      <div className="text-sm text-gray-500">Capacity</div>
+                      <div className="font-semibold text-gray-900">4-5 People</div>
+                    </div>
+                    <div className="text-center p-3 bg-gray-50 rounded-lg">
+                      <div className="text-sm text-gray-500">Child Seats</div>
+                      <div className="font-semibold text-gray-900">Up to 2</div>
+                    </div>
                   </div>
-                </div>
 
-                {/* Capacity Badge */}
-                <div className="absolute top-4 right-4">
-                  <div className="bg-slate-700 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                    5 Seats
+                  {/* Features List */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                      <span>Premium Comfort</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                      <span>Advanced Safety</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                      <span>Luxury Interior</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="text-center">
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-gray-200 transition-colors">
-                  Luxury SUV
-                </h3>
-                <p className="text-blue-100 text-lg leading-relaxed mb-6">
-                  Premium SUV with advanced safety features and comfortable
-                  seating for smaller families
-                </p>
-
-                {/* Features */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-white/10 rounded-xl p-3">
-                    <div className="text-gray-300 font-semibold text-sm">
-                      Capacity
+              {/* Children on Board */}
+              <div className="bg-white rounded-md shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100">
+                <div
+                  className="relative h-48 cursor-pointer group"
+                  onClick={() =>
+                    openImageModal(
+                      "/image/home/car-option/childrenonboard.png",
+                      "Children on Board Vehicle - Specially equipped for family travel with child seats"
+                    )
+                  }
+                  title="Click to view full size image">
+                  <Image
+                    src="/image/home/car-option/childrenonboard.png"
+                    alt="Children on Board Vehicle - Specially equipped for family travel with child seats"
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  {/* Safety Badge */}
+                  <div className="absolute top-4 right-4">
+                    <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      Safety First
                     </div>
-                    <div className="text-white text-lg font-bold">
-                      4-5 People
-                    </div>
-                  </div>
-                  <div className="bg-white/10 rounded-xl p-3">
-                    <div className="text-gray-300 font-semibold text-sm">
-                      Child Seats
-                    </div>
-                    <div className="text-white text-lg font-bold">Up to 2</div>
                   </div>
                 </div>
 
-                {/* Features List */}
-                <div className="space-y-2 text-left">
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Premium Comfort</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Advanced Safety</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Luxury Interior</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    Children on Board
+                  </h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">
+                    Specially equipped vehicles with clear safety signage and child-friendly features for family travel
+                  </p>
 
-            {/* Children on Board */}
-            <div className="group relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:-translate-y-2">
-              <div
-                className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group/image mb-6"
-                onClick={() =>
-                  openImageModal(
-                    "/image/home/car-option/childrenonboard.png",
-                    "Children on Board Vehicle - Specially equipped for family travel with child seats"
-                  )
-                }
-                title="Click to view full size image">
-                <Image
-                  src="/image/home/car-option/childrenonboard.png"
-                  alt="Children on Board Vehicle - Specially equipped for family travel with child seats"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover/image:scale-110"
-                />
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
-                    <svg
-                      className="w-8 h-8 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Safety Badge */}
-                <div className="absolute top-4 right-4">
-                  <div className="bg-slate-700 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                    Safety First
-                  </div>
-                </div>
-              </div>
-
-              <div className="text-center">
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-gray-200 transition-colors">
-                  Children on Board
-                </h3>
-                <p className="text-blue-100 text-lg leading-relaxed mb-6">
-                  Specially equipped vehicles with clear safety signage and
-                  child-friendly features for family travel
-                </p>
-
-                {/* Features */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-white/10 rounded-xl p-3">
-                    <div className="text-gray-300 font-semibold text-sm">
-                      Safety
+                  {/* Features Grid */}
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className="text-center p-3 bg-gray-50 rounded-lg">
+                      <div className="text-sm text-gray-500">Safety</div>
+                      <div className="font-semibold text-gray-900">Premium</div>
                     </div>
-                    <div className="text-white text-lg font-bold">Premium</div>
-                  </div>
-                  <div className="bg-white/10 rounded-xl p-3">
-                    <div className="text-gray-300 font-semibold text-sm">
-                      Signage
+                    <div className="text-center p-3 bg-gray-50 rounded-lg">
+                      <div className="text-sm text-gray-500">Signage</div>
+                      <div className="font-semibold text-gray-900">Visible</div>
                     </div>
-                    <div className="text-white text-lg font-bold">Visible</div>
                   </div>
-                </div>
 
-                {/* Features List */}
-                <div className="space-y-2 text-left">
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Safety Signage</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Child-Friendly Features</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-blue-100">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                    <span className="text-sm">Family Focused</span>
+                  {/* Features List */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                      <span>Safety Signage</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                      <span>Child-Friendly Features</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                      <span>Family Focused</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -579,67 +489,42 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <SectionSeparator />
 
       {/* Child Seats Section */}
-      <section className="py-24 bg-gray-50 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 bg-blue-100 rounded-full px-6 py-3 text-blue-700 font-medium mb-6">
-              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+      <section className="pb-8 pt-4 bg-white relative z-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-4xl lg:text-5xl font-normal text-gray-900 mb-6 tracking-tight leading-tight text-center">
               Premium Child Safety Solutions
-            </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Taxi with <span className="text-blue-900">Rear-Facing</span>
-              <br />
-              Child Seats Available in Phuket!
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Experience the ultimate in child safety with our premium imported
-              Britax child seats from Sweden. Engineered for maximum protection
-              and comfort for your little ones.
+              Experience the ultimate in child safety with our premium imported Britax child seats from Sweden.
+              Engineered for maximum protection and comfort for your little ones.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {seatOptions.map((item, index) => {
               return (
                 <div
                   key={index}
-                  className="group relative bg-white rounded-3xl shadow-sm hover:shadow-md transition-all duration-500 transform hover:-translate-y-3 border border-gray-100 overflow-hidden text-black">
+                  className="bg-white rounded-md shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 overflow-hidden">
                   {/* Image Section */}
-                  <div className="p-6 pb-4">
+                  <div className="p-0">
                     <div
-                      className="relative h-48 rounded-2xl overflow-hidden cursor-pointer group/image bg-gray-50"
+                      className="relative h-40  overflow-hidden cursor-pointer group bg-gray-50"
                       onClick={() => openImageModal(item.image, item.name)}
                       title="Click to view full size image">
                       <Image
                         src={item.image}
                         alt={`${item.name} - Britax child seat for ${item.age} (${item.weight})`}
                         fill
-                        className="object-cover transition-all duration-500 group-hover/image:scale-110"
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
-                          <svg
-                            className="w-6 h-6 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-
                       {/* Weight Badge */}
-                      <div className="absolute top-3 right-3">
-                        <div className="bg-slate-700 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                      <div className="absolute top-2 right-2">
+                        <div className="bg-blue-600 text-white px-2 py-1 rounded-full text-xs font-semibold">
                           {item.weight}
                         </div>
                       </div>
@@ -647,43 +532,38 @@ export default function Home() {
                   </div>
 
                   {/* Content Section */}
-                  <div className="px-6 pb-6">
-                    <div className="mb-4">
-                      <h3 className="text-xl font-bold text-blue-900 mb-2 group-hover:text-blue-800 transition-colors">
-                        {item.name}
-                      </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
+                  <div className="p-4">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                      {item.name}
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                      {item.description}
+                    </p>
 
                     {/* Features */}
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <div className="w-1.5 h-1.5 bg-blue-800 rounded-full"></div>
-                        Age Range: {item.age}
+                        <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                        Age: {item.age}
                       </div>
                       <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <div className="w-1.5 h-1.5 bg-blue-800 rounded-full"></div>
+                        <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
                         Weight: {item.weight}
                       </div>
                       <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <div className="w-1.5 h-1.5 bg-blue-800 rounded-full"></div>
+                        <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
                         Swedish Engineering
                       </div>
                     </div>
 
                     {/* Bottom Section */}
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                      <div className="inline-flex items-center gap-2 bg-slate-50 text-slate-700 px-3 py-1 rounded-full text-xs font-medium">
-                        <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                    <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+                      <div className="text-xs text-gray-500 bg-gray-50 px-2 py-1 rounded">
                         {item.type}
                       </div>
                       <div className="text-right">
                         <div className="text-xs text-gray-500">Britax</div>
-                        <div className="text-sm font-bold text-blue-900">
-                          Sweden
-                        </div>
+                        <div className="text-sm font-semibold text-blue-600">Sweden</div>
                       </div>
                     </div>
                   </div>
@@ -693,243 +573,19 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <SectionSeparator />
+      {/* Destination Gallery */}
+      <DestinationGallerySection
+        // destinationImages={destinationImages}
+        openImageModal={openImageModal}
+      />
+      <SectionSeparator />
 
-      {/* Safety Features - Why Choose Our Child Seat Service */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Our Child Seat Service?
-            </h2>
-            <p className="text-lg text-gray-600">
-              Safety and convenience for your family vacation in Phuket
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
-              <CardBody className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-                  <FaShieldAlt className="text-3xl text-blue-800" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                  Imported Britax Seats
-                </h3>
-                <p className="text-gray-600 text-lg">
-                  We use premium Britax child seats imported from Sweden for
-                  maximum safety and comfort
-                </p>
-              </CardBody>
-            </Card>
-
-            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
-              <CardBody className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-                  <FaBaby className="text-3xl text-blue-800" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                  All Ages Covered
-                </h3>
-                <p className="text-gray-600 text-lg">
-                  Child seats available for newborns to 6 years old, including
-                  rear-facing options
-                </p>
-              </CardBody>
-            </Card>
-
-            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
-              <CardBody className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-                  <FaCar className="text-3xl text-blue-800" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                  Professional Service
-                </h3>
-                <p className="text-gray-600 text-lg">
-                  Experienced drivers with proper child seat installation and
-                  travel insurance included
-                </p>
-              </CardBody>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Top Destinations - Moved to 3rd section */}
-      <section className="py-20 bg-gray-50 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Top Destinations
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover the beauty of Thailand with our family-friendly tours and
-              safe transportation
-            </p>
-          </div>
-
-          {/* Auto-sliding Destinations */}
-          <div
-            className="relative overflow-hidden"
-            onMouseEnter={() => setIsParallaxPaused(true)}
-            onMouseLeave={() => setIsParallaxPaused(false)}>
-            <div
-              className="flex gap-6 transition-transform duration-1000 ease-in-out"
-              style={{
-                transform: `translateX(-${currentDestination * (320 + 24)}px)`,
-                width: `${destinations.length * (320 + 24)}px`,
-              }}>
-              {destinations.map((destination) => (
-                <div
-                  key={destination.name}
-                  className="flex-shrink-0 w-80 h-96 relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
-                  onClick={() =>
-                    openImageModal(
-                      destination.image,
-                      `${destination.name} - Popular Phuket destination with child seat transport`
-                    )
-                  }>
-                  <Image
-                    src={destination.image}
-                    alt={`${destination.name} - Popular Phuket destination with child seat transport`}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-
-                  {/* Hover overlay for zoom indication */}
-                  <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
-                      <svg
-                        className="w-8 h-8 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-2xl font-bold mb-2 text-blue-900 bg-white/90 px-3 py-1 rounded-lg">
-                      {destination.name}
-                    </h3>
-                    <div onClick={(e) => e.stopPropagation()}>
-                      <Button
-                        as={Link}
-                        href="/day-trips"
-                        size="sm"
-                        className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
-                        aria-label="Book tours to this destination with child seat safety">
-                        Book Tour
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Dots indicator */}
-            <div className="flex justify-center mt-8 gap-2">
-              {destinations.map((_, index) => (
-                <button
-                  key={index}
-                  className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                    index === currentDestination ? "bg-blue-600" : "bg-gray-300"
-                  }`}
-                  onClick={() => setCurrentDestination(index)}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Phuket Ferry Tickets Section */}
-      <section className="py-20 bg-blue-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/image/home/phuket-ferry.png"
-            alt="Phuket Ferry Services - Island hopping with child seat safety"
-            fill
-            className="object-cover opacity-30"
-          />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Phuket Ferry Tickets
-              </h2>
-              <p className="text-xl mb-8 text-blue-100">
-                Book your ferry tickets to nearby islands with our convenient
-                booking service. Safe transportation to the pier with child
-                seats included.
-              </p>
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  <span className="text-lg">
-                    Ferry tickets to Phi Phi Island
-                  </span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  <span className="text-lg">Speed boat tickets available</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  <span className="text-lg">
-                    Transportation to pier included
-                  </span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  <span className="text-lg">Child seats for safe travel</span>
-                </li>
-              </ul>
-              <Button
-                as={Link}
-                href="/contact"
-                size="lg"
-                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-3">
-                Book Ferry Tickets
-              </Button>
-            </div>
-            <div className="relative">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-                <h3 className="text-2xl font-bold mb-6">
-                  Popular Ferry Routes
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center p-4 bg-white/10 rounded-lg">
-                    <span className="font-semibold">
-                      Phuket → Phi Phi Island
-                    </span>
-                    <span className="text-yellow-400">Available Daily</span>
-                  </div>
-                  <div className="flex justify-between items-center p-4 bg-white/10 rounded-lg">
-                    <span className="font-semibold">Phuket → Krabi</span>
-                    <span className="text-yellow-400">Available Daily</span>
-                  </div>
-                  <div className="flex justify-between items-center p-4 bg-white/10 rounded-lg">
-                    <span className="font-semibold">Phuket → Koh Lanta</span>
-                    <span className="text-yellow-400">Seasonal</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Ferry Services Section */}
+      <FerryServiceSection />
 
       {/* Services Overview */}
-      <section className="py-20 bg-gray-50">
+      {/* <section className="py-20 bg-gray-50 relative z-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -940,122 +596,101 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="hover:shadow-md transition-shadow !bg-white shadow-sm">
-              <CardHeader className="pb-0 text-blue-900">
-                <h3 className="text-xl font-semibold">Airport Transfer</h3>
-              </CardHeader>
-              <CardBody>
-                <p className="text-gray-600 mb-4">
-                  Safe airport transfers to/from hotels in Phuket, Khao Lak,
-                  Krabi, and Koh Lanta with child seats
-                </p>
-                <Button
-                  as={Link}
-                  href="/airport-transfer"
-                  color="primary"
-                  variant="flat"
-                  size="sm"
-                  aria-label="Learn more about airport transfer services with child seats">
-                  Airport Transfer Details
-                </Button>
-              </CardBody>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Airport Transfer</h3>
+              <p className="text-gray-600 mb-4 leading-relaxed">
+                Safe airport transfers to/from hotels in Phuket, Khao Lak, Krabi, and Koh Lanta with child seats
+              </p>
+              <Button
+                as={Link}
+                href="/airport-transfer"
+                className="bg-blue-600 text-white hover:bg-blue-700"
+                size="sm">
+                Learn More
+              </Button>
+            </div>
 
-            <Card className="hover:shadow-md transition-shadow !bg-white shadow-sm">
-              <CardHeader className="pb-0">
-                <h3 className="text-xl font-semibold text-blue-900">
-                  Day Trips & Tours
-                </h3>
-              </CardHeader>
-              <CardBody>
-                <p className="text-gray-600 mb-4">
-                  Family-friendly tours to Phi Phi Island, Phang Nga Bay,
-                  Similan Islands with safe transportation
-                </p>
-                <Button
-                  as={Link}
-                  href="/day-trips"
-                  color="primary"
-                  variant="flat"
-                  size="sm"
-                  aria-label="Explore day trips and tours with child seat safety">
-                  Explore Day Trips
-                </Button>
-              </CardBody>
-            </Card>
+            <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Day Trips & Tours</h3>
+              <p className="text-gray-600 mb-4 leading-relaxed">
+                Family-friendly tours to Phi Phi Island, Phang Nga Bay, Similan Islands with safe transportation
+              </p>
+              <Button
+                as={Link}
+                href="/day-trips"
+                className="bg-blue-600 text-white hover:bg-blue-700"
+                size="sm">
+                Explore Tours
+              </Button>
+            </div>
 
-            <Card className="hover:shadow-md transition-shadow !bg-white shadow-sm">
-              <CardHeader className="pb-0">
-                <h3 className="text-xl font-semibold text-blue-900">
-                  Phuket City Tour
-                </h3>
-              </CardHeader>
-              <CardBody>
-                <p className="text-gray-600 mb-4">
-                  Private driver and guide for Big Buddha, Chalong Temple, Old
-                  Town, and scenic viewpoints
-                </p>
-                <div className="space-y-2">
-                  <p className="text-sm text-gray-500">
-                    6 hours: 1-4 persons = 2,900 THB
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    6 hours: 5-10 persons = 3,500 THB
-                  </p>
-                </div>
-              </CardBody>
-            </Card>
+            <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Phuket City Tour</h3>
+              <p className="text-gray-600 mb-4 leading-relaxed">
+                Private driver and guide for Big Buddha, Chalong Temple, Old Town, and scenic viewpoints
+              </p>
+              <div className="space-y-1 mb-4">
+                <p className="text-sm text-gray-500">6 hours: 1-4 persons = 2,900 THB</p>
+                <p className="text-sm text-gray-500">6 hours: 5-10 persons = 3,500 THB</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
+      <SectionSeparator /> */}
+
+      <SectionSeparator />
       {/* Contact CTA */}
       <ContactFooter
         title="Ready to Book Your Safe Journey?"
         description="Contact us for bookings and inquiries. Payment due in cash on site or transfer via Wise."
-        className="bg-blue-900"
+        className="relative bg-blue-900"
       />
 
       {/* Image Modal */}
-      <ImageModal
-        isOpen={modalImage !== null}
+      < ImageModal
+        isOpen={modalImage !== null
+        }
         onClose={closeImageModal}
         imageSrc={modalImage?.src || ""}
         imageAlt={modalImage?.alt || ""}
       />
 
-      {/* Trust Indicators */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">
-            Licensed & Professional
-          </h2>
-          <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-            <div className="flex items-center gap-3">
-              <div className="text-3xl">🏆</div>
-              <div>
-                <p className="font-semibold text-gray-900">TAT Licensed</p>
-                <p className="text-gray-600">License #32/01713</p>
+      {/* Trust Indicators - MEKHE Style */}
+      {/* <section className="py-20 bg-gray-50 relative z-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Licensed & Professional
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-blue-50 rounded-full">
+                <span className="text-2xl">🏆</span>
               </div>
+              <h3 className="font-bold text-gray-900 mb-2">TAT Licensed</h3>
+              <p className="text-gray-600">License #32/01713</p>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="text-3xl">🛡️</div>
-              <div>
-                <p className="font-semibold text-gray-900">Travel Insurance</p>
-                <p className="text-gray-600">Included with all services</p>
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-blue-50 rounded-full">
+                <span className="text-2xl">🛡️</span>
               </div>
+              <h3 className="font-bold text-gray-900 mb-2">Travel Insurance</h3>
+              <p className="text-gray-600">Included with all services</p>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="text-3xl">⭐</div>
-              <div>
-                <p className="font-semibold text-gray-900">Experienced</p>
-                <p className="text-gray-600">Professional drivers & guides</p>
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-blue-50 rounded-full">
+                <span className="text-2xl">⭐</span>
               </div>
+              <h3 className="font-bold text-gray-900 mb-2">Experienced</h3>
+              <p className="text-gray-600">Professional drivers & guides</p>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </section> */}
+    </main >
   );
 }
