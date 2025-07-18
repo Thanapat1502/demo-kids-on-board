@@ -11,6 +11,7 @@ import {
   FaTrophy,
   FaUser,
   FaShieldAlt,
+  FaCreditCard,
 } from "react-icons/fa";
 
 export default function ContactPage() {
@@ -333,8 +334,8 @@ Message: ${formData.message}`;
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 flex items-center justify-center bg-yellow-100 rounded-full">
-                      <FaTrophy className="text-yellow-600" />
+                    <div className="w-8 h-8 flex items-center justify-center bg-gray-50 rounded-full">
+                      <FaTrophy className="text-gray-600" />
                     </div>
                     <div>
                       <p className="font-semibold text-gray-900">
@@ -345,8 +346,8 @@ Message: ${formData.message}`;
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
-                      <FaUser className="text-blue-600" />
+                    <div className="w-8 h-8 flex items-center justify-center bg-gray-50 rounded-full">
+                      <FaUser className="text-gray-600" />
                     </div>
                     <div>
                       <p className="font-semibold text-gray-900">
@@ -357,8 +358,8 @@ Message: ${formData.message}`;
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 flex items-center justify-center bg-green-100 rounded-full">
-                      <FaShieldAlt className="text-green-600" />
+                    <div className="w-8 h-8 flex items-center justify-center bg-gray-50 rounded-full">
+                      <FaShieldAlt className="text-gray-600" />
                     </div>
                     <div>
                       <p className="font-semibold text-gray-900">
@@ -371,7 +372,9 @@ Message: ${formData.message}`;
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="text-xl">💳</div>
+                    <div className="w-8 h-8 flex items-center justify-center bg-gray-50 rounded-full">
+                      <FaCreditCard className="text-gray-600" />
+                    </div>
                     <div>
                       <p className="font-semibold text-gray-900">
                         Payment Methods
