@@ -1,11 +1,8 @@
 "use client";
 
-import { Button, Card, CardBody, CardHeader, Chip } from "@heroui/react";
-import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaHome, FaWifi, FaParking } from "react-icons/fa";
-import { ContactFooter } from "@/components/ContactFooter";
 import ImageModal from "@/components/ImageModal";
 import PageHeaderAnimation from "@/components/PageHeaderAnimation";
 
@@ -42,429 +39,400 @@ export default function HouseForRentPage() {
   }, [houseImages.length]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="relative h-screen overflow-hidden">
+    <main className="min-h-screen">
+      {/* Hero Section - Matching Homepage Style */}
+      <section className="relative overflow-hidden bg-white h-screen">
+        {/* Background Image Carousel */}
         <div className="absolute inset-0">
-          <Image
-            src="/image/house-for-rent/mainhouse.png"
-            alt="Garden House for Rent"
-            fill
-            className="object-cover"
-            priority
-          />
+          {houseImages.map((image, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                index === currentHouseImage ? "opacity-100" : "opacity-0"
+              }`}>
+              <Image
+                src={image}
+                alt={`Garden House for Rent - View ${index + 1}`}
+                fill
+                className="object-cover"
+                priority={index === 0}
+              />
+            </div>
+          ))}
+          {/* Dark overlay for text readability - matching homepage */}
           <div className="absolute inset-0 bg-black/40" />
         </div>
 
-        <div className="relative z-10 flex items-center justify-center h-full pt-20">
-          <div className="text-center text-white px-4 max-w-4xl">
-            <PageHeaderAnimation delay={300}>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Garden House
-                <span className="block text-yellow-400">for Rent</span>
+        {/* Hero Content - Matching Homepage Style */}
+        <div className="absolute inset-0 flex items-center justify-center z-10">
+          <div className="max-w-5xl mx-auto px-4 text-center">
+            <PageHeaderAnimation delay={600}>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-white mb-8 leading-tight tracking-wide">
+                Garden House Rental
+                <span className="block text-2xl md:text-3xl lg:text-4xl font-extralight mt-4 text-white/80">
+                  Prime Thalang Location, Phuket
+                </span>
               </h1>
             </PageHeaderAnimation>
 
-            <PageHeaderAnimation delay={600}>
-              <p className="text-xl md:text-2xl mb-8 text-gray-200">
-                Garden house style resort in prime Thalang location, Phuket
+            <PageHeaderAnimation delay={900}>
+              <p className="text-lg md:text-xl text-white/70 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+                Experience comfort and convenience in our beautiful garden
+                house, perfectly located for exploring Phuket with premium
+                amenities.
               </p>
             </PageHeaderAnimation>
 
-            <PageHeaderAnimation delay={900}>
-              <div className="flex flex-wrap justify-center gap-4 mb-8">
-                <Chip color="warning" variant="solid" size="lg">
-                  Daily Rental
-                </Chip>
-                <Chip color="warning" variant="solid" size="lg">
-                  Weekly Rental
-                </Chip>
-                <Chip color="warning" variant="solid" size="lg">
-                  Prime Location
-                </Chip>
-                <Chip color="warning" variant="solid" size="lg">
-                  Family Friendly
-                </Chip>
+            <PageHeaderAnimation delay={1200}>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                {/* Primary Glossy Button - Matching Homepage */}
+                <button
+                  className="group relative overflow-hidden bg-white/10 backdrop-blur-md text-white hover:bg-white/20 font-medium px-12 py-4 transition-all duration-300 border border-white/30 hover:border-white/50 shadow-lg hover:shadow-xl"
+                  onClick={() => (window.location.href = "/contact")}>
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-black/10"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12"></div>
+                  <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/15 to-transparent"></div>
+                  <span className="relative z-10 text-lg tracking-wider uppercase">
+                    Check Availability
+                  </span>
+                </button>
+
+                {/* Secondary Button - Matching Homepage */}
+                <button
+                  className="group relative text-white/90 hover:text-white font-light text-lg tracking-wide transition-all duration-300"
+                  onClick={() =>
+                    document
+                      .getElementById("gallery")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }>
+                  <span className="relative z-10">View Gallery</span>
+                  <div className="absolute bottom-0 left-0 w-0 h-px bg-white/60 group-hover:w-full transition-all duration-300"></div>
+                </button>
               </div>
             </PageHeaderAnimation>
+          </div>
+        </div>
 
-            <PageHeaderAnimation delay={1200}>
-              <Button
-                as={Link}
-                href="/contact"
-                size="lg"
-                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-3 text-lg">
-                Check Availability
-              </Button>
-            </PageHeaderAnimation>
+        {/* Carousel Indicators */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+          {houseImages.map((_, index) => (
+            <button
+              key={index}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentHouseImage ? "bg-white" : "bg-white/40"
+              }`}
+              onClick={() => setCurrentHouseImage(index)}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Property Overview - Minimal Style */}
+      <section className="py-20 bg-white relative z-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6 tracking-wide">
+              Garden House Style Resort
+            </h2>
+            <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto leading-relaxed">
+              Perfect accommodation for families and groups
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div className="bg-white border border-gray-200 p-8">
+              <h3 className="text-2xl font-light text-gray-900 mb-6 tracking-wide">
+                Property Features
+              </h3>
+              <ul className="space-y-4 text-gray-600 font-light">
+                <li className="flex items-center gap-3">
+                  <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                  <span>Garden house style resort design</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                  <span>Spacious family accommodation</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                  <span>Private garden and outdoor space</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                  <span>Modern amenities included</span>
+                </li>
+              </ul>
+            </div>
+            <div className="bg-white border border-gray-200 p-8">
+              <h3 className="text-2xl font-light text-gray-900 mb-6 tracking-wide">
+                Rental Options
+              </h3>
+              <div className="space-y-6">
+                <div className="border-l-2 border-gray-200 pl-6">
+                  <h4 className="text-lg font-medium text-gray-900 mb-2">
+                    Daily Rental
+                  </h4>
+                  <p className="text-gray-600 font-light">
+                    Perfect for short stays and vacation rentals
+                  </p>
+                </div>
+                <div className="border-l-2 border-gray-200 pl-6">
+                  <h4 className="text-lg font-medium text-gray-900 mb-2">
+                    Weekly Rental
+                  </h4>
+                  <p className="text-gray-600 font-light">
+                    Ideal for extended holidays and longer stays
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        {/* Property Overview */}
-        <section className="mb-16">
-          <Card className="p-8 !bg-white">
-            <CardHeader className="pb-0">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Garden House Style Resort
-                </h2>
-                <p className="text-gray-600">
-                  Perfect accommodation for families and groups
-                </p>
-              </div>
-            </CardHeader>
-            <CardBody>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 text-blue-900">
-                    Property Features
-                  </h3>
-                  <ul className="space-y-3 text-gray-600">
-                    <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                      <span>Garden house style resort design</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                      <span>Spacious family accommodation</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                      <span>Private garden and outdoor space</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                      <span>Modern amenities included</span>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 text-blue-900">
-                    Rental Options
-                  </h3>
-                  <div className="space-y-4">
-                    <div className="p-4 bg-green-50 rounded-lg">
-                      <h4 className="font-semibold text-green-800">
-                        Daily Rental
-                      </h4>
-                      <p className="text-green-700">
-                        Perfect for short stays and vacation rentals
-                      </p>
-                    </div>
-                    <div className="p-4 bg-blue-50 rounded-lg">
-                      <h4 className="font-semibold text-blue-800">
-                        Weekly Rental
-                      </h4>
-                      <p className="text-blue-700">
-                        Ideal for extended holidays and longer stays
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CardBody>
-          </Card>
-        </section>
-
-        {/* Location Benefits */}
-        <section className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+      {/* Location Benefits - Minimal Style */}
+      <section className="py-20 bg-gray-50 relative z-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6 tracking-wide">
               Prime Thalang Location
             </h2>
-            <p className="text-lg text-gray-600">
-              {`Strategically located for easy access to Phuket's best attractions`}
+            <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto leading-relaxed">
+              Strategically located for easy access to Phuket&apos;s best
+              attractions
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
-              <CardBody className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-                  <FaHome className="text-3xl text-blue-800" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white border border-gray-200 p-6 hover:shadow-md transition-shadow duration-300">
+              <div className="text-center">
+                <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center bg-gray-50 rounded-full">
+                  <FaHome className="text-lg text-gray-600" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-900">
+                <h3 className="text-lg font-medium mb-4 text-gray-900">
                   Beach Access
                 </h3>
-                <ul className="text-gray-600 space-y-3 text-left">
+                <ul className="text-gray-600 font-light space-y-2 text-left">
                   <li className="flex items-center gap-3">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
                     <span>5-10 minutes to Bangtao Beach</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
                     <span>Close to Surin Beach</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
                     <span>Near Layan Beach</span>
                   </li>
                 </ul>
-              </CardBody>
-            </Card>
+              </div>
+            </div>
 
-            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
-              <CardBody className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-                  <FaWifi className="text-3xl text-blue-800" />
+            <div className="bg-white border border-gray-200 p-6 hover:shadow-md transition-shadow duration-300">
+              <div className="text-center">
+                <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center bg-gray-50 rounded-full">
+                  <FaWifi className="text-lg text-gray-600" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-900">
+                <h3 className="text-lg font-medium mb-4 text-gray-900">
                   Laguna Area
                 </h3>
-                <ul className="text-gray-600 space-y-3 text-left">
+                <ul className="text-gray-600 font-light space-y-2 text-left">
                   <li className="flex items-center gap-3">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
                     <span>5-10 minutes to Laguna complex</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
                     <span>Golf courses nearby</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
                     <span>Resort amenities access</span>
                   </li>
                 </ul>
-              </CardBody>
-            </Card>
+              </div>
+            </div>
 
-            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
-              <CardBody className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-                  <FaParking className="text-3xl text-blue-800" />
+            <div className="bg-white border border-gray-200 p-6 hover:shadow-md transition-shadow duration-300">
+              <div className="text-center">
+                <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center bg-gray-50 rounded-full">
+                  <FaParking className="text-lg text-gray-600" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-900">
+                <h3 className="text-lg font-medium mb-4 text-gray-900">
                   Shopping & Dining
                 </h3>
-                <ul className="text-gray-600 space-y-3 text-left">
+                <ul className="text-gray-600 font-light space-y-2 text-left">
                   <li className="flex items-center gap-3">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
                     <span>Makro supermarket nearby</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
                     <span>Lotus shopping center</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
                     <span>Robinson shopping center</span>
                   </li>
                 </ul>
-              </CardBody>
-            </Card>
-          </div>
-        </section>
-
-        {/* Transportation */}
-        <section className="mb-16">
-          <Card className="p-8 !bg-white">
-            <CardHeader className="pb-0">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Easy Transportation
-                </h2>
-                <p className="text-gray-600">
-                  Convenient access to all of Phuket
-                </p>
-              </div>
-            </CardHeader>
-            <CardBody>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 text-blue-900">
-                    Travel Times
-                  </h3>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <span className="font-medium text-gray-900">
-                        Phuket Town
-                      </span>
-                      <span className="text-blue-600 font-semibold">
-                        20 minutes
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <span className="font-medium text-gray-900">
-                        Phuket Airport
-                      </span>
-                      <span className="text-blue-600 font-semibold">
-                        25 minutes
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <span className="font-medium text-gray-900">
-                        Patong Beach
-                      </span>
-                      <span className="text-blue-600 font-semibold">
-                        30 minutes
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-4 text-blue-900">
-                    Transportation Services
-                  </h3>
-                  <ul className="space-y-3 text-gray-600">
-                    <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                      <span>Airport transfer with child seats</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                      <span>Daily beach transportation</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                      <span>Tour pickup and drop-off</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </CardBody>
-          </Card>
-        </section>
-
-        {/* House Gallery Parallax */}
-        <section className="py-20 bg-gray-900 text-white overflow-hidden rounded-3xl mx-4 my-8">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                House Gallery
-              </h2>
-              <p className="text-xl text-gray-300">
-                Explore our beautiful garden house and amenities
-              </p>
-            </div>
-
-            {/* Auto-sliding House Images */}
-            <div className="relative overflow-hidden">
-              <div
-                className="flex gap-6 transition-transform duration-1000 ease-in-out"
-                style={{
-                  transform: `translateX(-${currentHouseImage * (384 + 24)}px)`, // 384px = w-96, 24px = gap-6
-                  width: `${houseImages.length * (384 + 24)}px`,
-                }}>
-                {houseImages.map((image, index) => {
-                  const imageTitle =
-                    index === 0
-                      ? "Garden View"
-                      : index === 1
-                      ? "Outdoor Space"
-                      : index === 2
-                      ? "Nature"
-                      : index === 3
-                      ? "Living Area"
-                      : index === 4
-                      ? "Bathroom"
-                      : index === 5
-                      ? "Bedroom"
-                      : "Surroundings";
-
-                  return (
-                    <div
-                      key={image}
-                      className="flex-shrink-0 w-96 h-80 relative rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-500 group/image cursor-pointer"
-                      onClick={() =>
-                        openImageModal(
-                          image,
-                          `${imageTitle} - Garden House Gallery`
-                        )
-                      }
-                      title="Click to view full size image">
-                      <Image
-                        src={image}
-                        alt={`House Gallery ${index + 1} - ${imageTitle}`}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover/image:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-
-                      {/* Click to zoom indicator */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
-                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
-                          <svg
-                            className="w-8 h-8 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-
-                      <div className="absolute bottom-6 left-6 right-6">
-                        <h3 className="text-xl font-bold text-white mb-2">
-                          {imageTitle}
-                        </h3>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              {/* Dots indicator */}
-              <div className="flex justify-center mt-8 gap-2">
-                {houseImages.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`w-3 h-3 p-2 rounded-full transition-colors duration-300 ${
-                      index === currentHouseImage
-                        ? "bg-blue-600"
-                        : "bg-gray-300"
-                    }`}
-                    onClick={() => setCurrentHouseImage(index)}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="text-center mt-12">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-yellow-400 mb-2">
-                    5★
-                  </div>
-                  <p className="text-gray-300">Guest Rating</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-yellow-400 mb-2">
-                    24/7
-                  </div>
-                  <p className="text-gray-300">Support Available</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-yellow-400 mb-2">
-                    100%
-                  </div>
-                  <p className="text-gray-300">Clean & Safe</p>
-                </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Contact CTA */}
-        <ContactFooter
-          title="Interested in Our Garden House?"
-          description="Contact us for availability, pricing, and booking information."
-          className="bg-teal-600 rounded-lg mt-16"
-        />
+      {/* Transportation - Minimal Style */}
+      <section className="py-20 bg-white relative z-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6 tracking-wide">
+              Easy Transportation
+            </h2>
+            <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto leading-relaxed">
+              Convenient access to all of Phuket
+            </p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div className="bg-white border border-gray-200 p-8">
+              <h3 className="text-2xl font-light text-gray-900 mb-6 tracking-wide">
+                Travel Times
+              </h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="font-light text-gray-900">Phuket Town</span>
+                  <span className="text-gray-600 font-light">20 minutes</span>
+                </div>
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="font-light text-gray-900">
+                    Phuket Airport
+                  </span>
+                  <span className="text-gray-600 font-light">25 minutes</span>
+                </div>
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="font-light text-gray-900">Patong Beach</span>
+                  <span className="text-gray-600 font-light">30 minutes</span>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white border border-gray-200 p-8">
+              <h3 className="text-2xl font-light text-gray-900 mb-6 tracking-wide">
+                Transportation Services
+              </h3>
+              <ul className="space-y-4 text-gray-600 font-light">
+                <li className="flex items-center gap-3">
+                  <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                  <span>Airport transfer with child seats</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                  <span>Daily beach transportation</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
+                  <span>Tour pickup and drop-off</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        {/* Image Modal */}
-        <ImageModal
-          isOpen={modalImage !== null}
-          onClose={closeImageModal}
-          imageSrc={modalImage?.src || ""}
-          imageAlt={modalImage?.alt || ""}
-        />
-      </div>
-    </div>
+      {/* House Gallery - Minimal Style */}
+      <section id="gallery" className="py-20 bg-gray-50 relative z-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6 tracking-wide">
+              House Gallery
+            </h2>
+            <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto leading-relaxed">
+              Explore our beautiful garden house and amenities
+            </p>
+          </div>
+
+          {/* Gallery Grid - Minimal Style */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {houseImages.map((image, index) => {
+              const imageTitle =
+                index === 0
+                  ? "Garden View"
+                  : index === 1
+                  ? "Outdoor Space"
+                  : index === 2
+                  ? "Nature"
+                  : index === 3
+                  ? "Living Area"
+                  : index === 4
+                  ? "Bathroom"
+                  : index === 5
+                  ? "Bedroom"
+                  : "Surroundings";
+
+              return (
+                <div
+                  key={image}
+                  className="bg-white border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-300 cursor-pointer group"
+                  onClick={() =>
+                    openImageModal(
+                      image,
+                      `${imageTitle} - Garden House Gallery`
+                    )
+                  }
+                  title="Click to view full size image">
+                  <div className="relative h-64">
+                    <Image
+                      src={image}
+                      alt={`House Gallery ${index + 1} - ${imageTitle}`}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-lg font-medium text-gray-900">
+                      {imageTitle}
+                    </h3>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact CTA - Minimal Style */}
+      <section className="py-20 bg-white relative z-20">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-6 tracking-wide">
+            Interested in Our Garden House?
+          </h2>
+          <p className="text-xl text-gray-600 font-light mb-12 leading-relaxed">
+            Contact us for availability, pricing, and booking information.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <button
+              className="bg-gray-900 text-white hover:bg-gray-800 font-light px-8 py-3 tracking-wide transition-colors duration-300"
+              onClick={() => (window.location.href = "/contact")}>
+              Check Availability
+            </button>
+            <button
+              className="bg-white text-gray-900 hover:bg-gray-50 font-light px-8 py-3 tracking-wide border border-gray-200 transition-colors duration-300"
+              onClick={() =>
+                window.open("https://wa.me/66815372657", "_blank")
+              }>
+              WhatsApp Now
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Image Modal */}
+      <ImageModal
+        isOpen={modalImage !== null}
+        onClose={closeImageModal}
+        imageSrc={modalImage?.src || ""}
+        imageAlt={modalImage?.alt || ""}
+      />
+    </main>
   );
 }
