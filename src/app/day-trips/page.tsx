@@ -9,6 +9,35 @@ import { ContactFooter } from "@/components/ContactFooter";
 import PageHeaderAnimation from "@/components/PageHeaderAnimation";
 import ImageModal from "@/components/ImageModal";
 import GalleryParallax from "@/components/GalleryParallax";
+import DayTripActivitiesSection from "@/components/DayTripActivitiesSection";
+import { useSmoothScroll } from "@/utils/smoothScroll";
+import PhiPhiIslandSection from "@/components/PhiPhiIslandSection";
+import SimilanIslandSection from "@/components/SimilanIslandSection";
+import PhangNgaBaySection from "@/components/PhangNgaBaySection";
+import { SectionSeparator } from "@/components/SectionSeparatetor";
+
+const bannerImages = [
+  {
+    src: "/image/day-trips/destinations/phang-nga4.jpg",
+    alt: "Phang Nga Bay - Limestone karsts and emerald waters",
+  },
+  {
+    src: "/image/day-trips/destinations/phang-nga1.jpg",
+    alt: "Phang Nga Bay ",
+  },
+  {
+    src: "/image/day-trips/destinations/phang-nga2.jpg",
+    alt: "Phang Nga Bay ",
+  },
+  {
+    src: "/image/day-trips/destinations/phang-nga5.jpg",
+    alt: "Phang Nga Bay ",
+  },
+  {
+    src: "/image/day-trips/destinations/phang-nga3.jpg",
+    alt: "Phang Nga Bay ",
+  },
+];
 
 export default function DayTripsPage() {
   const [currentExperience, setCurrentExperience] = useState(0);
@@ -16,6 +45,9 @@ export default function DayTripsPage() {
     src: string;
     alt: string;
   } | null>(null);
+  const [loadedBanners, setLoadedBanners] = useState<Set<number>>(new Set());
+  const [currentBanner, setCurrentBanner] = useState(0);
+  const { scrollTo } = useSmoothScroll();
 
   const openImageModal = (imageSrc: string, imageAlt: string) => {
     setModalImage({ src: imageSrc, alt: imageAlt });
@@ -24,6 +56,60 @@ export default function DayTripsPage() {
   const closeImageModal = () => {
     setModalImage(null);
   };
+
+  // Handle banner image loading
+  const handleBannerLoad = (index: number) => {
+    setLoadedBanners(prev => new Set([...prev, index]));
+  };
+
+  // Auto-rotate banners
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBanner((prev) => (prev + 1) % bannerImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [bannerImages.length]);
+
+  // Parallax scrolling effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.pageYOffset;
+      const windowHeight = window.innerHeight;
+
+      // Parallax effect ONLY for hero background images
+      const parallaxElements = document.querySelectorAll('.parallax-bg');
+      parallaxElements.forEach((element) => {
+        const speed = 0.5; // Parallax speed
+        const yPos = -(scrolled * speed);
+        (element as HTMLElement).style.transform = `translateY(${yPos}px)`;
+      });
+
+      // Upward parallax effect for hero content (text moves opposite direction)
+      const heroContent = document.querySelector('.hero-content');
+      if (heroContent) {
+        const contentRate = scrolled * -0.2; // Negative for upward movement, slower than background
+        (heroContent as HTMLElement).style.transform = `translateY(${contentRate}px)`;
+      }
+
+      // Fade effect for hero overlay as user scrolls
+      const heroOverlay = document.querySelector('.hero-overlay');
+      if (heroOverlay) {
+        const fadeStart = windowHeight * 0.3;
+        const fadeEnd = windowHeight * 0.8;
+        let opacity = 0.4;
+
+        if (scrolled > fadeStart) {
+          const fadeProgress = Math.min((scrolled - fadeStart) / (fadeEnd - fadeStart), 1);
+          opacity = 0.4 + (fadeProgress * 0.3); // Gradually darken
+        }
+
+        (heroOverlay as HTMLElement).style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const experiences = [
     {
@@ -53,8 +139,121 @@ export default function DayTripsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Hero Section - Fixed with Parallax */}
+      <section className="hero-section fixed inset-0 bg-white overflow-hidden z-0">
+        {/* Hero Banner Carousel - Always Full Height */}
+        <div className="absolute inset-0 h-screen overflow-hidden">
+          {bannerImages.map((banner, index) => {
+            const isLoaded = loadedBanners.has(index);
+            const isActive = index === currentBanner;
+
+            return (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-opacity duration-1000 ${isActive ? 'opacity-100' : 'opacity-0'}`}
+              >
+                {/* Loading placeholder */}
+                <div
+                  className={`absolute inset-0 bg-gray-300 transition-opacity duration-700 ${isLoaded ? 'opacity-0' : 'opacity-100'
+                    }`}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-300 via-gray-200 to-gray-300 animate-pulse"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+                </div>
+
+                {/* Hero image with smooth loading */}
+                <div className="parallax-bg absolute inset-0">
+                  <Image
+                    src={banner.src}
+                    alt={banner.alt}
+                    fill
+                    className={`object-cover transition-all duration-700 ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+                      }`}
+                    priority={index === 0}
+                    onLoad={() => handleBannerLoad(index)}
+                    sizes="100vw"
+                    quality={85}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R+Rw="
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Dynamic Overlay for text readability */}
+        <div className="hero-overlay absolute inset-0 bg-black/40 transition-all duration-300" />
+
+        {/* Hero Content Overlay - Minimal Design */}
+        <div className="hero-content absolute inset-0 flex items-center justify-center z-10">
+          <div className="max-w-5xl mx-auto px-4 text-center">
+
+            <PageHeaderAnimation delay={600}>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-white mb-8 leading-tight tracking-wide">
+                Discover Amazing Islands
+                <span className="block text-2xl md:text-3xl lg:text-4xl font-extralight mt-4 text-white/80">
+                  Family-friendly tours and excursions with safe transportation and child seats
+                </span>
+              </h1>
+            </PageHeaderAnimation>
+
+            {/* <PageHeaderAnimation delay={900}>
+              <p className="text-lg md:text-xl text-white/70 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+                Safe, professional airport transfers with imported Britax child seats from Sweden
+              </p>
+            </PageHeaderAnimation> */}
+
+            <PageHeaderAnimation delay={1200}>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                {/* Primary Glossy Button */}
+                <button
+                  className="group relative overflow-hidden bg-white/10 backdrop-blur-md text-white hover:bg-white/20 font-medium px-12 py-4 transition-all duration-300 border border-white/30 hover:border-white/50 shadow-lg hover:shadow-xl"
+                  onClick={() => window.location.href = '/contact'}
+                >
+                  {/* Glossy overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-black/10"></div>
+                  {/* Shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12"></div>
+                  {/* Glass reflection */}
+                  <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/15 to-transparent"></div>
+                  <span className="relative z-10 text-lg tracking-wider uppercase">Book Your Advanture</span>
+                </button>
+
+                {/* Secondary Minimal Button */}
+                <button
+                  className="group relative text-white/90 hover:text-white font-light text-lg tracking-wide transition-all duration-300"
+                  onClick={() => { scrollTo('airport-transfer-destination') }}
+                >
+                  <span className="relative z-10">View Destinations</span>
+                  <div className="absolute bottom-0 left-0 w-0 h-px bg-white/60 group-hover:w-full transition-all duration-300"></div>
+                </button>
+              </div>
+            </PageHeaderAnimation>
+          </div>
+        </div>
+
+        {/* Carousel Indicators */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+          {bannerImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentBanner(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentBanner
+                ? 'bg-white scale-110'
+                : 'bg-white/50 hover:bg-white/70'
+                }`}
+            />
+          ))}
+        </div>
+      </section>
+
+
+
+      {/* Spacer to push content below fixed hero */}
+      <div className="h-screen"></div>
       {/* Hero Section */}
-      <section className="relative h-screen overflow-hidden">
+      {/* <section className="relative h-screen overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/image/day-trips/destinations/phi-phi1.jpg"
@@ -108,588 +307,29 @@ export default function DayTripsPage() {
             </PageHeaderAnimation>
           </div>
         </div>
-      </section>
+      </section> */}
+      <DayTripActivitiesSection />
+      <SectionSeparator />
+      <PhangNgaBaySection />
+      <SectionSeparator />
+      <PhiPhiIslandSection openImageModal={openImageModal} />
+      <SectionSeparator />
+      <SimilanIslandSection openImageModal={openImageModal} />
+      <ContactFooter
+        title="Ready to Explore Phuket?"
+        description="Contact us for package day trips and tour bookings. All tours
+            include safe transportation with child seats"
+        className="relative bg-blue-900 rounded-lg"
+      />
+      {/* Image Modal */}
+      <ImageModal
+        isOpen={modalImage !== null}
+        onClose={closeImageModal}
+        imageSrc={modalImage?.src || ""}
+        imageAlt={modalImage?.alt || ""}
+      />
 
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        {/* Tour Overview */}
-        <section className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Popular Day Trips from Phuket
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Explore the beauty of Thailand with our family-friendly tours. All
-              tours include safe transportation with child seats, professional
-              guides, and travel insurance.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
-              <CardBody className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-                  <FaShip className="text-3xl text-blue-800" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                  Island Tours
-                </h3>
-                <p className="text-gray-600 text-lg">
-                  Visit stunning islands like Phi Phi, James Bond Island, and
-                  pristine beaches with crystal clear waters.
-                </p>
-              </CardBody>
-            </Card>
-
-            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
-              <CardBody className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-                  <FaCamera className="text-3xl text-blue-800" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                  Cultural Tours
-                </h3>
-                <p className="text-gray-600 text-lg">
-                  {`Explore Phuket's rich culture with visits to Big Buddha,
-                  temples, and historic Old Town.`}
-                </p>
-              </CardBody>
-            </Card>
-
-            <Card className="p-8 hover:shadow-md transition-shadow duration-300 !bg-white shadow-sm">
-              <CardBody className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-                  <FaSwimmer className="text-3xl text-blue-800" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                  Adventure Tours
-                </h3>
-                <p className="text-gray-600 text-lg">
-                  Family-friendly adventures including elephant sanctuaries,
-                  water parks, and nature experiences.
-                </p>
-              </CardBody>
-            </Card>
-          </div>
-        </section>
-
-        {/* Phang Nga Bay Tour */}
-        <section className="mb-20">
-          <div className="relative h-96 rounded-2xl overflow-hidden mb-8">
-            <Image
-              src="/image/day-trips/destinations/phang-nga5.jpg"
-              alt="Phang Nga Bay"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-            <div className="absolute bottom-8 left-8 right-8 text-white">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Phang Nga Bay Day Trip
-              </h2>
-              <p className="text-xl text-gray-200">
-                James Bond Island & Sea Gypsy Village
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">
-                Tour Highlights
-              </h3>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Visit famous James Bond Island (Koh Tapu)</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Explore Koh Panyee floating village</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Long tail boat ride through mangroves</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Cave exploration and scenic viewpoints</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Traditional Thai lunch included</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Visit Sawan Kuha Temple cave</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Samet Nangshe Viewpoint panorama</span>
-                </li>
-              </ul>
-            </div>
-            <div>
-              {/**Destination Sample gallery1 */}
-              <GalleryParallax
-                images={[
-                  {
-                    src: "/image/day-trips/destinations/phang-nga4.jpg",
-                    alt: "Phang Nga Bay - Limestone karsts and emerald waters",
-                  },
-                  {
-                    src: "/image/day-trips/destinations/phang-nga1.jpg",
-                    alt: "Phang Nga Bay ",
-                  },
-                  {
-                    src: "/image/day-trips/destinations/phang-nga2.jpg",
-                    alt: "Phang Nga Bay ",
-                  },
-                  {
-                    src: "/image/day-trips/destinations/phang-nga5.jpg",
-                    alt: "Phang Nga Bay ",
-                  },
-                  {
-                    src: "/image/day-trips/destinations/phang-nga3.jpg",
-                    alt: "Phang Nga Bay ",
-                  },
-                ]}
-                title="Phang Nga Bay Gallery"
-                description="Explore the stunning limestone formations and crystal-clear waters"
-                className="mb-6"
-              />
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">
-                Sample Itinerary
-              </h3>
-              <div className="space-y-4">
-                <div className="flex gap-4 items-center">
-                  <span className="font-bold text-blue-600 text-lg w-16">
-                    07:00
-                  </span>
-                  <span className="text-gray-700">
-                    Hotel pickup with child seat equipped vehicle
-                  </span>
-                </div>
-                <div className="flex gap-4 items-center">
-                  <span className="font-bold text-blue-600 text-lg w-16">
-                    08:30
-                  </span>
-                  <span className="text-gray-700">
-                    Long tail boat ride to James Bond Island
-                  </span>
-                </div>
-                <div className="flex gap-4 items-center">
-                  <span className="font-bold text-blue-600 text-lg w-16">
-                    12:00
-                  </span>
-                  <span className="text-gray-700">
-                    Lunch at National Park restaurant
-                  </span>
-                </div>
-                <div className="flex gap-4 items-center">
-                  <span className="font-bold text-blue-600 text-lg w-16">
-                    13:30
-                  </span>
-                  <span className="text-gray-700">
-                    Visit Sawan Kuha Temple cave
-                  </span>
-                </div>
-                <div className="flex gap-4 items-center">
-                  <span className="font-bold text-blue-600 text-lg w-16">
-                    14:30
-                  </span>
-                  <span className="text-gray-700">Samet Nangshe Viewpoint</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Phi Phi Island Tour */}
-        <section className="mb-20">
-          <div className="relative h-96 rounded-2xl overflow-hidden mb-8">
-            <Image
-              src="/image/day-trips/destinations/phi-phi3.jpg"
-              alt="Phi Phi Island"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-            <div className="absolute bottom-8 left-8 right-8 text-white">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Phi Phi Island Day Trip
-              </h2>
-              <p className="text-xl text-gray-200">
-                Maya Bay & Crystal Clear Waters
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              {/**Destination Sample gallery2 */}
-              <GalleryParallax
-                images={[
-                  {
-                    src: "/image/day-trips/destinations/phi-phi1.jpg",
-                    alt: "Phi Phi Island - Maya Bay and limestone cliffs",
-                  },
-                  {
-                    src: "/image/day-trips/destinations/phi-phi2.jpg",
-                    alt: "Phi Phi Island - Tropical paradise beaches",
-                  },
-                  {
-                    src: "/image/day-trips/destinations/phi-phi3.jpg",
-                    alt: "Phi Phi Island - Crystal clear waters and pristine beaches",
-                  },
-                  {
-                    src: "/image/day-trips/destinations/phi-phi4.jpg",
-                    alt: "Phi Phi Island - Crystal clear waters and pristine beaches",
-                  },
-                ]}
-                title="Phi Phi Island Gallery"
-                description="Discover the breathtaking beauty of Thailand's most famous islands"
-                className="mb-6"
-              />
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">
-                About Phi Phi Islands
-              </h3>
-              <p className="text-gray-700 mb-4 leading-relaxed">
-                Koh Phi Phi islands are located 42 km from Phuket in the Andaman
-                Sea. Part of Nopharat Thara Beach – Phi Phi Islands National
-                Park, featuring stunning limestone cliffs and pristine beaches.
-              </p>
-              <p className="text-gray-700 mb-6 leading-relaxed">
-                {`Maya Bay was featured in the Hollywood movie "The Beach" and
-                epitomizes the stunning beauty of these islands with pellucid
-                aquamarine water surrounded by towering limestone cliffs.`}
-              </p>
-              <div className="bg-green-50 p-6 rounded-xl">
-                <h4 className="font-bold mb-3 text-green-900">Key Tips:</h4>
-                <ul className="space-y-2 text-green-800">
-                  <li className="flex items-start gap-2">
-                    <span className="text-green-600">•</span>
-                    <span>Best time to visit: November to April</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-green-600">•</span>
-                    <span>Perfect for snorkeling and diving</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-green-600">•</span>
-                    <span>Vibrant nightlife at Tonsai Beach</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-green-600">•</span>
-                    <span>Exotic marine life including leopard sharks</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">
-                Tour Features
-              </h3>
-              <ul className="space-y-3 text-gray-700 mb-8">
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Visit Maya Bay (The Beach movie location)</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Snorkeling in crystal clear waters</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Explore Phi Phi Don and Phi Phi Le</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Lunch at beachside restaurant</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Swimming and beach relaxation</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Professional snorkeling equipment provided</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Safe transportation with child seats</span>
-                </li>
-              </ul>
-              <div className="bg-blue-50 p-6 rounded-xl">
-                <p className="text-blue-800 leading-relaxed">
-                  <strong className="text-blue-900">Family Friendly:</strong>{" "}
-                  Suitable for all ages with shallow snorkeling areas and calm
-                  beaches perfect for children.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Similan Islands Tour */}
-        <section className="mb-20">
-          <div className="relative h-96 rounded-2xl overflow-hidden mb-8">
-            <Image
-              src="/image/day-trips/destinations/similan-islands1.png"
-              alt="Similan Islands"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-            <div className="absolute bottom-8 left-8 right-8 text-white">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Similan Islands
-              </h2>
-              <p className="text-xl text-gray-200">
-                World-Class Diving & Pristine Nature
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">
-                About Similan Islands
-              </h3>
-              <p className="text-gray-700 mb-4 leading-relaxed">
-                The Similan Islands are located in the Andaman Sea on the West
-                Coast of Southern Thailand, in Phang-nga province. The
-                archipelago consists of eleven islands within the Mu Koh Similan
-                National Park, covering over 140 square kilometers.
-              </p>
-              <p className="text-gray-700 mb-6 leading-relaxed">
-                These islands are the perfect destination for tourists who like
-                to dive and explore remote places full of wildlife. All islands
-                are surrounded by crystal clear shallow waters with spectacular
-                coral reefs and unmatched marine life.
-              </p>
-              <div className="bg-green-50 p-6 rounded-xl">
-                <p className="text-green-800 leading-relaxed">
-                  <strong className="text-green-900">Season:</strong> Similan
-                  Islands are typically open from October to May. Best diving
-                  conditions from November to April.
-                </p>
-              </div>
-            </div>
-            <div>
-              {/**Destination Sample gallery3 */}
-              <GalleryParallax
-                images={[
-                  {
-                    src: "/image/day-trips/destinations/similan-islands1.png",
-                    alt: "Similan Islands - Pristine white sand beaches",
-                  },
-                  {
-                    src: "/image/day-trips/destinations/similan2.jpg",
-                    alt: "Similan Islands - World-class diving and pristine coral reefs",
-                  },
-                  {
-                    src: "/image/day-trips/destinations/similan3.jpg",
-                    alt: "Similan Islands - World-class diving and pristine coral reefs",
-                  },
-                  {
-                    src: "/image/day-trips/destinations/similan1.jpg",
-                    alt: "Similan Islands - World-class diving and pristine coral reefs",
-                  },
-                ]}
-                title="Similan Islands Gallery"
-                description="Experience world-class diving and pristine coral reefs"
-                className="mb-6"
-              />
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">
-                Tour Highlights
-              </h3>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>World-class diving and snorkeling</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Pristine coral reefs and marine life</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Crystal clear shallow waters</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Spectacular rock formations</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Remote and unspoiled nature</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Professional diving equipment</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>Experienced dive guides</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Other Activities */}
-        <section className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Other Popular Activities
-            </h2>
-            <p className="text-lg text-gray-600">
-              More family-friendly attractions and experiences in Phuket
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Shows & Entertainment */}
-            <div
-              className="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer group/image"
-              onClick={() =>
-                openImageModal(
-                  "/image/home/destinations/3phuket-old-town.png",
-                  "Shows & Entertainment - Phuket FantaSea, Carnival Magic, Cabaret shows"
-                )
-              }
-              title="Click to view full size image">
-              <Image
-                src="/image/home/destinations/3phuket-old-town.png"
-                alt="Shows & Entertainment - Phuket FantaSea, Carnival Magic, Cabaret shows"
-                fill
-                className="object-cover transition-transform duration-500 group-hover/image:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-
-              {/* Hover Overlay with Magnifying Glass */}
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
-                  <svg
-                    className="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                    />
-                  </svg>
-                </div>
-              </div>
-
-              <div className="absolute bottom-6 left-6 right-6">
-                <h3 className="text-2xl font-bold mb-2 text-blue-900 bg-white/90 px-3 py-1 rounded-lg">
-                  Shows & Entertainment
-                </h3>
-                <p className="text-white text-sm mb-3 px-3">
-                  Phuket FantaSea, Carnival Magic, Cabaret shows
-                </p>
-              </div>
-            </div>
-
-            {/* Animal Experiences */}
-            <div
-              className="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer group/image"
-              onClick={() =>
-                openImageModal(
-                  "/image/home/destinations/6mini-zoo -in-phuket.png",
-                  "Animal Experiences - Elephant sanctuary, Tiger park, Mini zoo"
-                )
-              }
-              title="Click to view full size image">
-              <Image
-                src="/image/home/destinations/6mini-zoo -in-phuket.png"
-                alt="Animal Experiences - Elephant sanctuary, Tiger park, Mini zoo"
-                fill
-                className="object-cover transition-transform duration-500 group-hover/image:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-
-              {/* Hover Overlay with Magnifying Glass */}
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
-                  <svg
-                    className="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                    />
-                  </svg>
-                </div>
-              </div>
-
-              <div className="absolute bottom-6 left-6 right-6">
-                <h3 className="text-2xl font-bold mb-2 text-blue-900 bg-white/90 px-3 py-1 rounded-lg">
-                  Animal Experiences
-                </h3>
-                <p className="text-white text-sm mb-3 px-3">
-                  Elephant sanctuary, Tiger park, Mini zoo
-                </p>
-              </div>
-            </div>
-
-            {/* Water Activities */}
-            <div
-              className="group relative h-80 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer group/image"
-              onClick={() =>
-                openImageModal(
-                  "/image/day-trips/other/water1.jpg",
-                  "Water Activities - Water parks, swimming, beach activities"
-                )
-              }
-              title="Click to view full size image">
-              <Image
-                src="/image/day-trips/other/water1.jpg"
-                alt="Water Activities - Water parks, swimming, beach activities"
-                fill
-                className="object-cover transition-transform duration-500 group-hover/image:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-
-              {/* Hover Overlay with Magnifying Glass */}
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform scale-75 group-hover/image:scale-100 transition-transform duration-300">
-                  <svg
-                    className="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                    />
-                  </svg>
-                </div>
-              </div>
-
-              <div className="absolute bottom-6 left-6 right-6">
-                <h3 className="text-2xl font-bold mb-2 text-blue-900 bg-white/90 px-3 py-1 rounded-lg">
-                  Water Activities
-                </h3>
-                <p className="text-white text-sm mb-3 px-3">
-                  Water parks, swimming, beach activities
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Client Experience Parallax */}
+      {/* <div className="relative max-w-7xl mx-auto px-4 py-12">
         <section className="py-20 bg-gray-900 text-white overflow-hidden rounded-3xl mx-4 my-8">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
@@ -701,17 +341,15 @@ export default function DayTripsPage() {
               </p>
             </div>
 
-            {/* Horizontal Scrolling Experience Images */}
             <div className="relative">
               <div className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide">
                 {experiences.map((experience, index) => (
                   <div
                     key={experience.title}
-                    className={`flex-shrink-0 w-96 h-80 relative rounded-2xl overflow-hidden shadow-lg transition-all duration-500 ${
-                      index === currentExperience
-                        ? "scale-105 shadow-2xl"
-                        : "scale-100"
-                    }`}>
+                    className={`flex-shrink-0 w-96 h-80 relative rounded-2xl overflow-hidden shadow-lg transition-all duration-500 ${index === currentExperience
+                      ? "scale-105 shadow-2xl"
+                      : "scale-100"
+                      }`}>
                     <Image
                       src={experience.image}
                       alt={experience.title}
@@ -756,23 +394,7 @@ export default function DayTripsPage() {
             </div>
           </div>
         </section>
-
-        {/* Contact CTA */}
-        <ContactFooter
-          title="Ready to Explore Phuket?"
-          description="Contact us for package day trips and tour bookings. All tours
-            include safe transportation with child seats"
-          className="bg-blue-900 rounded-lg mt-16"
-        />
-
-        {/* Image Modal */}
-        <ImageModal
-          isOpen={modalImage !== null}
-          onClose={closeImageModal}
-          imageSrc={modalImage?.src || ""}
-          imageAlt={modalImage?.alt || ""}
-        />
-      </div>
+      </div> */}
     </div>
   );
 }
