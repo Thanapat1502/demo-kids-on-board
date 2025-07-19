@@ -168,7 +168,7 @@ export default function RootLayout({
     openingHours: "Mo-Su 00:00-23:59",
     sameAs: [
       "https://wa.me/66815372657",
-      "https://line.me/ti/p/kampanart-travel",
+      "https://line.me/ti/p/~kampanart-travel",
     ],
   };
 

@@ -59,7 +59,7 @@ export default function FloatingContactButton({
     {
       icon: FaLine,
       label: "Line",
-      href: "https://line.me/ti/p/kampanart-travel",
+      href: "https://line.me/ti/p/~kampanart-travel",
       bgColor: "bg-green-400 hover:bg-green-500",
       textColor: "text-white",
       target: "_blank",
@@ -70,11 +70,10 @@ export default function FloatingContactButton({
     <div className={`fixed bottom-6 right-6 z-50 ${className}`}>
       {/* Contact Options */}
       <div
-        className={`flex flex-col justify-center items-center gap-3 mb-4 transition-all duration-300 ${
-          isOpen
+        className={`flex flex-col justify-center items-center gap-3 mb-4 transition-all duration-300 ${isOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-4 pointer-events-none"
-        }`}>
+          }`}>
         {contactOptions.map((option, index) => {
           const IconComponent = option.icon;
           return (
@@ -108,11 +107,10 @@ export default function FloatingContactButton({
       {/* Main Toggle Button */}
       <Button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ${
-          isOpen
+        className={`w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ${isOpen
             ? "bg-red-500 hover:bg-red-600 text-white rotate-180"
             : "bg-blue-600 hover:bg-blue-700 text-white"
-        }`}
+          }`}
         isIconOnly>
         {isOpen ? (
           <FaTimes className="text-2xl" />
