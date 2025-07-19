@@ -5,6 +5,15 @@ export const metadata: Metadata = {
   description:
     "Family-friendly day trips and tours from Phuket with child seat safety. Visit Phi Phi Island, Phang Nga Bay, Similan Islands with imported Britax child seats. Professional guides and safe transportation included.",
   keywords: [
+    "Phuket transfer",
+    "transferphuket",
+    "phukettravel",
+    "trips phuket",
+    "phuket carseat",
+    "taxi with baby seat",
+    "phuket childseat",
+    "kids on board",
+    "rear facing car seat",
     "Phuket day trips",
     "Phi Phi Island tours",
     "Phang Nga Bay tours",

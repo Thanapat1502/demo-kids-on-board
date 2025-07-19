@@ -26,6 +26,15 @@ export const metadata: Metadata = {
   description:
     "Professional travel services in Phuket with imported Britax child seats from Sweden. Airport transfers, day trips, tours, and house rentals with maximum safety for families. Licensed TAT operator with travel insurance included.",
   keywords: [
+    "Phuket transfer",
+    "transferphuket",
+    "phukettravel",
+    "trips phuket",
+    "phuket carseat",
+    "taxi with baby seat",
+    "phuket childseat",
+    "kids on board",
+    "rear facing car seat",
     "Phuket child seat",
     "airport transfer Phuket",
     "Phuket day trips",

@@ -5,6 +5,15 @@ export const metadata: Metadata = {
   description:
     "Professional airport transfer service in Phuket with imported Britax child seats. Safe transport to/from Phuket Airport to hotels in Phuket, Khao Lak, Krabi, and Koh Lanta. Licensed TAT operator with travel insurance.",
   keywords: [
+    "Phuket transfer",
+    "transferphuket",
+    "phukettravel",
+    "trips phuket",
+    "phuket carseat",
+    "taxi with baby seat",
+    "phuket childseat",
+    "kids on board",
+    "rear facing car seat",
     "Phuket airport transfer",
     "airport taxi Phuket",
     "Phuket airport transport child seat",

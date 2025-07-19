@@ -5,6 +5,15 @@ export const metadata: Metadata = {
   description:
     "Contact Kampanart Travel for safe family travel services in Phuket. Book airport transfers, day trips, tours, and house rentals with imported Britax child seats. WhatsApp, Line, email, and phone booking available.",
   keywords: [
+    "Phuket transfer",
+    "transferphuket",
+    "phukettravel",
+    "trips phuket",
+    "phuket carseat",
+    "taxi with baby seat",
+    "phuket childseat",
+    "kids on board",
+    "rear facing car seat",
     "contact Phuket child seat",
     "book Phuket tours",
     "Kampanart Travel contact",

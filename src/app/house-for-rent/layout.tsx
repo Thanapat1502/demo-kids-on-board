@@ -5,6 +5,15 @@ export const metadata: Metadata = {
   description:
     "Garden house style resort for rent in prime Thalang location, Phuket. Family-friendly accommodation near Laguna complex, Bangtao Beach, and golf courses. Daily and weekly rental available with transportation services.",
   keywords: [
+    "Phuket transfer",
+    "transferphuket",
+    "phukettravel",
+    "trips phuket",
+    "phuket carseat",
+    "taxi with baby seat",
+    "phuket childseat",
+    "kids on board",
+    "rear facing car seat",
     "Phuket house rental",
     "Laguna Phuket accommodation",
     "Thalang house for rent",
