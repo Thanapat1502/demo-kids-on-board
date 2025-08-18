@@ -1,113 +1,43 @@
-# Next.js + HeroUI Project
+# ✈️ Travel Service — Phuket (Family & Child Seat Focus)  
 
-A modern, SEO-optimized web application built with Next.js 15, TypeScript, Tailwind CSS 3.4.5, and HeroUI components.
+A **static travel website** designed for families visiting Phuket.  
+The site highlights **child seat services** for young children and **family-friendly tours**, wrapped in a **minimal & elegant design** for a premium travel experience.  
 
-## 🚀 Features
+---
 
-- ⚡ **Next.js 15** with App Router
-- 🔷 **TypeScript** for type safety
-- 🎨 **Tailwind CSS 3.4.5** for styling
-- 🎯 **HeroUI** for beautiful React components
-- 🌙 **Dark/Light mode** with next-themes
-- 📱 **Responsive design**
-- 🔍 **SEO optimized** with comprehensive meta tags
-- 🤖 **Robots.txt** and **Sitemap.xml** included
-- 📄 **PWA manifest** for progressive web app support
-- ⚡ **Turbopack** for fast development
+## ✨ Features  
 
-## 🛠️ Tech Stack
+- 🌟 **Elegant Minimal UI** — clean layout, premium feel  
+- 👨‍👩‍👧 Family-oriented — highlights tours & services safe for kids  
+- 🪑 Dedicated **Child Seat Service** showcase  
+- 📱 Fully responsive design across desktop & mobile  
+- ⚡ Delivered in **just 5 days** with AI-assisted development  
 
-- **Framework:** Next.js 15
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS 3.4.5
-- **UI Components:** HeroUI
-- **Theme Management:** next-themes
-- **Font:** Geist Sans & Geist Mono
+---
 
-## 📦 Installation
+## 🛠️ Tech Stack  
 
-1. Clone the repository:
+- **Next.js** — Static Site Generation (SSG)  
+- **Tailwind CSS** — For elegant, minimal styling  
+- **Hero UI / shadcn/ui** — Component styling  
+- **Vercel** — Hosting & deployment  
 
-```bash
-git clone <your-repo-url>
-cd nextjs-heroui-project
-```
+---
 
-2. Install dependencies:
+## 📸 Screenshots  
+
+*(Add UI screenshots or demo GIF here)*  
+
+---
+
+## 🚀 Getting Started  
 
 ```bash
-npm install
-```
+# Clone repo
+git clone https://github.com/yourusername/phuket-family-travel.git  
 
-3. Run the development server:
+# Install dependencies
+npm install  
 
-```bash
-npm run dev
-```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## 🏗️ Build & Deploy
-
-```bash
-# Build for production
-npm run build
-
-# Start production server
-npm start
-
-# Lint code
-npm run lint
-```
-
-## 📁 Project Structure
-
-```
-src/
-├── app/
-│   ├── globals.css          # Global styles with Tailwind
-│   ├── layout.tsx           # Root layout with SEO metadata
-│   ├── page.tsx             # Home page with HeroUI showcase
-│   ├── providers.tsx        # HeroUI and theme providers
-│   ├── sitemap.ts           # Dynamic sitemap generation
-│   └── manifest.ts          # PWA manifest
-├── components/              # Reusable components (add your own)
-└── lib/                     # Utility functions (add your own)
-```
-
-## 🎨 Customization
-
-### Theme Configuration
-
-The project includes a comprehensive theme setup in `tailwind.config.ts` with HeroUI integration.
-
-### SEO Configuration
-
-Update the metadata in `src/app/layout.tsx` to match your project:
-
-- Update `metadataBase` URL
-- Modify OpenGraph and Twitter card settings
-- Update site name and descriptions
-
-### HeroUI Components
-
-All HeroUI components are available. Check the [HeroUI documentation](https://heroui.com/docs) for usage examples.
-
-## 📚 Documentation
-
-- [Next.js Documentation](https://nextjs.org/docs)
-- [HeroUI Documentation](https://heroui.com/docs)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [TypeScript Documentation](https://www.typescriptlang.org/docs)
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+# Run locally
+npm run dev  
