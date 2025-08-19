@@ -48,7 +48,7 @@ The site highlights **child seat services** for young children and **family-frie
 
 ```bash
 # Clone repo
-git clone https://github.com/yourusername/phuket-family-travel.git
+git clone https://github.com/Thanapat1502/demo-kids-on-board/tree/demo
 
 # Install dependencies
 yarn
