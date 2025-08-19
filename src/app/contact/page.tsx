@@ -25,20 +25,20 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
-    type: 'success' | 'error' | null;
+    type: "success" | "error" | null;
     message: string;
-  }>({ type: null, message: '' });
+  }>({ type: null, message: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus({ type: null, message: '' });
+    setSubmitStatus({ type: null, message: "" });
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -47,8 +47,9 @@ export default function ContactPage() {
 
       if (response.ok) {
         setSubmitStatus({
-          type: 'success',
-          message: 'Thank you! Your message has been sent successfully. We\'ll get back to you within 1 hour during business hours.'
+          type: "success",
+          message:
+            "Thank you! Your message has been sent successfully. We'll get back to you within 1 hour during business hours.",
         });
         // Reset form
         setFormData({
@@ -60,22 +61,20 @@ export default function ContactPage() {
         });
       } else {
         setSubmitStatus({
-          type: 'error',
-          message: result.error || 'Something went wrong. Please try again.'
+          type: "error",
+          message: result.error || "Something went wrong. Please try again.",
         });
       }
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error("Form submission error:", error);
       setSubmitStatus({
-        type: 'error',
-        message: 'Network error. Please check your connection and try again.'
+        type: "error",
+        message: "Network error. Please check your connection and try again.",
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-
-
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -88,43 +87,46 @@ export default function ContactPage() {
       const windowHeight = window.innerHeight;
 
       // Enhanced parallax effect for hero background images
-      const parallaxElements = document.querySelectorAll('.parallax-bg');
+      const parallaxElements = document.querySelectorAll(".parallax-bg");
       parallaxElements.forEach((element) => {
         const speed = 0.5; // Parallax speed
         const yPos = -(scrolled * speed); // NEGATIVE - moves up slower than scroll
         (element as HTMLElement).style.transform = `translateY(${yPos}px)`;
-        (element as HTMLElement).style.willChange = 'transform'; // Optimize for smooth animation
+        (element as HTMLElement).style.willChange = "transform"; // Optimize for smooth animation
       });
 
       // Enhanced upward parallax effect for hero content (text moves upward when scrolling down)
-      const heroContent = document.querySelector('.hero-content');
+      const heroContent = document.querySelector(".hero-content");
       if (heroContent) {
         const contentRate = scrolled * -0.3; // Increased rate for more noticeable effect
-        (heroContent as HTMLElement).style.transform = `translateY(${contentRate}px)`;
-        (heroContent as HTMLElement).style.willChange = 'transform'; // Optimize for smooth animation
+        (heroContent as HTMLElement).style.transform =
+          `translateY(${contentRate}px)`;
+        (heroContent as HTMLElement).style.willChange = "transform"; // Optimize for smooth animation
       }
 
       // Fade effect for hero overlay as user scrolls
-      const heroOverlay = document.querySelector('.hero-overlay');
+      const heroOverlay = document.querySelector(".hero-overlay");
       if (heroOverlay) {
         const fadeStart = windowHeight * 0.3;
         const fadeEnd = windowHeight * 0.8;
         let opacity = 0.4;
 
         if (scrolled > fadeStart) {
-          const fadeProgress = Math.min((scrolled - fadeStart) / (fadeEnd - fadeStart), 1);
-          opacity = 0.4 + (fadeProgress * 0.3); // Gradually darken
+          const fadeProgress = Math.min(
+            (scrolled - fadeStart) / (fadeEnd - fadeStart),
+            1
+          );
+          opacity = 0.4 + fadeProgress * 0.3; // Gradually darken
         }
 
-        (heroOverlay as HTMLElement).style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+        (heroOverlay as HTMLElement).style.backgroundColor =
+          `rgba(0, 0, 0, ${opacity})`;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -151,7 +153,9 @@ export default function ContactPage() {
         <div className="hero-overlay absolute inset-0 bg-black/40 transition-all duration-300" />
 
         {/* Hero Content - Enhanced with Parallax */}
-        <div className="hero-content absolute inset-0 flex items-center justify-center z-10" style={{ transform: 'translateY(0px)', willChange: 'transform' }}>
+        <div
+          className="hero-content absolute inset-0 flex items-center justify-center z-10"
+          style={{ transform: "translateY(0px)", willChange: "transform" }}>
           <div className="max-w-5xl mx-auto px-4 text-center">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-white mb-8 leading-tight tracking-wide">
               Contact Us
@@ -187,7 +191,7 @@ export default function ContactPage() {
               <button
                 className="group relative text-white/90 hover:text-white font-light text-lg tracking-wide transition-all duration-300"
                 onClick={() =>
-                  window.open("https://wa.me/66815372657", "_blank")
+                  window.open("https://wa.me/66850994775", "_blank")
                 }>
                 <span className="relative z-10">WhatsApp Now</span>
                 <div className="absolute bottom-0 left-0 w-0 h-px bg-white/60 group-hover:w-full transition-all duration-300"></div>
@@ -198,7 +202,7 @@ export default function ContactPage() {
       </section>
 
       {/* Main Content - Positioned above hero - SAME AS DAY-TRIPS */}
-      <main className="relative z-10 bg-gray-50" style={{ marginTop: '100vh' }}>
+      <main className="relative z-10 bg-gray-50" style={{ marginTop: "100vh" }}>
         {/* Contact Methods Section - Minimal Style */}
         <section className="py-20 bg-white relative z-20">
           <div className="max-w-7xl mx-auto px-4">
@@ -222,11 +226,11 @@ export default function ContactPage() {
                     Email
                   </h3>
                   <p className="text-gray-600 mb-4 text-sm font-light">
-                    kam.phuket@gmail.com
+                    thanapat15020@gmail.com
                   </p>
                   <Button
                     as="a"
-                    href="mailto:kam.phuket@gmail.com"
+                    href="mailto:thanapat15020@gmail.com"
                     className="bg-gray-900 text-white hover:bg-gray-800 font-light px-6 py-2 transition-colors duration-300"
                     size="sm">
                     Send Email
@@ -244,11 +248,11 @@ export default function ContactPage() {
                     Mobile
                   </h3>
                   <p className="text-gray-600 mb-4 text-sm font-light">
-                    +66 81 537 2657
+                    +66 85 099 4775
                   </p>
                   <Button
                     as="a"
-                    href="tel:+66815372657"
+                    href="tel:+66850994775"
                     className="bg-gray-900 text-white hover:bg-gray-800 font-light px-6 py-2 transition-colors duration-300"
                     size="sm">
                     Call Now
@@ -266,11 +270,11 @@ export default function ContactPage() {
                     WhatsApp
                   </h3>
                   <p className="text-gray-600 mb-4 text-sm font-light">
-                    +66 81 537 2657
+                    +66 85 099 4775
                   </p>
                   <Button
                     as="a"
-                    href="https://wa.me/66815372657"
+                    href="https://wa.me/66850994775"
                     target="_blank"
                     className="bg-gray-900 text-white hover:bg-gray-800 font-light px-6 py-2 transition-colors duration-300"
                     size="sm">
@@ -285,15 +289,16 @@ export default function ContactPage() {
                   <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center bg-gray-50 rounded-full">
                     <FaLine className="text-lg text-gray-600" />
                   </div>
-                  <h3 className="text-lg font-medium mb-2 text-gray-900">Line</h3>
+                  <h3 className="text-lg font-medium mb-2 text-gray-900">
+                    Line
+                  </h3>
                   <p className="text-gray-600 mb-4 text-sm font-light">
-                    kampanart-travel
+                    DEMO LINE
                   </p>
                   <Button
                     className="bg-gray-900 text-white hover:bg-gray-800 font-light px-6 py-2 transition-colors duration-300"
-                    as='a'
+                    as="a"
                     target="_blank"
-                    href="https://line.me/ti/p/~kampanart-travel"
                     size="sm">
                     LINE ID
                   </Button>
@@ -311,9 +316,9 @@ export default function ContactPage() {
                 Send Us a Message
               </h2>
               <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto leading-relaxed">
-                Fill out the form below and we&apos;ll get back to you as soon as
-                possible. Your message will be sent directly to our WhatsApp for
-                quick response.
+                Fill out the form below and we&apos;ll get back to you as soon
+                as possible. Your message will be sent directly to our WhatsApp
+                for quick response.
               </p>
             </div>
 
@@ -321,9 +326,11 @@ export default function ContactPage() {
               <div className="bg-white border border-gray-200 p-8">
                 {/* Status Message */}
                 {submitStatus.type && (
-                  <div className={`mb-6 p-4 rounded-lg border ${submitStatus.type === 'success'
-                    ? 'bg-green-50 border-green-200 text-green-800'
-                    : 'bg-red-50 border-red-200 text-red-800'
+                  <div
+                    className={`mb-6 p-4 rounded-lg border ${
+                      submitStatus.type === "success"
+                        ? "bg-green-50 border-green-200 text-green-800"
+                        : "bg-red-50 border-red-200 text-red-800"
                     }`}>
                     <p className="font-light">{submitStatus.message}</p>
                   </div>
@@ -335,14 +342,17 @@ export default function ContactPage() {
                       label="Full Name"
                       variant="bordered"
                       classNames={{
-                        inputWrapper: "bg-white border-gray-300 hover:border-gray-400 focus-within:!border-gray-900 data-[hover=true]:border-gray-400 data-[focus=true]:!bg-white",
+                        inputWrapper:
+                          "bg-white border-gray-300 hover:border-gray-400 focus-within:!border-gray-900 data-[hover=true]:border-gray-400 data-[focus=true]:!bg-white",
                         input: "text-gray-900 bg-transparent",
                         label: "text-gray-700",
-                        innerWrapper: "bg-transparent"
+                        innerWrapper: "bg-transparent",
                       }}
                       placeholder="Enter your name"
                       value={formData.name}
-                      onValueChange={(value) => handleInputChange("name", value)}
+                      onValueChange={(value) =>
+                        handleInputChange("name", value)
+                      }
                       required
                     />
                     <Input
@@ -350,14 +360,17 @@ export default function ContactPage() {
                       type="email"
                       variant="bordered"
                       classNames={{
-                        inputWrapper: "bg-white border-gray-300 hover:border-gray-400 focus-within:!border-gray-900 data-[hover=true]:border-gray-400 data-[focus=true]:!bg-white",
+                        inputWrapper:
+                          "bg-white border-gray-300 hover:border-gray-400 focus-within:!border-gray-900 data-[hover=true]:border-gray-400 data-[focus=true]:!bg-white",
                         input: "text-gray-900 bg-transparent",
                         label: "text-gray-700",
-                        innerWrapper: "bg-transparent"
+                        innerWrapper: "bg-transparent",
                       }}
                       placeholder="Enter your email"
                       value={formData.email}
-                      onValueChange={(value) => handleInputChange("email", value)}
+                      onValueChange={(value) =>
+                        handleInputChange("email", value)
+                      }
                       required
                     />
                   </div>
@@ -367,23 +380,27 @@ export default function ContactPage() {
                       label="Phone Number"
                       variant="bordered"
                       classNames={{
-                        inputWrapper: "bg-white border-gray-300 hover:border-gray-400 focus-within:!border-gray-900 data-[hover=true]:border-gray-400 data-[focus=true]:!bg-white",
+                        inputWrapper:
+                          "bg-white border-gray-300 hover:border-gray-400 focus-within:!border-gray-900 data-[hover=true]:border-gray-400 data-[focus=true]:!bg-white",
                         input: "text-gray-900 bg-transparent",
                         label: "text-gray-700",
-                        innerWrapper: "bg-transparent"
+                        innerWrapper: "bg-transparent",
                       }}
                       placeholder="Enter your phone"
                       value={formData.phone}
-                      onValueChange={(value) => handleInputChange("phone", value)}
+                      onValueChange={(value) =>
+                        handleInputChange("phone", value)
+                      }
                     />
                     <Input
                       label="Service Interested"
                       variant="bordered"
                       classNames={{
-                        inputWrapper: "bg-white border-gray-300 hover:border-gray-400 focus-within:!border-gray-900 data-[hover=true]:border-gray-400 data-[focus=true]:!bg-white",
+                        inputWrapper:
+                          "bg-white border-gray-300 hover:border-gray-400 focus-within:!border-gray-900 data-[hover=true]:border-gray-400 data-[focus=true]:!bg-white",
                         input: "text-gray-900 bg-transparent",
                         label: "text-gray-700",
-                        innerWrapper: "bg-transparent"
+                        innerWrapper: "bg-transparent",
                       }}
                       placeholder="Airport transfer, Day trips, etc."
                       value={formData.service}
@@ -398,13 +415,16 @@ export default function ContactPage() {
                     variant="bordered"
                     placeholder="Tell us about your requirements, dates, number of passengers, etc."
                     classNames={{
-                      inputWrapper: "bg-white border-gray-300 hover:border-gray-400 focus-within:!border-gray-900 data-[hover=true]:border-gray-400 data-[focus=true]:!bg-white",
+                      inputWrapper:
+                        "bg-white border-gray-300 hover:border-gray-400 focus-within:!border-gray-900 data-[hover=true]:border-gray-400 data-[focus=true]:!bg-white",
                       input: "text-gray-900 bg-transparent",
                       label: "text-gray-700",
-                      innerWrapper: "bg-transparent"
+                      innerWrapper: "bg-transparent",
                     }}
                     value={formData.message}
-                    onValueChange={(value) => handleInputChange("message", value)}
+                    onValueChange={(value) =>
+                      handleInputChange("message", value)
+                    }
                     minRows={4}
                     required
                   />
@@ -415,7 +435,7 @@ export default function ContactPage() {
                     isLoading={isSubmitting}
                     disabled={isSubmitting}
                     className="w-full bg-gray-900 text-white hover:bg-gray-800 font-light tracking-wide transition-colors duration-300 disabled:opacity-50">
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </div>
@@ -431,14 +451,14 @@ export default function ContactPage() {
                     <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
                       <Image
                         src="/image/contact/owner.png"
-                        alt="Mr. Kam - Owner"
+                        alt="Mr. Thanapat - Developer"
                         fill
                         className="object-cover"
                       />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-lg font-medium text-gray-900 mb-1">
-                        Mr. Kam
+                        Mr. Thanapat
                       </h3>
                       <p className="text-gray-600 text-sm font-light mb-3">
                         Owner & Operations Manager
@@ -446,8 +466,8 @@ export default function ContactPage() {
                       <p className="text-gray-600 text-sm font-light leading-relaxed">
                         &quot;Safety is our top priority. As a father myself, I
                         understand the importance of child safety during travel.
-                        That&apos;s why we use only the best imported Britax child
-                        seats.&quot;
+                        That&apos;s why we use only the best imported Britax
+                        child seats.&quot;
                       </p>
                     </div>
                   </div>
@@ -455,7 +475,7 @@ export default function ContactPage() {
 
                 <div className="bg-white border border-gray-200 p-6 mb-6">
                   <h3 className="text-lg font-medium text-gray-900 mb-4">
-                    Kampanart Travel
+                    Phuket Travel
                   </h3>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
@@ -466,7 +486,7 @@ export default function ContactPage() {
                         <p className="font-semibold text-gray-900">
                           TAT Licensed
                         </p>
-                        <p className="text-gray-600">License #32/01713</p>
+                        <p className="text-gray-600">License DEMO</p>
                       </div>
                     </div>
 
@@ -478,7 +498,7 @@ export default function ContactPage() {
                         <p className="font-semibold text-gray-900">
                           Operations Manager
                         </p>
-                        <p className="text-gray-600">Mr. Kam (Taxi and Tours)</p>
+                        <p className="text-gray-600">Mr. Thanapat</p>
                       </div>
                     </div>
 
@@ -544,7 +564,7 @@ export default function ContactPage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button
                 as="a"
-                href="https://wa.me/66815372657"
+                href="https://wa.me/66850994775"
                 target="_blank"
                 size="lg"
                 className="bg-gray-900 text-white hover:bg-gray-800 font-light px-8 py-3 tracking-wide transition-colors duration-300">
@@ -552,7 +572,7 @@ export default function ContactPage() {
               </Button>
               <Button
                 as="a"
-                href="tel:+66815372657"
+                href="tel:+66850994775"
                 size="lg"
                 className="bg-white text-gray-900 hover:bg-gray-50 font-light px-8 py-3 tracking-wide border border-gray-200 transition-colors duration-300">
                 Call Now

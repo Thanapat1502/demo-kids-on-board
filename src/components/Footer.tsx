@@ -10,15 +10,14 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 py-16">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
-
           {/* Company Info */}
           <div className="lg:col-span-1">
             <h3 className="text-2xl font-light text-gray-900 mb-6 tracking-wide">
               Phuket Childseat
             </h3>
             <p className="text-gray-600 font-light leading-relaxed mb-6">
-              Professional family transport services with imported Britax child seats from Sweden.
-              Maximum safety, premium comfort.
+              Professional family transport services with imported Britax child
+              seats from Sweden. Maximum safety, premium comfort.
             </p>
 
             {/* Owner Section */}
@@ -26,20 +25,24 @@ export default function Footer() {
               <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
                 <Image
                   src="/image/contact/owner.png"
-                  alt="Kampanart - Owner"
+                  alt="Thanapath - Developer"
                   fill
                   className="object-cover"
                 />
               </div>
               <div>
-                <h4 className="text-sm font-medium text-gray-900 mb-1">Kampanart</h4>
-                <p className="text-xs text-gray-500 font-light">Owner & Operator</p>
-                <p className="text-xs text-gray-400 mt-1">Your trusted travel partner</p>
+                <h4 className="text-sm font-medium text-gray-900 mb-1">
+                  Thanapath
+                </h4>
+                <p className="text-xs text-gray-500 font-light">Developer</p>
+                <p className="text-xs text-gray-400 mt-1">
+                  Your trusted developer
+                </p>
               </div>
             </div>
 
             <p className="text-xs text-gray-400 uppercase tracking-widest">
-              TAT License: 32/01713
+              DEMO License
             </p>
           </div>
 
@@ -52,32 +55,28 @@ export default function Footer() {
               <li>
                 <Link
                   href="/airport-transfer"
-                  className="text-gray-600 hover:text-gray-900 font-light transition-colors duration-300"
-                >
+                  className="text-gray-600 hover:text-gray-900 font-light transition-colors duration-300">
                   Airport Transfer
                 </Link>
               </li>
               <li>
                 <Link
                   href="/day-trips"
-                  className="text-gray-600 hover:text-gray-900 font-light transition-colors duration-300"
-                >
+                  className="text-gray-600 hover:text-gray-900 font-light transition-colors duration-300">
                   Day Trips
                 </Link>
               </li>
               <li>
                 <Link
                   href="/house-for-rent"
-                  className="text-gray-600 hover:text-gray-900 font-light transition-colors duration-300"
-                >
+                  className="text-gray-600 hover:text-gray-900 font-light transition-colors duration-300">
                   House for Rent
                 </Link>
               </li>
               <li>
                 <Link
                   href="/contact"
-                  className="text-gray-600 hover:text-gray-900 font-light transition-colors duration-300"
-                >
+                  className="text-gray-600 hover:text-gray-900 font-light transition-colors duration-300">
                   Contact
                 </Link>
               </li>
@@ -92,11 +91,15 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <FaEnvelope className="text-gray-400 text-sm" />
-                <span className="text-gray-600 font-light">kam.phuket@gmail.com</span>
+                <span className="text-gray-600 font-light">
+                  thanapat15020@gmail.com
+                </span>
               </div>
               <div className="flex items-center gap-3">
                 <FaPhone className="text-gray-400 text-sm" />
-                <span className="text-gray-600 font-light">+66 81 537 2657</span>
+                <span className="text-gray-600 font-light">
+                  +66 85 099 4775
+                </span>
               </div>
               <div className="flex items-center gap-3">
                 <FaWhatsapp className="text-gray-400 text-sm" />
@@ -104,7 +107,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <FaLine className="text-gray-400 text-sm" />
-                <span className="text-gray-600 font-light">kampanart-travel</span>
+                <span className="text-gray-600 font-light">Demo</span>
               </div>
             </div>
           </div>
@@ -116,7 +119,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm font-light">
-            © 2025 Kampanart Travel. All rights reserved.
+            © 2025 Demo Travel. All rights reserved.
           </p>
           <div className="flex items-center gap-6 mt-4 md:mt-0">
             <span className="text-gray-400 text-xs uppercase tracking-widest font-light">

@@ -37,21 +37,21 @@ export default function FloatingContactButton({
     {
       icon: FaEnvelope,
       label: "Email",
-      href: "mailto:kam.phuket@gmail.com",
+      href: "mailto:thanapat15020@gmail.com",
       bgColor: "bg-blue-500 hover:bg-blue-600",
       textColor: "text-white",
     },
     {
       icon: FaPhone,
       label: "Call",
-      href: "tel:+66815372657",
+      href: "tel:+66850994775",
       bgColor: "bg-green-500 hover:bg-green-600",
       textColor: "text-white",
     },
     {
       icon: FaWhatsapp,
       label: "WhatsApp",
-      href: "https://wa.me/66815372657",
+      href: "https://wa.me/66850994775",
       bgColor: "bg-green-600 hover:bg-green-700",
       textColor: "text-white",
       target: "_blank",
@@ -59,10 +59,10 @@ export default function FloatingContactButton({
     {
       icon: FaLine,
       label: "Line",
-      href: "https://line.me/ti/p/~kampanart-travel",
+      href: "#",
       bgColor: "bg-green-400 hover:bg-green-500",
       textColor: "text-white",
-      target: "_blank",
+      // Remove target for placeholder links
     },
   ];
 
@@ -70,10 +70,11 @@ export default function FloatingContactButton({
     <div className={`fixed bottom-6 right-6 z-50 ${className}`}>
       {/* Contact Options */}
       <div
-        className={`flex flex-col justify-center items-center gap-3 mb-4 transition-all duration-300 ${isOpen
+        className={`flex flex-col justify-center items-center gap-3 mb-4 transition-all duration-300 ${
+          isOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-4 pointer-events-none"
-          }`}>
+        }`}>
         {contactOptions.map((option, index) => {
           const IconComponent = option.icon;
           return (
@@ -86,6 +87,13 @@ export default function FloatingContactButton({
                   as="a"
                   href={option.href}
                   target={option.target}
+                  onPress={() => {
+                    // Prevent navigation for placeholder links
+                    if (option.href === "#") {
+                      // For placeholder links, do nothing
+                      return;
+                    }
+                  }}
                   className={`${option.bgColor} ${option.textColor} shadow-lg hover:shadow-xl transition-all duration-300 min-w-0 w-14 h-14 rounded-full flex items-center justify-center`}
                   isIconOnly>
                   <IconComponent className="text-xl group-hover:scale-110 transition-transform duration-200" />
@@ -106,11 +114,12 @@ export default function FloatingContactButton({
 
       {/* Main Toggle Button */}
       <Button
-        onClick={() => setIsOpen(!isOpen)}
-        className={`w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ${isOpen
+        onPress={() => setIsOpen(!isOpen)}
+        className={`w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ${
+          isOpen
             ? "bg-red-500 hover:bg-red-600 text-white rotate-180"
             : "bg-blue-600 hover:bg-blue-700 text-white"
-          }`}
+        }`}
         isIconOnly>
         {isOpen ? (
           <FaTimes className="text-2xl" />

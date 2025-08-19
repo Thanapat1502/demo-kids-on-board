@@ -45,40 +45,45 @@ export default function HouseForRentPage() {
       const windowHeight = window.innerHeight;
 
       // Enhanced parallax effect for hero background images
-      const parallaxElements = document.querySelectorAll('.parallax-bg');
+      const parallaxElements = document.querySelectorAll(".parallax-bg");
       parallaxElements.forEach((element) => {
         const speed = 0.5; // Parallax speed
         const yPos = -(scrolled * speed); // NEGATIVE - moves up slower than scroll
         (element as HTMLElement).style.transform = `translateY(${yPos}px)`;
-        (element as HTMLElement).style.willChange = 'transform'; // Optimize for smooth animation
+        (element as HTMLElement).style.willChange = "transform"; // Optimize for smooth animation
       });
 
       // Enhanced upward parallax effect for hero content (text moves upward when scrolling down)
-      const heroContent = document.querySelector('.hero-content');
+      const heroContent = document.querySelector(".hero-content");
       if (heroContent) {
         const contentRate = scrolled * -0.3; // Increased rate for more noticeable effect
-        (heroContent as HTMLElement).style.transform = `translateY(${contentRate}px)`;
-        (heroContent as HTMLElement).style.willChange = 'transform'; // Optimize for smooth animation
+        (heroContent as HTMLElement).style.transform =
+          `translateY(${contentRate}px)`;
+        (heroContent as HTMLElement).style.willChange = "transform"; // Optimize for smooth animation
       }
 
       // Fade effect for hero overlay as user scrolls
-      const heroOverlay = document.querySelector('.hero-overlay');
+      const heroOverlay = document.querySelector(".hero-overlay");
       if (heroOverlay) {
         const fadeStart = windowHeight * 0.3;
         const fadeEnd = windowHeight * 0.8;
         let opacity = 0.4;
 
         if (scrolled > fadeStart) {
-          const fadeProgress = Math.min((scrolled - fadeStart) / (fadeEnd - fadeStart), 1);
-          opacity = 0.4 + (fadeProgress * 0.3); // Gradually darken
+          const fadeProgress = Math.min(
+            (scrolled - fadeStart) / (fadeEnd - fadeStart),
+            1
+          );
+          opacity = 0.4 + fadeProgress * 0.3; // Gradually darken
         }
 
-        (heroOverlay as HTMLElement).style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+        (heroOverlay as HTMLElement).style.backgroundColor =
+          `rgba(0, 0, 0, ${opacity})`;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -91,8 +96,9 @@ export default function HouseForRentPage() {
             {houseImages.map((image, index) => (
               <div
                 key={index}
-                className={`absolute inset-0 transition-opacity duration-1000 ${index === currentHouseImage ? "opacity-100" : "opacity-0"
-                  }`}>
+                className={`absolute inset-0 transition-opacity duration-1000 ${
+                  index === currentHouseImage ? "opacity-100" : "opacity-0"
+                }`}>
                 <Image
                   src={image}
                   alt={`Garden House for Rent - View ${index + 1}`}
@@ -113,7 +119,9 @@ export default function HouseForRentPage() {
         <div className="hero-overlay absolute inset-0 bg-black/40 transition-all duration-300" />
 
         {/* Hero Content - Enhanced with Parallax */}
-        <div className="hero-content absolute inset-0 flex items-center justify-center z-10" style={{ transform: 'translateY(0px)', willChange: 'transform' }}>
+        <div
+          className="hero-content absolute inset-0 flex items-center justify-center z-10"
+          style={{ transform: "translateY(0px)", willChange: "transform" }}>
           <div className="max-w-5xl mx-auto px-4 text-center">
             <PageHeaderAnimation delay={600}>
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-white mb-8 leading-tight tracking-wide">
@@ -167,8 +175,9 @@ export default function HouseForRentPage() {
           {houseImages.map((_, index) => (
             <button
               key={index}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentHouseImage ? "bg-white" : "bg-white/40"
-                }`}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentHouseImage ? "bg-white" : "bg-white/40"
+              }`}
               onClick={() => setCurrentHouseImage(index)}
             />
           ))}
@@ -176,7 +185,7 @@ export default function HouseForRentPage() {
       </section>
 
       {/* Main Content - Positioned above hero - SAME AS CONTACT/DAY-TRIPS */}
-      <main className="relative z-10 bg-gray-50" style={{ marginTop: '100vh' }}>
+      <main className="relative z-10 bg-gray-50" style={{ marginTop: "100vh" }}>
         {/* Property Overview - Minimal Style */}
         <section className="py-20 bg-white relative">
           <div className="max-w-7xl mx-auto px-4">
@@ -350,7 +359,9 @@ export default function HouseForRentPage() {
                 </h3>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                    <span className="font-light text-gray-900">Phuket Town</span>
+                    <span className="font-light text-gray-900">
+                      Phuket Town
+                    </span>
                     <span className="text-gray-600 font-light">20 minutes</span>
                   </div>
                   <div className="flex justify-between items-center py-3 border-b border-gray-100">
@@ -360,7 +371,9 @@ export default function HouseForRentPage() {
                     <span className="text-gray-600 font-light">25 minutes</span>
                   </div>
                   <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                    <span className="font-light text-gray-900">Patong Beach</span>
+                    <span className="font-light text-gray-900">
+                      Patong Beach
+                    </span>
                     <span className="text-gray-600 font-light">30 minutes</span>
                   </div>
                 </div>
@@ -468,7 +481,7 @@ export default function HouseForRentPage() {
               <button
                 className="bg-white text-gray-900 hover:bg-gray-50 font-light px-8 py-3 tracking-wide border border-gray-200 transition-colors duration-300"
                 onClick={() =>
-                  window.open("https://wa.me/66815372657", "_blank")
+                  window.open("https://wa.me/66850994775", "_blank")
                 }>
                 WhatsApp Now
               </button>

@@ -123,8 +123,8 @@ export default function RootLayout({
     url: "https://kids-onboard.com",
     logo: "https://kids-onboard.com/logo.png",
     image: "https://kids-onboard.com/image/seo.png",
-    telephone: "+66815372657",
-    email: "kam.phuket@gmail.com",
+    telephone: "+66850994775",
+    email: "thanapat15020@gmail.com",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Thalang",
@@ -166,10 +166,7 @@ export default function RootLayout({
     currenciesAccepted: "THB, USD",
     paymentAccepted: "Cash, Bank Transfer",
     openingHours: "Mo-Su 00:00-23:59",
-    sameAs: [
-      "https://wa.me/66815372657",
-      "https://line.me/ti/p/~kampanart-travel",
-    ],
+    sameAs: ["https://wa.me/66850994775"],
   };
 
   return (
@@ -182,12 +179,7 @@ export default function RootLayout({
           as="image"
           type="image/jpeg"
         />
-        <link
-          rel="preload"
-          href="/image/seo.png"
-          as="image"
-          type="image/png"
-        />
+        <link rel="preload" href="/image/seo.png" as="image" type="image/png" />
         {/* DNS prefetch for external resources */}
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
